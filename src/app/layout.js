@@ -1,3 +1,5 @@
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
 //Components
 import Navbar from "@/components/Navbar";
 
@@ -10,10 +12,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <main>
-          {children}
-          <Navbar />
-        </main>
+        <UserProvider>
+          <main>
+            {children}
+            <Navbar />
+          </main>
+        </UserProvider>
         {/* <footer>IF ANY</footer> */}
       </body>
     </html>
