@@ -1,7 +1,7 @@
 import 'normalize.css';
 import'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/globals.css';
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Navbar/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
 
 export const metadata = {
