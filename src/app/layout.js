@@ -1,5 +1,8 @@
-//Components
-import Navbar from "@/components/Navbar";
+import 'normalize.css';
+import'bootstrap/dist/css/bootstrap.min.css';
+import '../styles/globals.css';
+import Navbar from "@/components/Navbar/Navbar";
+import BootstrapClient from "@/components/BootstrapClient";
 
 export const metadata = {
   title: "Treads",
@@ -12,9 +15,10 @@ export default function RootLayout({ children }) {
       <body>
         <main>
           {children}
-          <Navbar />
         </main>
         {/* <footer>IF ANY</footer> */}
+          <Navbar />
+<BootstrapClient />
       </body>
     </html>
   );
