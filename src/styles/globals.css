@@ -1,0 +1,20 @@
+:root {
+  /* Color Scheme */
+  --color-white: #f4eae6;
+  --color-teal: #4297a0;
+  --color-teal-hover: #2f6d74;
+  --color-pink: #e57f84;
+  --color-dark-blue: #2f5061;
+  --color-dark-blue-hover: #213844;
+  --color-offwhite: #f3e1c8;
+  --color-burgundy: #9b6a6c;
+  --color-grey-blue: #6d7993;
+  --color-grey-blue-hover: #4b5466;
+  /* Border Radius */
+  --border-radius-box: 15px;
+  --border-radius-round: 24px;
+  /* box-shadow */
+  --box-shadow: 4px 4px 0px black;
+  /* box-border */
+  --box-border: 2px solid black;
+}
