@@ -15,9 +15,9 @@ export default function RootLayout({ children }) {
       <body>
         <main>
           {children}
-          <Navbar />
         </main>
         {/* <footer>IF ANY</footer> */}
+          <Navbar />
 <BootstrapClient />
       </body>
     </html>
