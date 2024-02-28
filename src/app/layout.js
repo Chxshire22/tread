@@ -3,6 +3,7 @@ import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
+//Components import
 import Navbar from "@/components/Navbar/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
 
