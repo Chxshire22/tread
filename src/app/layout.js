@@ -1,6 +1,9 @@
-import 'normalize.css';
-import'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/globals.css';
+import { UserProvider } from "@auth0/nextjs-auth0/client";
+
+import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/globals.css";
+//Components import
 import Navbar from "@/components/Navbar/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
 
@@ -13,12 +16,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <main>
-          {children}
-        </main>
+        <UserProvider>
+          <main>{children}</main>
+        </UserProvider>
         {/* <footer>IF ANY</footer> */}
-          <Navbar />
-<BootstrapClient />
+        <Navbar />
+        <BootstrapClient />
       </body>
     </html>
   );
