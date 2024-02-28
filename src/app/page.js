@@ -1,19 +1,19 @@
-import { getSession } from "@auth0/nextjs-auth0";
+"use client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 //Components Import
 import LoginButton from "@/components/LoginButton";
 import LogoutButton from "@/components/LogoutButton";
 import SignUpButton from "@/components/SignupButton";
 
-export default async function Home() {
-  const session = await getSession();
-  const user = session?.user;
+export default function Home() {
+  const { user } = useUser();
 
   return (
     <main>
       <div>
         <h1>HOME PAGE - Treads</h1>
-        <p>Hi! {user?.email}</p>
+        {user && <p>Hi! {user.name}</p>}
       </div>
       <LoginButton />
       <LogoutButton />
