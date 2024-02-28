@@ -1,7 +1,10 @@
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 
-//Components
-import Navbar from "@/components/Navbar";
+import "normalize.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../styles/globals.css";
+import Navbar from "@/components/Navbar/Navbar";
+import BootstrapClient from "@/components/BootstrapClient";
 
 export const metadata = {
   title: "Treads",
@@ -13,12 +16,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <UserProvider>
-          <main>
-            {children}
-            <Navbar />
-          </main>
+          <main>{children}</main>
         </UserProvider>
         {/* <footer>IF ANY</footer> */}
+        <Navbar />
+        <BootstrapClient />
       </body>
     </html>
   );
