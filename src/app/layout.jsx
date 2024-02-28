@@ -21,7 +21,9 @@ export default function RootLayout({ children }) {
         </UserProvider>
         {/* <footer>IF ANY</footer> */}
         <Navbar />
-        <BootstrapClient />
+
+        {/* DO NOT REMOVE: THIS IS SO THAT BOOSTRAP JS WORKS */}
+        <BootstrapClient /> 
       </body>
     </html>
   );

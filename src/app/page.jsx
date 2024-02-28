@@ -2,9 +2,12 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 
 //Components Import
-import LoginButton from "@/components/LoginButton";
-import LogoutButton from "@/components/LogoutButton";
-import SignUpButton from "@/components/SignupButton";
+
+import {
+  LoginButton,
+  LogoutButton,
+  SignUpButton,
+} from "@/components/Buttons/Buttons";
 
 export default function Home() {
   const { user } = useUser();
