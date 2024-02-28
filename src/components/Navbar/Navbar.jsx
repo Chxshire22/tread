@@ -1,7 +1,6 @@
 import {
   HouseFill,
   Search,
-  PlusSquareFill,
   PersonCircle,
   ChatSquareFill,
 } from "react-bootstrap-icons";
