@@ -32,7 +32,5 @@ export const CreatePostButton = () => {
 };
 
 export const SaveContinue = () => {
-  return (
-    <div>Buttons</div>
-  )
-}
+  return <div>Buttons</div>;
+};

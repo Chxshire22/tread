@@ -15,7 +15,7 @@ const Navbar = async () => {
   const session = await getServerSession(options);
   return (
     <nav className={styles.navcontainer}>
-      <ul className="nav navlist justify-content-evenly w-100">
+      <ul className="nav navlist justify-content-evenly w-100 ">
         <li className="nav-item">
           <Link className="nav-link active" href="/">
             <HouseFill size={25} color={"#AFD8F2"} />
@@ -38,11 +38,9 @@ const Navbar = async () => {
             </div>
             <ul className="dropdown-menu">
               <li>
-                {session ? (
-                  <Link href="/api/auth/signout?callbackUrl=/">Log Out</Link>
-                ) : (
-                  <Link href="/api/auth/signin?callbackUrl=/">Log In</Link>
-                )}
+                <a href="/profile/1/" className="dropdown-item">
+                  My Profile
+                </a>
               </li>
             </ul>
           </div>
