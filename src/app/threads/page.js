@@ -1,5 +1,5 @@
 import React from "react";
-import ThreadContainer from "@/components/ThreadContainer";
+import ThreadContainer from "@/components/Threads/ThreadContainer";
 
 export default function page() {
   return (
