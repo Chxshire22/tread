@@ -11,7 +11,11 @@ export async function GET() {
   }
 }
 
+
+//filepath + http operation POST/GET router
 export async function POST(request) {
+
+  // basically controller 
   const { friendshipId, messageId } = await request.json();
   try {
     const chatroom = await Chatroom.create({
