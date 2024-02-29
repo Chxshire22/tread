@@ -12,11 +12,12 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { email, username } = await request.json();
+  const { email, username, bio } = await request.json();
   try {
     const user = await User.create({
       email: email,
       username: username,
+      bio: bio,
     });
     return NextResponse.json(user);
   } catch (err) {

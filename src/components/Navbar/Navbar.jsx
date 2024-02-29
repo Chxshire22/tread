@@ -1,17 +1,8 @@
-import {
-  HouseFill,
-  Search,
-  PersonCircle,
-  ChatSquareFill,
-} from "react-bootstrap-icons";
+import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
 import Link from "next/link";
 import styles from "./styles.module.css";
 
-import { getServerSession } from "next-auth";
-import options from "../../app/api/auth/[...nextauth]/options";
-
 const Navbar = async () => {
-  const session = await getServerSession(options);
   return (
     <nav className={styles.navcontainer}>
       <ul className="nav navlist justify-content-evenly w-100 ">
@@ -37,8 +28,18 @@ const Navbar = async () => {
             </div>
             <ul className="dropdown-menu">
               <li>
-                <a href="/profile/1/" className="dropdown-item">
+                <a href="/users" className="dropdown-item">
                   My Profile
+                </a>
+              </li>
+              <li>
+                <a href="/notifications" className="dropdown-item">
+                  Notifications
+                </a>
+              </li>
+              <li>
+                <a href="/api/auth/logout" className="dropdown-item">
+                  Log Out
                 </a>
               </li>
             </ul>
