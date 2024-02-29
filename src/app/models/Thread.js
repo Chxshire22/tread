@@ -41,7 +41,7 @@ Thread.init(
     endDateOfTravel: {
       type: DataTypes.DATE,
     },
-    threads_dp: {
+    threadsDp: {
       type: DataTypes.STRING,
     },
     createdAt: {
