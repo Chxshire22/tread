@@ -5,15 +5,15 @@ import {
   ChatSquareFill,
 } from "react-bootstrap-icons";
 import Link from "next/link";
-import styles from "./styles.module.css";
+import navStyles from "../styles/navbar.module.css";
 
 import { getServerSession } from "next-auth";
-import options from "../../app/api/auth/[...nextauth]/options";
+import options from "../app/api/auth/[...nextauth]/options";
 
 const Navbar = async () => {
   const session = await getServerSession(options);
   return (
-    <nav className={styles.navcontainer}>
+    <nav className={navStyles.navcontainer}>
       <ul className="nav navlist justify-content-evenly w-100 ">
         <li className="nav-item">
           <Link className="nav-link active" href="/">

@@ -1,25 +1,69 @@
-:root {
-  /* Color Scheme */
-  --color-white: #f4eae6;
-  --color-teal: #4297a0;
-  --color-teal-hover: #2f6d74;
-  --color-pink: #e57f84;
-  --color-dark-blue: #2f5061;
-  --color-dark-blue-hover: #213844;
-  --color-offwhite: #f3e1c8;
-  --color-burgundy: #9b6a6c;
-  --color-grey-blue: #6d7993;
-  --color-grey-blue-hover: #4b5466;
-  /* Border Radius */
-  --border-radius-box: 15px;
-  --border-radius-round: 24px;
-  /* box-shadow */
-  --box-shadow: 4px 4px 0px black;
-  /* box-border */
-  --box-border: 2px solid black;
+/* Styles implemented here will permeate throughout the app  */
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
-html{
-	margin:0;
-	padding:0;
-	min-height: 100%;
+
+/* LAYOUT */
+
+.page-container {
+  margin-inline: 2rem;
+  margin-top: 1rem;
+}
+
+/* FONTS */
+.page-title {
+  font-size: 1.3rem;
+  margin-left: 0.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.username-sm {
+  font-size: 0.8rem;
+  margin: 0;
+  padding-top: 0.5rem;
+}
+
+.chat-preview {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* PROFILE PICTURES */
+.pfp-sm {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* BLOCKS */
+
+.chatroom-block {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2rem;
+  transition: all ease-in;
+  /* border: 1px black solid; */
+}
+.chatroom-block:hover {
+  background-color: rgb(248 250 252);
+}
+
+.chatroom-block_content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  cursor: pointer;
 }

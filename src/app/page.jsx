@@ -7,7 +7,7 @@ import {
   LoginButton,
   LogoutButton,
   SignUpButton,
-} from "@/components/Buttons/Buttons";
+} from "@/components/Buttons";
 
 export default function Home() {
   const { user } = useUser();
