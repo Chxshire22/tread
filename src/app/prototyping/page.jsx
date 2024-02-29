@@ -1,8 +1,10 @@
 "use client";
+import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 
 export default function Carousel() {
   return (
     <div className="page-container">
+      <PageHeaderWithBackBtn title="Create Thread Content" />
       <div id="carouselExample" className="carousel slide" data-bs-touch={true}>
         <div className="carousel-inner">
           <div className="carousel-item active">
