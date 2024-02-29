@@ -3,16 +3,19 @@ import { CardImage } from "react-bootstrap-icons";
 import { useRouter } from "next/navigation";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function CreateThreadsPage() {
   const [preview, setPreview] = useState(null);
 
   const [threadData, setThreadData] = useState({
-    selectedImage: null,
+    threadsDp:
+      "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
     title: "",
-    startDate: null,
-    endDate: null,
-    country: "",
+    startDateOfTravel: null,
+    endDateOfTravel: null,
+    destination: "",
+    userId: 1, //for now
   });
 
   useEffect(() => {
@@ -25,12 +28,22 @@ export default function CreateThreadsPage() {
       setSelectedImage(null);
       return;
     }
-    setThreadData((prevState) => ({
-      ...prevState,
-      selectedImage: e.target.files[0],
-    }));
+    // setThreadData((prevState) => ({
+    //   ...prevState,
+    //   threadsDp: e.target.files[0],
+    // }));
     setPreview(URL.createObjectURL(e.target.files[0]));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const res = await axios.post("http://localhost:3000/api/threads", threadData)
+      console.log(res.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className="page-container">
@@ -51,20 +64,20 @@ export default function CreateThreadsPage() {
         onChange={handleImageChange}
       />
 
-      {/* Select country */}
+      {/* Select destination */}
       <div className="my-3">
         <select
           className="form-select"
-          aria-label="Country"
+          aria-label="destination"
           onChange={(e) => {
             setThreadData((prevState) => ({
               ...prevState,
-              country: e.target.value,
+              destination: e.target.value,
             }));
           }}
         >
           <option defaultValue={null} value="0">
-            Select country
+            Select destination
           </option>
           <option value="1">Map</option>
           <option value="2">Countries</option>
@@ -99,7 +112,7 @@ export default function CreateThreadsPage() {
             onChange={(e) => {
               setThreadData((prevState) => ({
                 ...prevState,
-                startDate: e.target.value,
+                startDateOfTravel: e.target.value,
               }));
             }}
           />
@@ -113,7 +126,7 @@ export default function CreateThreadsPage() {
             onChange={(e) => {
               setThreadData((prevState) => ({
                 ...prevState,
-                endDate: e.target.value,
+                endDateOfTravel: e.target.value,
               }));
             }}
           />
@@ -121,7 +134,7 @@ export default function CreateThreadsPage() {
         </div>
       </div>
 
-      <button type="submit" disabled={threadData.country == ""||threadData.title == "" || threadData.selectedImage ==null||threadData.startDate ==null||threadData.endDate == null? true: false} className="btn btn-submit-form">
+      <button onClick={handleSubmit} disabled={threadData.destination == ""||threadData.title == "" ||threadData.startDateOfTravel ==null||threadData.endDateOfTravel == null? true: false} className="btn btn-submit-form">
         Post
       </button>
       {/* spacer is needed as navbar is sticky nad will block out the lowest elements on page */}
