@@ -12,13 +12,22 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { userId, title, destination, startDate } = await request.json();
+  const {
+    userId,
+    title,
+    destination,
+    startDateOfTravel,
+    endDateOfTravel,
+    threadsDp,
+  } = await request.json();
   try {
     const thread = await Thread.create({
-      userId: userId,
-      title: title,
-      destination: destination,
-      startDateOfTravel: startDate
+      userId,
+      title,
+      destination,
+      startDateOfTravel,
+      endDateOfTravel,
+      threadsDp
     });
     return NextResponse.json(thread);
   } catch (err) {

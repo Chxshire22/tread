@@ -7,6 +7,7 @@ import {
   LoginButton,
   LogoutButton,
   SignUpButton,
+  CreatePostButton,
 } from "@/components/Buttons";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <LoginButton />
       <LogoutButton />
       <SignUpButton />
+      <CreatePostButton />
     </main>
   );
 }

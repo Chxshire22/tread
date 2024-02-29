@@ -1,18 +1,28 @@
 /* Styles implemented here will permeate throughout the app  */
+
+/* VARIABLES */
+
+:root {
+  --color-white: #fafbf4;
+  --color-sky-blue: #afd8f2;
+  --color-sky-blue-alt: #93b9d1;
+  --color-cornflower-blue: #00a0f3;
+  --color-dark-blue: #000066;
+}
+
 html {
   margin: 0;
   padding: 0;
   min-height: 100%;
 }
 
-/* LAYOUT */
+/* FONTS */
 
-.page-container {
-  margin-inline: 2rem;
-  margin-top: 1rem;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* FONTS */
 .page-title {
   font-size: 1.3rem;
   margin-left: 0.5rem;
@@ -30,6 +40,48 @@ html {
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+/* LABELS */
+.page-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-cornflower-blue);
+}
+
+/* BUTTONS */
+
+.create-thread-btn {
+  position: fixed;
+  bottom: 4rem;
+  right: 2rem;
+  opacity: 0.8;
+  transition: all 0.3s ease-in;
+}
+.create-thread-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* LAYOUT */
+
+.page-container {
+  margin-inline: 2rem;
+  margin-top: 1rem;
+}
+
+/* HEADERS */
+
+.page-header-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.spacer {
+  height: 4rem;
 }
 
 /* PROFILE PICTURES */
@@ -66,4 +118,55 @@ html {
   flex-direction: column;
   margin-left: 0.5rem;
   cursor: pointer;
+}
+
+/* FORMS */
+
+.img-preview-placeholder {
+  width: 100%;
+  aspect-ratio: 4/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-sky-blue);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  cursor: pointer;
+  flex-direction: column;
+}
+
+.start-end-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.date-input {
+  width: 45%;
+}
+
+.btn-submit-form {
+  background-color: var(--color-sky-blue);
+  color: var(--color-white);
+  font-weight: 500;
+  border-radius: 40px;
+  width: 100%;
+}
+.btn-submit-form:focus,
+.btn-submit-form:hover {
+  background-color: var(--color-sky-blue-alt);
+}
+
+#file-upload {
+  display: none;
+}
+
+.preview-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
 }
