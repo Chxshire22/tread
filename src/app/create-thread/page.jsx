@@ -56,7 +56,7 @@ export default function CreateThreadsPage() {
           <img src={preview} className="preview-img" alt="preview" />
         ) : (
           <>
-            <CardImage size={40} /> <p>Upload Tread Picture</p>
+            <CardImage size={40} /> <p>Upload Image</p>
           </>
         )}
       </label>
