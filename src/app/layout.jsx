@@ -6,6 +6,7 @@ import "../styles/globals.css";
 //Components import
 import Navbar from "@/components/Navbar/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
+import GetCurrentUser from "@/components/Context/GetCurrentUser";
 
 export const metadata = {
   title: "Treads",
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <UserProvider>
-          <main>{children}</main>
+          <GetCurrentUser>
+            <main>{children}</main>
+          </GetCurrentUser>
         </UserProvider>
         {/* <footer>IF ANY</footer> */}
         <Navbar />

@@ -1,3 +1,5 @@
+// user context
+// fetch user data
 async function getUsername(username) {
   const response = await fetch("https://localhost:3000/api/users" + username);
   return response.json();
