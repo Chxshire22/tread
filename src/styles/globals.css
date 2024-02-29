@@ -1,18 +1,27 @@
 /* Styles implemented here will permeate throughout the app  */
+
+/* VARIABLES */
+
+:root {
+  --color-white: #fafbf4;
+  --color-sky-blue: #afd8f2;
+  --color-cornflower-blue: #00a0f3;
+  --color-dark-blue: #000066;
+}
+
 html {
   margin: 0;
   padding: 0;
   min-height: 100%;
 }
 
-/* LAYOUT */
+/* FONTS */
 
-.page-container {
-  margin-inline: 2rem;
-  margin-top: 1rem;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* FONTS */
 .page-title {
   font-size: 1.3rem;
   margin-left: 0.5rem;
@@ -30,6 +39,37 @@ html {
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+/* BUTTONS */
+
+.create-thread-btn {
+  position: fixed;
+  bottom: 4rem;
+  right: 2rem;
+  opacity: 0.8;
+  transition: all 0.3s ease-in;
+}
+.create-thread-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* LAYOUT */
+
+.page-container {
+  margin-inline: 2rem;
+  margin-top: 1rem;
+}
+
+/* HEADERS */
+
+.page-header-back {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 /* PROFILE PICTURES */

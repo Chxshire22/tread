@@ -1,4 +1,6 @@
 import styles from "../styles/buttons.module.css";
+import Link from "next/link";
+import { PlusCircleFill } from "react-bootstrap-icons";
 
 export const LoginButton = () => {
   return (
@@ -23,13 +25,16 @@ export const SignUpButton = () => {
     </button>
   );
 };
-export const CreatePostButton = () => {
+
+
+export function CreatePostButton() {
   return (
-    <button>
-      <a href="/create-post">+</a>
-    </button>
+    <Link href="/create-thread" className="create-thread-btn">
+      <PlusCircleFill color="#000066" size={40} />
+    </Link>
   );
-};
+}
+
 
 export const SaveContinue = () => {
   return <div>Buttons</div>;
