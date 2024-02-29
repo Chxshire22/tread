@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Thread({ content }) {
+export default function ThreadContent({ content }) {
   return (
     <div
       style={{
@@ -9,10 +9,12 @@ export default function Thread({ content }) {
         backgroundColor: "white",
         padding: "10px",
         color: "black",
-        width: "40vw",
+        width: "60vw",
       }}
     >
-      {content}
+      <div>Location: {content.location}</div>
+      <div>Description: {content.description}</div>
+      <div>Recommended Time: {content.recommended_time}</div>
     </div>
   );
 }

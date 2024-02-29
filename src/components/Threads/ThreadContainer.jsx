@@ -2,29 +2,17 @@
 
 import React from "react";
 import { useState } from "react";
-import ThreadList from "./ThreadList";
+import ThreadContent from "./ThreadContent";
 import HeadThread from "./HeadThread";
 
-export default function ThreadContainer() {
-  const [headThread, setHeadThread] = useState({
-    id: 0,
-    content: "Japan Trip",
-  });
-  const [threads, setThreads] = useState([
-    {
-      id: 1,
-      content: "Day 1",
-    },
-    {
-      id: 2,
-      content: "Day 2",
-    },
-  ]);
+export default function ThreadContainer({ headThread, threadContentList }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div style={{ backgroundColor: "lightblue", padding: "1rem" }}>
-      <HeadThread content={headThread.content} />
+    <div
+      style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}
+    >
+      <HeadThread content={headThread} />
       <button
         onClick={() => setIsOpen(!isOpen)}
         style={{
@@ -37,7 +25,18 @@ export default function ThreadContainer() {
       >
         {isOpen ? "Hide Itinerary" : "Show Itinerary"}
       </button>
-      {isOpen && <ThreadList threads={threads} />}
+      {isOpen && (
+        <div style={{ display: "flex" }}>
+          <div
+            style={{ width: "10px", height: "300px", backgroundColor: "#000" }}
+          ></div>
+          <div>
+            {threadContentList.map((threadContent) => (
+              <ThreadContent key={threadContent.id} content={threadContent} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
