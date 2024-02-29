@@ -9,9 +9,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.Thread);
-      this.hasMany(models.Threads_Contents_Comment);
-      this.hasMany(models.Threads_Contents_Like);
-      // this.hasMany(models.Threads_Content_Display_Picture);
+      this.belongsToMany(models.User, {
+        through: "Thread_Contents_Comment",
+      });
+      this.belongsToMany(models.User, {
+        through: "Thread_Contents_Like",
+      });
+      this.hasMany(models.Threads_Content_Display_Picture);
       this.belongsToMany(models.Category, { through: "Threads_Contents_Category" });
     }
   }
@@ -39,12 +43,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
-      startTime: {
-        allowNull: false,
-        type: DataTypes.DATE,
-      },
-      endTime: {
-        type: DataTypes.DATE,
+      recommended_time: {
+        type: DataTypes.STRING,
       },
       createdAt: {
         allowNull: false,

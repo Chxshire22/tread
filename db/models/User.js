@@ -9,9 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.hasMany(models.Thread);
-      this.hasMany(models.Threads_Contents_Comment);
-      this.hasMany(models.Threads_Contents_Like);
-      this.hasMany(models.Saved_Thread);
+      this.belongsToMany(models.Threads_Content, {
+        through: "Thread_Contents_Comment",
+      });
+      this.belongsToMany(models.Threads_Content, {
+        through: "Thread_Contents_Like",
+      });
+      this.belongsToMany(models.Thread, {
+        through: "Saved_Thread",
+      });
       this.hasMany(models.Notification);
       this.hasMany(models.Message);
       this.hasMany(models.Friendship, {

@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       this.belongsTo(models.User);
       this.hasMany(models.Threads_Content)
-      this.hasMany(models.Saved_Thread)
+      this.belongsToMany(models.User, {
+        through: "Saved_Thread",
+      });
     }
   }
   Thread.init(
@@ -35,6 +37,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       destination: {
         allowNull: false,
+        type: DataTypes.STRING,
+      },
+      start_date_of_travel: {
+        allowNull: false,
+        type: DataTypes.DATE,
+      },
+      end_date_of_travel: {
+        type: DataTypes.DATE,
+      },
+      threads_dp: {
         type: DataTypes.STRING,
       },
       createdAt: {
