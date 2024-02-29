@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         {/* DO NOT REMOVE: THIS IS SO THAT BOOSTRAP JS WORKS */}
-        <BootstrapClient /> 
+        <BootstrapClient />
       </body>
     </html>
   );
