@@ -93,6 +93,7 @@ a {
   object-position: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* BLOCKS */
