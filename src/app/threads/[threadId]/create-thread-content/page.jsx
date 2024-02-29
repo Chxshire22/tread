@@ -19,6 +19,15 @@ export default function CreateThreadContent() {
     "https://i.pinimg.com/236x/75/e9/ef/75e9ef58248657fc164181b57a68c42c.jpg",
   ];
 
+
+  // NOTE: Thread content category is to be posted to threads_contents_categories table
+  // NOTE: Thread content images to be posted to threads_contents_display_picture table
+  // The rest (location, description, recommended time) is to be posted to threads_content table 
+  // Try to implement removal of specific images from carousel
+  // Try to implement adding of images to carousel
+  // Try to implement limit on number of images upload 
+
+
   return (
     <div className="page-container">
       <PageHeaderWithBackBtn title="Create Thread Content" />
