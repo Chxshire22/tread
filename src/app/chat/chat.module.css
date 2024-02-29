@@ -1,0 +1,13 @@
+.page-container {
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 1.3rem;
+  color: red;
+}
