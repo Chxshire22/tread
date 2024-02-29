@@ -134,7 +134,7 @@ export default function CreateThreadsPage() {
         </div>
       </div>
 
-      <button onClick={handleSubmit} disabled={threadData.destination == ""||threadData.title == "" ||threadData.startDateOfTravel ==null||threadData.endDateOfTravel == null? true: false} className="btn btn-submit-form">
+      <button onClick={handleSubmit} disabled={threadData.destination == ""||threadData.title == "" ||threadData.startDateOfTravel == null||threadData.endDateOfTravel == null? true: false} className="btn btn-submit-form">
         Post
       </button>
       {/* spacer is needed as navbar is sticky nad will block out the lowest elements on page */}
