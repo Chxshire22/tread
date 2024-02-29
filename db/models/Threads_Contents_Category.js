@@ -8,9 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.belongsToMany(models.Threads_Content, {
-        through: "Threads_Contents_Category",
-      });
+      this.belongsTo(models.Category);
+      this.belongsTo(models.Threads_Content);
     }
   }
   Threads_Contents_Category.init(

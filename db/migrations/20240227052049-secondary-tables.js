@@ -26,6 +26,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
+      start_date_of_travel: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      end_date_of_travel: {
+        type: Sequelize.DATE,
+      },
+      threads_dp: {
+        type: Sequelize.STRING,
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -61,12 +71,8 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      start_time: {
-        allowNull: false,
-        type: Sequelize.DATE,
-      },
-      end_time: {
-        type: Sequelize.DATE,
+      recommended_time: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,
