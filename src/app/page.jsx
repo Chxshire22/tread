@@ -10,13 +10,18 @@ export default function Home() {
     <main>
       <div>
         <h1>HOME PAGE - Treads</h1>
-        {currentUser.email && <h3>Hey👋 {currentUser.email}</h3>}
+        {currentUser.email && (
+          <p>
+            Hey👋<strong>{currentUser.username} </strong>
+          </p>
+        )}
       </div>
 
-      <SignUpButton />
       {!currentUser && (
         <>
           <LoginButton />
+          <br />
+          <SignUpButton />
         </>
       )}
     </main>

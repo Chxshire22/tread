@@ -2,9 +2,12 @@ import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap
 import Link from "next/link";
 import styles from "./styles.module.css";
 import { getSession } from "@auth0/nextjs-auth0";
+//Components Import
 import { LoginButton } from "../Buttons/Buttons";
+
 const Navbar = async () => {
   const { user } = (await getSession()) || {};
+  const userName = user?.name;
 
   return (
     <nav className={styles.navcontainer}>
@@ -34,7 +37,7 @@ const Navbar = async () => {
               {user ? (
                 <>
                   <li>
-                    <a href="/users" className="dropdown-item">
+                    <a href={`/user/${userName}`} className="dropdown-item">
                       My Profile
                     </a>
                   </li>

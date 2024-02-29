@@ -18,7 +18,7 @@ export const WelcomePageForm = () => {
     e.preventDefault();
     if (user) {
       try {
-        await axios.post(`${BACKEND_URL}/api/users`, {
+        await axios.post(`${BACKEND_URL}/api/user`, {
           email: user.name,
           username: username,
           bio: bio,
