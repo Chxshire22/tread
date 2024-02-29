@@ -5,6 +5,7 @@
 :root {
   --color-white: #fafbf4;
   --color-sky-blue: #afd8f2;
+  --color-sky-blue-alt: #93b9d1;
   --color-cornflower-blue: #00a0f3;
   --color-dark-blue: #000066;
 }
@@ -79,6 +80,10 @@ a {
   margin-bottom: 1rem;
 }
 
+.spacer {
+  height: 4rem;
+}
+
 /* PROFILE PICTURES */
 .pfp-sm {
   width: 3rem;
@@ -124,7 +129,6 @@ a {
   justify-content: center;
   align-items: center;
   background-color: var(--color-sky-blue);
-  opacity: 0.5;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;
@@ -145,8 +149,24 @@ a {
 
 .btn-submit-form {
   background-color: var(--color-sky-blue);
-  color: var(--color-dark-blue);
+  color: var(--color-white);
   font-weight: 500;
   border-radius: 40px;
   width: 100%;
+}
+.btn-submit-form:focus,
+.btn-submit-form:hover {
+  background-color: var(--color-sky-blue-alt);
+}
+
+#file-upload {
+  display: none;
+}
+
+.preview-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
 }

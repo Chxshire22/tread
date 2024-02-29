@@ -2,16 +2,40 @@
 import { CardImage } from "react-bootstrap-icons";
 import { useRouter } from "next/navigation";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
+import { useState } from "react";
 
 export default function CreateThreadsPage() {
+  const [preview, setPreview] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(null)
   const router = useRouter();
+
+  const handleImageChange = (e) => {
+    		if (!e.target.files || e.target.files.length === 0) {
+          setSelectedImage(null);
+          return;
+        }
+        setSelectedImage(e.target.files[0]);
+        setPreview(URL.createObjectURL(e.target.files[0]));
+  };
 
   return (
     <div className="page-container">
       <PageHeaderWithBackBtn title="Create Thread" />
-      <div className="img-preview-placeholder ">
-        <CardImage size={40} /> <p>Upload Tread Picture</p>
-      </div>
+      <label htmlFor="file-upload" className="img-preview-placeholder ">
+        {preview ? (
+          <img src={preview} className="preview-img" alt="preview" />
+        ) : (
+          <>
+            <CardImage size={40} /> <p>Upload Tread Picture</p>
+          </>
+        )}
+      </label>
+      <input
+        type="file"
+        id="file-upload"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
 
       {/* Select country */}
       <div className="my-3">
@@ -49,6 +73,8 @@ export default function CreateThreadsPage() {
       <button type="submit" className="btn btn-submit-form">
         Post
       </button>
+      {/* spacer is needed as navbar is sticky nad will block out the lowest elements on page */}
+      <div className="spacer"></div>
     </div>
   );
 }
