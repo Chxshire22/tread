@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { Container } from "react-bootstrap";
 //Components Import
-import { useUserId } from "@/components/GetCurrentUser";
+import { useUserId } from "./GetCurrentUser";
 import { AddFriend, SendMessage } from "./Buttons";
 
 export default function ProfilePageContainer() {

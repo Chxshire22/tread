@@ -1,13 +1,13 @@
+"use client";
 import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
 import Link from "next/link";
 import navStyles from "../styles/navbar.module.css";
 import { LoginButton } from "./Buttons";
-import { getSession } from "@auth0/nextjs-auth0";
+import { useUserId } from "./GetCurrentUser";
 
-const Navbar = async () => {
-  const { user } = (await getSession()) || {};
-  console.log(`user`, user);
-  const userSub = user?.name;
+const Navbar = () => {
+  const { currentUser } = useUserId();
+  const username = currentUser?.username;
 
   return (
     <nav className={navStyles.navcontainer}>
@@ -33,10 +33,10 @@ const Navbar = async () => {
               <PersonCircle size={25} color={"#AFD8F2"} />
             </div>
             <ul className="dropdown-menu">
-              {user ? (
+              {currentUser ? (
                 <>
                   <li>
-                    <a href={`/user/${userSub}`} className="dropdown-item">
+                    <a href={`/user/${username}`} className="dropdown-item">
                       My Profile
                     </a>
                   </li>
