@@ -1,17 +1,13 @@
-import {
-  HouseFill,
-  Search,
-  PersonCircle,
-  ChatSquareFill,
-} from "react-bootstrap-icons";
+import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
 import Link from "next/link";
 import navStyles from "../styles/navbar.module.css";
-
-import { getServerSession } from "next-auth";
-import options from "../app/api/auth/[...nextauth]/options";
+import { LoginButton } from "./Buttons";
+import { getSession } from "@auth0/nextjs-auth0";
 
 const Navbar = async () => {
-  const session = await getServerSession(options);
+  const { user } = (await getSession()) || {};
+  const userName = user?.name;
+
   return (
     <nav className={navStyles.navcontainer}>
       <ul className="nav navlist justify-content-evenly w-100 ">
@@ -36,11 +32,27 @@ const Navbar = async () => {
               <PersonCircle size={25} color={"#AFD8F2"} />
             </div>
             <ul className="dropdown-menu">
-              <li>
-                <a href="/profile/1/" className="dropdown-item">
-                  My Profile
-                </a>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <a href={`/user/${userName}`} className="dropdown-item">
+                      My Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/notifications" className="dropdown-item">
+                      Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/api/auth/logout" className="dropdown-item">
+                      Log Out
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <LoginButton />
+              )}
             </ul>
           </div>
         </li>

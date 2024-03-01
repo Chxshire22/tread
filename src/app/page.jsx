@@ -1,27 +1,28 @@
 "use client";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
-//Components Import
-
-import {
-  LoginButton,
-  LogoutButton,
-  SignUpButton,
-  CreatePostButton,
-} from "@/components/Buttons";
+import { LoginButton, SignUpButton, CreatePostButton } from "@/components/Buttons";
+import { useUserId } from "@/components/GetCurrentUser";
 
 export default function Home() {
-  const { user } = useUser();
-
+  const { currentUser } = useUserId();
   return (
     <main>
       <div>
         <h1>HOME PAGE - Treads</h1>
-        {user && <p>Hi! {user.name}</p>}
+        {currentUser.email && (
+          <p>
+            Hey👋<strong>{currentUser.username} </strong>
+          </p>
+        )}
       </div>
-      <LoginButton />
-      <LogoutButton />
-      <SignUpButton />
+
+      {!currentUser && (
+        <>
+          <LoginButton />
+          <br />
+          <SignUpButton />
+        </>
+      )}
       <CreatePostButton />
     </main>
   );
