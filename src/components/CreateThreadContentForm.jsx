@@ -11,6 +11,13 @@ import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
+import { uploadBytes, ref as storageRef, getDownloadURL } from "@firebase/storage";
+
+import {
+  storage,
+  DB_STORAGE_THREAD_CONTENT_IMAGE_KEY,
+  DB_STORAGE_THREAD_IMAGE_KEY,
+} from "@/utils/firebase";
 
 export default function CreateThreadContentForm({ threadId }) {
   // SET UP FORM
@@ -94,6 +101,7 @@ export default function CreateThreadContentForm({ threadId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    let imgUrls = [];
 
     try {
       const sendThreadsContentData = await axios.post(
@@ -103,11 +111,35 @@ export default function CreateThreadContentForm({ threadId }) {
       const sendCategoriesData = await axios.post(
         `${BACKEND_URL}api/threads-contents/categories`,
         {
-          threadContentCategories: categoriesForBackend.map(categories=>({...categories,threadsContentsId: sendThreadsContentData.data.id })),
+          threadContentCategories: categoriesForBackend.map((categories) => ({
+            ...categories,
+            threadsContentsId: sendThreadsContentData.data.id,
+          })),
         }
       );
-      console.log(sendThreadsContentData.data.id);
+      for (let image of imgArr) {
+        const storageRefInstance = storageRef(
+          storage,
+          DB_STORAGE_THREAD_IMAGE_KEY +
+            `${threadId}/` +
+            DB_STORAGE_THREAD_CONTENT_IMAGE_KEY +
+            image.split(",")[1].substring(0, 5)
+        );
+        await uploadBytes(storageRefInstance, image);
+        const imageUrl = await getDownloadURL(storageRefInstance);
+        imgUrls.push(imageUrl);
+      }
+      const imgUrlAndId = imgUrls.map((imgUrl) => ({
+        threadContentId: sendThreadsContentData.data.id,
+        url: imgUrl,
+      }));
+      const sendImagesForBackend = await axios.post(
+        `${BACKEND_URL}api/threads-contents/display-pictures`,
+        { threadContentImages: imgUrlAndId }
+      );
+      console.log(sendThreadsContentData.data);
       console.log(sendCategoriesData.data);
+      console.log(sendImagesForBackend.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
