@@ -1,11 +1,19 @@
 import User from "../../../models/User";
 import { NextResponse } from "next/server";
 
-export async function GET(res, { params: { username } }) {
+export async function GET(res, { params: { userData } }) {
   try {
-    const user = await User.findOne({
-      where: { email: username },
-    });
+    let user;
+
+    if (userData.includes("@")) {
+      user = await User.findOne({
+        where: { email: userData },
+      });
+    } else {
+      user = await User.findOne({
+        where: { username: userData },
+      });
+    }
 
     if (!user) {
       return NextResponse.json({ error: true, msg: `user not found` });

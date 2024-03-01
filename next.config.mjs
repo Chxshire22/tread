@@ -9,6 +9,7 @@ const nextConfig = {
         pathname: "*",
       },
     ],
+    domains: ["st3.depositphotos.com"],
   },
 };
 

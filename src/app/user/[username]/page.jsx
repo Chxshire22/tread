@@ -1,10 +1,17 @@
-import { BACKEND_URL } from "@/app/constants";
-
-async function getUsername(username) {
-  const response = await fetch(`${BACKEND_URL}/api/user` + username);
-  return response.json();
-}
+//Components Import
+import ProfilePageContainer from "@/components/ProfilePageContainer";
+import { AddFriend } from "@/components/Buttons";
+import GetProfileId from "@/utils/GetProfileId";
 
 export default async function ProfilePage({ params }) {
-  return <div>{params.username}</div>;
+  return (
+    <div>
+      <ProfilePageContainer username={params.username} />
+      <br />
+      <h2>My Trips</h2>
+      {/* TESTING - TO BE REMOVED  */}
+      <AddFriend />
+      {/* <GetProfileId /> */}
+    </div>
+  );
 }
