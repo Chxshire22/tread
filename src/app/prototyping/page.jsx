@@ -36,17 +36,14 @@ export default function CreateThreadsPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/threads",
-        threadData
-      );
-      console.log(res.data);
+      const res = await axios.post("http://localhost:3000/api/threads", threadData)
+      console.log(res.data)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <div className="page-container">
@@ -137,18 +134,7 @@ export default function CreateThreadsPage() {
         </div>
       </div>
 
-      <button
-        onClick={handleSubmit}
-        disabled={
-          threadData.destination == "" ||
-          threadData.title == "" ||
-          threadData.startDateOfTravel == null ||
-          threadData.endDateOfTravel == null
-            ? true
-            : false
-        }
-        className="btn btn-submit-form"
-      >
+      <button onClick={handleSubmit} disabled={threadData.destination == ""||threadData.title == "" ||threadData.startDateOfTravel == null||threadData.endDateOfTravel == null? true: false} className="btn btn-submit-form">
         Post
       </button>
       {/* spacer is needed as navbar is sticky nad will block out the lowest elements on page */}

@@ -15,7 +15,7 @@ export async function POST(request) {
   const { name } = await request.json();
   try {
     const category = await Category.create({
-      name: name
+      name
     });
     return NextResponse.json(category);
   } catch (err) {

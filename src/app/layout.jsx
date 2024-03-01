@@ -4,9 +4,9 @@ import "normalize.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/globals.css";
 //Components import
-import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "@/components/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
-import GetCurrentUser from "@/components/Context/GetCurrentUser";
+import GetCurrentUser from "@/components/GetCurrentUser";
 
 export const metadata = {
   title: "Treads",
