@@ -12,15 +12,16 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { threadId, location, description } = await request.json();
+  const { threadId, location, description, time } = await request.json();
   console.log(description)
   try {
-    const threads_content = await Threads_Content.create({
+    const threadsContent = await Threads_Content.create({
       threadId: threadId,
       location: location,
       description: description,
+      recommendedTime: time
     });
-    return NextResponse.json(threads_content);
+    return NextResponse.json(threadsContent);
   } catch (err) {
     return NextResponse.status(400).json({ error: true, msg: err });
   }

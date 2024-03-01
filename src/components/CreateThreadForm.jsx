@@ -7,9 +7,7 @@ import { useRouter } from "next/navigation";
 import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 
-
- // TO MOVE TO UTILS
-
+// TO MOVE TO UTILS
 
 export default function CreateThreadForm() {
   const [preview, setPreview] = useState(null);
@@ -78,7 +76,6 @@ export default function CreateThreadForm() {
     { value: 19, label: "India" },
   ];
 
-
   return (
     <div>
       {" "}
@@ -108,7 +105,7 @@ export default function CreateThreadForm() {
         onChange={(e) => {
           setThreadData((prevState) => ({
             ...prevState,
-            destination: e.target.value,
+            destination: e.label,
           }));
         }}
       />

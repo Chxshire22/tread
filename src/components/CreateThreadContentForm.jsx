@@ -24,6 +24,7 @@ export default function CreateThreadContentForm({ threadId }) {
     location: "",
     time: "",
     description: "",
+    threadId: Number(threadId),
   });
   const [categoriesForBackend, setCategoriesForBackend] = useState([]);
 
@@ -93,6 +94,16 @@ export default function CreateThreadContentForm({ threadId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    try {
+      const sendThreadsContentData = await axios.post(
+        `${BACKEND_URL}api/threads-contents`, threadsContentData
+      );
+      console.log(sendThreadsContentData.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -204,7 +215,7 @@ export default function CreateThreadContentForm({ threadId }) {
       >
         {loading ? (
           <div
-            class="spinner-border"
+            className="spinner-border"
             style={{ width: "1.5rem", height: "1.5rem" }}
             role="status"
           ></div>
