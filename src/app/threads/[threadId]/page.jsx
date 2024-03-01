@@ -44,5 +44,3 @@ export default function page() {
     </div>
   );
 }
-
-Router.push(`threads/${threadId}/create-thread-content`)
