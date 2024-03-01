@@ -1,15 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useRef } from "react";
 import {
   CaretRightFill,
   CaretLeftFill,
-  CircleFill,
 } from "react-bootstrap-icons";
 
-export default function ImageSlider() {
+export default function Carousel() {
+  const sliderRef = useRef(null);
   
-  const [currentIndex, setCurrentIndex] = useState(0);
-
   const slides = [
     "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
     "https://i.pinimg.com/236x/16/13/d2/1613d2927c0c9f1a7ac7f7b8b0d7c31e.jpg",
@@ -18,24 +16,43 @@ export default function ImageSlider() {
 
 
 
-  const goToPrevious = () => {
-     setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+const goToPrevious = () => {
+  if (sliderRef.current) {
+    const prevScrollPosition = sliderRef.current.scrollLeft;
+    const newScrollPosition =
+      prevScrollPosition - sliderRef.current.offsetWidth;
+    if (newScrollPosition < 0) {
+      // If scrolling past the first slide, loop to the last slide
+      sliderRef.current.scrollLeft =
+        sliderRef.current.scrollWidth - sliderRef.current.offsetWidth;
+    } else {
+      sliderRef.current.scrollLeft = newScrollPosition;
+    }
+  }
+};
 
-  };
-
-  const goToNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex < slides.length - 1 ? prevIndex + 1 : prevIndex
-    );
-
-  };
-
+const goToNext = () => {
+  if (sliderRef.current) {
+    const prevScrollPosition = sliderRef.current.scrollLeft;
+    const newScrollPosition =
+      prevScrollPosition + sliderRef.current.offsetWidth;
+    if (
+      newScrollPosition >
+      sliderRef.current.scrollWidth - sliderRef.current.offsetWidth
+    ) {
+      // If scrolling past the last slide, loop to the first slide
+      sliderRef.current.scrollLeft = 0;
+    } else {
+      sliderRef.current.scrollLeft = newScrollPosition;
+    }
+  }
+};
 
 
   return (
     <div className="page-container">
       <div>
-        <div className="slider-container" >
+        <div className="slider-container">
           <CaretRightFill
             className="slider-arrow arrow-right"
             size={40}
@@ -46,14 +63,19 @@ export default function ImageSlider() {
             size={40}
             onClick={goToPrevious}
           />
-          <div className="slider-container">
+          <div className="slider-container" ref={sliderRef}>
             {slides.map((slide, slideIndex) => (
-              <div style={{ backgroundImage:`url(${slide})`, transform: `translateX(-${currentIndex * 100}%)`}} className="slide-style" key={slideIndex}></div>
+              <div
+                style={{ backgroundImage: `url(${slide})` }}
+                className="slide-style"
+                key={slideIndex}
+              ></div>
             ))}
           </div>
-
         </div>
       </div>
     </div>
   );
 }
+
+// style={{transform: `translateX(-${currentIndex * 100}%)`}}

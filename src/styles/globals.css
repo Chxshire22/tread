@@ -194,6 +194,7 @@ a {
   scroll-snap-type: x mandatory;
   display: flex;
   flex-direction: row;
+  scroll-behavior: smooth;
   border-radius: 5px;
 box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
 -webkit-box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
@@ -207,6 +208,7 @@ box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
   height: 100%;
   background-size: cover;
   background-position: center;
+  transition: transform ease-in;
 }
 
 .slider-arrow{
@@ -242,8 +244,7 @@ box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
 /* test */
 .remove-img{
   z-index: 10;
-  position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   margin: 0.2em;
 }
