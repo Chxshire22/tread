@@ -230,18 +230,6 @@ box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
   right: 0;
 }
 
-.slide-dots{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: center;
-  gap: 0.5rem;
-  position: absolute;
-  bottom: 0;
-  cursor: pointer;
-}
-
-/* test */
 .remove-img{
   z-index: 10;
   top: 0;

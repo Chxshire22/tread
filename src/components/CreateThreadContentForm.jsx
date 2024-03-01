@@ -6,7 +6,6 @@ import { imgOptimization } from "./CreateThreadForm";
 import { CardImage, PlusSquareFill } from "react-bootstrap-icons";
 
 export default function CreateThreadContentForm({ threadId }) {
-  const [deleteImgSrc, setDeleteImgSrc] = useState("");
   const [imgArr, setImgArr] = useState([]);
   const [threadsContentData, setThreadsContentData] = useState({
     location: "",
