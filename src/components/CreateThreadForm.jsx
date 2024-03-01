@@ -15,7 +15,6 @@ import {
 
 import {
   storage,
-  DB_STORAGE_THREAD_CONTENT_IMAGE_KEY,
   DB_STORAGE_THREAD_IMAGE_KEY,
 } from "@/utils/firebase";
 
@@ -23,6 +22,7 @@ import {
 
 export default function CreateThreadForm() {
   const [preview, setPreview] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   const [threadData, setThreadData] = useState({
     title: "",
@@ -51,9 +51,13 @@ export default function CreateThreadForm() {
   const router = useRouter();
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     try {
-      const sendThreadData = await axios.post(`${BACKEND_URL}api/threads`, threadData);
+      const sendThreadData = await axios.post(
+        `${BACKEND_URL}api/threads`,
+        threadData
+      );
       const storageRefInstance = storageRef(
         storage,
         DB_STORAGE_THREAD_IMAGE_KEY +
@@ -65,12 +69,12 @@ export default function CreateThreadForm() {
       const imageSrc = preview
         ? await getDownloadURL(storageRefInstance)
         : null;
-      const sendThreadImgUpdateData = await axios.put(`${BACKEND_URL}api/threads`, {
-        ...threadData, id: sendThreadData.data.id, threadsDp:imageSrc
-      })
-
-      console.log(sendThreadData.data);
-      console.log(sendThreadImgUpdateData.data);
+      await axios.put(`${BACKEND_URL}api/threads`, {
+        ...threadData,
+        id: sendThreadData.data.id,
+        threadsDp: imageSrc,
+      });
+      setLoading(false)
     } catch (error) {
       console.log(error);
     }
@@ -192,7 +196,15 @@ export default function CreateThreadForm() {
         }
         className="btn btn-submit-form"
       >
-        Post
+        {loading ? (
+          <div
+            className="spinner-border"
+            style={{ width: "1.5rem", height: "1.5rem" }}
+            role="status"
+          ></div>
+        ) : (
+          `Post`
+        )}
       </button>
     </div>
   );
