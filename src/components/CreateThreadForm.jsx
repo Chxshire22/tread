@@ -18,22 +18,55 @@ export default function CreateThreadForm() {
     userId: 1, //for now
   });
 
+  /**
+   * This function optimizes an image by resizing it to a specified width while maintaining the aspect ratio.
+   * The optimized image is then converted to a webp format with a quality of 80.
+   * The new image is logged to the console.
+   *
+   * @param {File} file - The image file to be optimized.
+   * @param {number} width - The desired width of the optimized image.
+   */
+  const imgOptimization = (file, width) => {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (e) => {
+        const dataUrl = e.target.result;
+
+        const img = document.createElement("img");
+        img.src = dataUrl;
+        img.onload = (e) => {
+          const canvas = document.createElement("canvas");
+          const ratio = width / img.width;
+          canvas.width = width;
+          canvas.height = img.height * ratio;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+          resolve(ctx.canvas.toDataURL("image/webp", 80));
+        };
+      };
+      reader.onerror = (e) => {reject(e)};
+    });
+  };
+
+  const handleImageChange = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setPreview(null);
+      return;
+    }
+    const file = e.target.files[0];
+
+    let optimizedImg = await imgOptimization(file, 200);
+    console.log(optimizedImg);
+    setPreview(URL.createObjectURL(e.target.files[0]));
+  };
+
   useEffect(() => {
     console.log(threadData);
   }, [threadData]);
-  const router = useRouter();
 
-  const handleImageChange = (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedImage(null);
-      return;
-    }
-    // setThreadData((prevState) => ({
-    //   ...prevState,
-    //   threadsDp: e.target.files[0],
-    // }));
-    setPreview(URL.createObjectURL(e.target.files[0]));
-  };
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +80,8 @@ export default function CreateThreadForm() {
       console.log(error);
     }
   };
+
+  // TO MOVE TO UTILS
 
   return (
     <div>
