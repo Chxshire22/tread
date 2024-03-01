@@ -6,7 +6,8 @@ import { getSession } from "@auth0/nextjs-auth0";
 
 const Navbar = async () => {
   const { user } = (await getSession()) || {};
-  const userName = user?.name;
+  console.log(`user`, user);
+  const userSub = user?.name;
 
   return (
     <nav className={navStyles.navcontainer}>
@@ -35,7 +36,7 @@ const Navbar = async () => {
               {user ? (
                 <>
                   <li>
-                    <a href={`/user/${userName}`} className="dropdown-item">
+                    <a href={`/user/${userSub}`} className="dropdown-item">
                       My Profile
                     </a>
                   </li>

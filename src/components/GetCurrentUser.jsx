@@ -8,8 +8,7 @@ const UserContext = createContext();
 
 function GetCurrentUser({ children }) {
   const { user, isLoading } = useUser();
-  const [currentUser, setCurrentUser] = useState({});
-  const userEmail = user?.email;
+  const [currentUser, setCurrentUser] = useState(null);
 
   const checkCurrentUser = async () => {
     if (user) {
@@ -23,11 +22,10 @@ function GetCurrentUser({ children }) {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && !isLoading) {
       checkCurrentUser();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, isLoading]);
 
   return <UserContext.Provider value={{ currentUser }}>{children}</UserContext.Provider>;
 }
