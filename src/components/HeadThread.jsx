@@ -13,7 +13,7 @@ export default function HeadThread({ content }) {
         margin: "1rem",
         color: "black",
         width: "80vw",
-        height: "250px",
+        height: "320px",
         border: "2px black solid",
       }}
     >
@@ -34,6 +34,7 @@ export default function HeadThread({ content }) {
           Ben
         </div>
       </div>
+      <div style={{ textAlign: "center" }}>Title: {content.title}</div>
       <div style={{ textAlign: "center", padding: "10px" }}>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg/1280px-Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg"
@@ -41,9 +42,18 @@ export default function HeadThread({ content }) {
           height="120"
         />
       </div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <GeoAlt />
         <p>{content.destination}</p>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <p>Start: {content.startDate}</p>
+        <p>End: {content.endDate}</p>
       </div>
     </div>
   );

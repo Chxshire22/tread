@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import HeadThread from "@/components/Threads/HeadThread";
+import HeadThread from "@/components/HeadThread";
 import Link from "next/link";
-import { useState } from "react";
 
 export default function page() {
   const headThread = {
@@ -27,6 +26,11 @@ export default function page() {
       <Link href="threads/1">
         <HeadThread content={headThread} />
       </Link>
+      <button
+        style={{ backgroundColor: "darkblue", padding: "1rem", color: "white" }}
+      >
+        Add a new thread
+      </button>
     </div>
   );
 }
