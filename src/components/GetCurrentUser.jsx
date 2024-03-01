@@ -8,12 +8,13 @@ const UserContext = createContext();
 
 function GetCurrentUser({ children }) {
   const { user, isLoading } = useUser();
-  const [currentUser, setCurrentUser] = useState({});
-  const userEmail = user?.email;
+  const [currentUser, setCurrentUser] = useState(null);
 
   const checkCurrentUser = async () => {
     if (user) {
       try {
+        // This route is to get user from DB based on user from Auth0
+        // user.name is actually an EMAIL in Auth0
         const response = await axios.get(`${BACKEND_URL}/api/user/${user.name}`);
         setCurrentUser(response.data);
       } catch (err) {
@@ -23,11 +24,10 @@ function GetCurrentUser({ children }) {
   };
 
   useEffect(() => {
-    if (user) {
+    if (user && !isLoading) {
       checkCurrentUser();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [user, isLoading]);
 
   return <UserContext.Provider value={{ currentUser }}>{children}</UserContext.Provider>;
 }
