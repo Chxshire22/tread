@@ -9,7 +9,7 @@ import { getStorage } from "@firebase/storage";
 const firebaseConfig = {
   apiKey: process.env.NEXT_FIREBASE_API_KEY,
   projectId: process.env.NEXT_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.NEXT_FIREBASE_STORAGE_BUCKET,
+  storageBucket: "tread-9a163.appspot.com",
   messagingSenderId: process.env.NEXT_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_FIREBASE_APP_ID,
 };

@@ -13,10 +13,11 @@ export async function GET() {
 
 export async function POST(req) {
   const { threadContentImages } = await req.json();
+  console.log(threadContentImages)
   try {
     const uploadthreadContentImages = await Threads_Contents_Display_Picture.bulkCreate(
       threadContentImages.map((threadContentImage) => ({
-        threadContentId: threadContentImage.threadContentId,
+        threadsContentsId: threadContentImage.threadsContentsId,
         url: threadContentImage.url,
       }))
     );

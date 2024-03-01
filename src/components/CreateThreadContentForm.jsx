@@ -11,7 +11,12 @@ import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
-import { uploadBytes, ref as storageRef, getDownloadURL } from "@firebase/storage";
+import {
+  uploadBytes,
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
 
 import {
   storage,
@@ -98,11 +103,25 @@ export default function CreateThreadContentForm({ threadId }) {
     setCategoriesForBackend(categoryIdForBackend);
   };
 
+  /**
+   * This asynchronous function handles the submission of a form.
+   * It performs the following operations:
+   * 1. Prevents the default form submission behavior.
+   * 2. Sets the loading state to true.
+   * 3. Sends a POST request to the backend to create a new thread content.
+   * 4. Sends another POST request to the backend to associate categories with the newly created thread content.
+   * 5. Loops through each image in the imgArr state, uploads it to a storage service, and stores the download URL in the imgUrls array.
+   * 6. Maps the imgUrls array to an array of objects, each containing the id of the thread content and the URL of an image.
+   * 7. Sends a POST request to the backend to associate the images with the newly created thread content.
+   * 8. Sets the loading state to false.
+   * If any error occurs during these operations, it is logged to the console.
+   *
+   * @param {Event} e - The event object from the form submission event.
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     let imgUrls = [];
-
     try {
       const sendThreadsContentData = await axios.post(
         `${BACKEND_URL}api/threads-contents`,
@@ -123,23 +142,21 @@ export default function CreateThreadContentForm({ threadId }) {
           DB_STORAGE_THREAD_IMAGE_KEY +
             `${threadId}/` +
             DB_STORAGE_THREAD_CONTENT_IMAGE_KEY +
-            image.split(",")[1].substring(0, 5)
+            `${sendThreadsContentData.data.id}/` +
+            image.split(",")[1].substring(4, 14)
         );
-        await uploadBytes(storageRefInstance, image);
+        await uploadString(storageRefInstance, image, "data_url");
         const imageUrl = await getDownloadURL(storageRefInstance);
         imgUrls.push(imageUrl);
       }
       const imgUrlAndId = imgUrls.map((imgUrl) => ({
-        threadContentId: sendThreadsContentData.data.id,
+        threadsContentsId: sendThreadsContentData.data.id,
         url: imgUrl,
       }));
       const sendImagesForBackend = await axios.post(
         `${BACKEND_URL}api/threads-contents/display-pictures`,
         { threadContentImages: imgUrlAndId }
       );
-      console.log(sendThreadsContentData.data);
-      console.log(sendCategoriesData.data);
-      console.log(sendImagesForBackend.data);
       setLoading(false);
     } catch (error) {
       console.log(error);
