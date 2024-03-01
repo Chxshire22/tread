@@ -2,7 +2,11 @@
 
 import Carousel from "@/components/Carousel";
 import { useEffect, useState } from "react";
-import { CardImage, JournalMedical, PlusSquareFill } from "react-bootstrap-icons";
+import {
+  CardImage,
+  JournalMedical,
+  PlusSquareFill,
+} from "react-bootstrap-icons";
 import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
@@ -12,6 +16,7 @@ export default function CreateThreadContentForm({ threadId }) {
   // SET UP FORM
   const [imgArr, setImgArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // SEND TO BACKEND
 
@@ -83,6 +88,11 @@ export default function CreateThreadContentForm({ threadId }) {
     }));
     console.log(categoryIdForBackend);
     setCategoriesForBackend(categoryIdForBackend);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
   };
 
   return (
@@ -182,11 +192,25 @@ export default function CreateThreadContentForm({ threadId }) {
         <label htmlFor="descriptionInput">Share your experience!</label>
       </div>
       <button
-        // onClick={handleSubmit}
-        disabled={imgArr.length === 0  || threadsContentData.description =="" || threadsContentData.location == "" ? true:false }
+        onClick={handleSubmit}
+        disabled={
+          imgArr.length === 0 ||
+          threadsContentData.description == "" ||
+          threadsContentData.location == ""
+            ? true
+            : false
+        }
         className="btn btn-submit-form"
       >
-        Post
+        {loading ? (
+          <div
+            class="spinner-border"
+            style={{ width: "1.5rem", height: "1.5rem" }}
+            role="status"
+          ></div>
+        ) : (
+          `Post`
+        )}
       </button>
       {/* spacer is needed as navbar is sticky nad will block out the lowest elements on page */}
       <div className="spacer"></div>
