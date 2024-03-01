@@ -85,7 +85,7 @@ export default function CreateThreadContentForm({ threadId }) {
   const handleDropDownChange = (e) => {
     const categoryIdForBackend = e.map((each) => ({
       categoriesId: each.value,
-      threadsContentId: Number(threadId),
+      // threadsContentsId: Number(threadId),
     }));
     console.log(categoryIdForBackend);
     setCategoriesForBackend(categoryIdForBackend);
@@ -97,9 +97,17 @@ export default function CreateThreadContentForm({ threadId }) {
 
     try {
       const sendThreadsContentData = await axios.post(
-        `${BACKEND_URL}api/threads-contents`, threadsContentData
+        `${BACKEND_URL}api/threads-contents`,
+        threadsContentData
       );
-      console.log(sendThreadsContentData.data);
+      const sendCategoriesData = await axios.post(
+        `${BACKEND_URL}api/threads-contents/categories`,
+        {
+          threadContentCategories: categoriesForBackend.map(categories=>({...categories,threadsContentsId: sendThreadsContentData.data.id })),
+        }
+      );
+      console.log(sendThreadsContentData.data.id);
+      console.log(sendCategoriesData.data);
       setLoading(false);
     } catch (error) {
       console.log(error);

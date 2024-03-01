@@ -13,6 +13,7 @@ export async function GET() {
 
 export async function POST(request) {
   const { threadContentCategories } = await request.json();
+  console.log(threadContentCategories);
   try {
     const createContentCategories = await Threads_Contents_Category.bulkCreate(
       threadContentCategories.map((category) => ({
@@ -20,9 +21,12 @@ export async function POST(request) {
         categoriesId: category.categoriesId,
       }))
     );
-    if (createContentCategories) console.log("images uploaded to backend");
-    return res.json({ success: true, msg: "images uploaded to backend" });
+    if (createContentCategories) console.log("categories successfully stored");
+    return NextResponse.json({
+      success: true,
+      msg: "good job big boy",
+    });
   } catch (err) {
-    return res.json({ success: false, msg: err });
+    return NextResponse.json({ success: false, msg: err });
   }
 }
