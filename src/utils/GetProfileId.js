@@ -1,12 +1,11 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { useUserId } from "@/components/GetCurrentUser";
+// "use client";
 
-const GetProfileId = () => {
-  const { currentUser } = useUserId();
-  const router = useRouter();
-  const profileId = router.query;
-  return <div>profile ID: {profileId}</div>;
-};
+// import { useRouter } from "next/router";
 
-export default GetProfileId;
+// const GetProfileId = () => {
+//   const router = useRouter();
+//   const profileId = router.query.username;
+//   return <div>profile ID: {profileId}</div>;
+// };
+
+// export default GetProfileId;

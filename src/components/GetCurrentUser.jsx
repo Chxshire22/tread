@@ -13,6 +13,8 @@ function GetCurrentUser({ children }) {
   const checkCurrentUser = async () => {
     if (user) {
       try {
+        // This route is to get user from DB based on user from Auth0
+        // user.name is actually an EMAIL in Auth0
         const response = await axios.get(`${BACKEND_URL}/api/user/${user.name}`);
         setCurrentUser(response.data);
       } catch (err) {

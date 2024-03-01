@@ -1,12 +1,31 @@
 "use client";
 import Image from "next/image";
 import { Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 //Components Import
 import { useUserId } from "./GetCurrentUser";
 import { AddFriend, SendMessage } from "./Buttons";
 
-export default function ProfilePageContainer() {
+export default function ProfilePageContainer({ username }) {
   const { currentUser } = useUserId();
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`/api/user/${username}`);
+        setUserData(response.data);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    if (username) {
+      fetchData();
+    }
+  }, []);
 
   return (
     <div>
@@ -18,10 +37,10 @@ export default function ProfilePageContainer() {
         height={100}
       />
       <div>
-        <strong>{"@" + currentUser?.username}</strong>
+        <strong>{"@" + userData?.username}</strong>
         <AddFriend />
       </div>
-      <Container>{currentUser?.bio}</Container>
+      <Container>{userData?.bio}</Container>
       <br />
       <SendMessage />
     </div>
