@@ -6,6 +6,7 @@ import "../styles/globals.css";
 //Components import
 import Navbar from "@/components/Navbar";
 import BootstrapClient from "@/components/BootstrapClient";
+import GetCurrentUser from "@/components/GetCurrentUser";
 
 export const metadata = {
   title: "Treads",
@@ -17,13 +18,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <UserProvider>
-          <main>{children}</main>
+          <GetCurrentUser>
+            <main>{children}</main>
+          </GetCurrentUser>
         </UserProvider>
         {/* <footer>IF ANY</footer> */}
         <Navbar />
 
         {/* DO NOT REMOVE: THIS IS SO THAT BOOSTRAP JS WORKS */}
-        <BootstrapClient /> 
+        <BootstrapClient />
       </body>
     </html>
   );
