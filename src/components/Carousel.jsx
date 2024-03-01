@@ -1,8 +1,12 @@
-
+import { useEffect } from "react";
+import { XCircleFill } from "react-bootstrap-icons";
 
 export default function Carousel(props) {
+  const { images, setImgArr } = props;
 
-  const { images } = props;
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
 
   return (
     <div
@@ -22,6 +26,24 @@ export default function Carousel(props) {
                 className={`d-block w-100 carousel-img`}
                 alt="..."
               />
+              <div
+                onClick={() => {
+                  setImgArr((prevState) => {
+                    const index = prevState.indexOf(image);
+                    if (index !== -1) {
+                      const newArray = [...prevState];
+                      newArray.splice(index, 1);
+                      return newArray;
+                    } else {
+                      console.log("Image not found in array.");
+                      return prevState;
+                    }
+                  });
+                }}
+                className="remove-img"
+              >
+                <XCircleFill size={25} color="#bf5464" />
+              </div>
             </div>
           );
         })}

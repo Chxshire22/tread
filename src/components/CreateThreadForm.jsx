@@ -5,28 +5,19 @@ import axios from "axios";
 import { CardImage } from "react-bootstrap-icons";
 import { useRouter } from "next/navigation";
 
-export default function CreateThreadForm() {
-  const [preview, setPreview] = useState(null);
 
-  const [threadData, setThreadData] = useState({
-    threadsDp:
-      "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
-    title: "",
-    startDateOfTravel: null,
-    endDateOfTravel: null,
-    destination: "",
-    userId: 1, //for now
-  });
+ // TO MOVE TO UTILS
 
   /**
    * This function optimizes an image by resizing it to a specified width while maintaining the aspect ratio.
    * The optimized image is then converted to a webp format with a quality of 80.
-   * The new image is logged to the console.
+   * The function is asynchronous and returns a Promise that resolves with the Data URL of the optimized image.
    *
    * @param {File} file - The image file to be optimized.
    * @param {number} width - The desired width of the optimized image.
+   * @returns {Promise<string>} A Promise that resolves with the Data URL of the optimized image.
    */
-  const imgOptimization = (file, width) => {
+  export const imgOptimization = (file, width) => {
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       reader.readAsDataURL(file);
@@ -46,9 +37,24 @@ export default function CreateThreadForm() {
           resolve(ctx.canvas.toDataURL("image/webp", 80));
         };
       };
-      reader.onerror = (e) => {reject(e)};
+      reader.onerror = (e) => {
+        reject(e);
+      };
     });
   };
+
+export default function CreateThreadForm() {
+  const [preview, setPreview] = useState(null);
+
+  const [threadData, setThreadData] = useState({
+    threadsDp:
+      "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
+    title: "",
+    startDateOfTravel: null,
+    endDateOfTravel: null,
+    destination: "",
+    userId: 1, //for now
+  });
 
   const handleImageChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -57,9 +63,9 @@ export default function CreateThreadForm() {
     }
     const file = e.target.files[0];
 
-    let optimizedImg = await imgOptimization(file, 200);
+    let optimizedImg = await imgOptimization(file, 768);
     console.log(optimizedImg);
-    setPreview(URL.createObjectURL(e.target.files[0]));
+    setPreview(optimizedImg);
   };
 
   useEffect(() => {
@@ -80,8 +86,6 @@ export default function CreateThreadForm() {
       console.log(error);
     }
   };
-
-  // TO MOVE TO UTILS
 
   return (
     <div>

@@ -2,10 +2,13 @@
 
 import Carousel from "@/components/Carousel";
 import { useEffect, useState } from "react";
+import { imgOptimization } from "./CreateThreadForm";
+import { CardImage, PlusSquareFill } from "react-bootstrap-icons";
 
 export default function CreateThreadContentForm({ threadId }) {
-  const [threadData, setThreadData] = useState({
-    category: "",
+  const [deleteImgSrc, setDeleteImgSrc] = useState("");
+  const [imgArr, setImgArr] = useState([]);
+  const [threadsContentData, setThreadsContentData] = useState({
     location: "",
     time: "",
     description: "",
@@ -17,25 +20,64 @@ export default function CreateThreadContentForm({ threadId }) {
     "https://i.pinimg.com/236x/75/e9/ef/75e9ef58248657fc164181b57a68c42c.jpg",
   ];
 
-  useEffect(()=>{
-    console.log(threadId)
-  },[threadId])
-
   // confirmed that threadId is being passed correctly
 
   // NOTE: Thread content category is to be posted to threads_contents_categories table
   // NOTE: Thread content images to be posted to threads_contents_display_picture table
   // The rest (location, description, recommended time) is to be posted to threads_content table
-  // Try to implement removal of specific images from carousel
-  // Try to implement adding of images to carousel
-  // Try to implement limit on number of images upload
+  // Try to implement removal of specific images from carousel [?]
+  // Try to implement adding of images to carousel [x]
 
-  
+  /**
+   * This asynchronous function handles the change event of an input element of type file.
+   * It optimizes each selected image by resizing it to a width of 768 pixels while maintaining the aspect ratio.
+   * The optimized images are then added to the imgArr state.
+   *
+   * @param {Event} e - The event object.
+   */
+  const handleImageChange = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      return;
+    }
+    const files = e.target.files;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      // const blob = new Blob([file], { type: file.type });
+      const optimizedImgs = await imgOptimization(file, 768);
+      setImgArr((prevState) => [...prevState, optimizedImgs]);
+    }
+  };
+
+  useEffect(() => {
+    console.log(imgArr);
+  }, [imgArr]);
 
   return (
     <div>
       {/* CAROUSEL */}
-      <Carousel images={imageArr} />
+      {imgArr.length >= 1 ? (
+        <Carousel images={imgArr} setImgArr={setImgArr} />
+      ) : (
+        <div className="img-preview-placeholder">
+          <CardImage size={40} /> <p>Image Preview</p>
+        </div>
+      )}
+
+      <div className="mt-3">
+        <label htmlFor="file-upload-multiple" className="form-label">
+          <div className="btn">
+            <PlusSquareFill size={30} color="#00a0f3" />
+          </div>
+        </label>
+        <input
+          type="file"
+          accept="images/*"
+          id="file-upload-multiple"
+          multiple
+          onChange={handleImageChange}
+        />
+      </div>
 
       {/* CATEGORY SELECT */}
       <div className="my-3 form-floating">
@@ -67,7 +109,7 @@ export default function CreateThreadContentForm({ threadId }) {
           id="locationInput"
           placeholder="Location"
           onChange={(e) => {
-            setThreadData((prevState) => ({
+            setThreadsContentData((prevState) => ({
               ...prevState,
               location: e.target.value,
             }));
@@ -86,7 +128,7 @@ export default function CreateThreadContentForm({ threadId }) {
           id="timeInput"
           placeholder="Time"
           onChange={(e) => {
-            setThreadData((prevState) => ({
+            setThreadsContentData((prevState) => ({
               ...prevState,
               time: e.target.value,
             }));
@@ -105,6 +147,12 @@ export default function CreateThreadContentForm({ threadId }) {
           placeholder="Description"
           id="descriptionInput"
           style={{ height: "100px" }}
+          onChange={(e) => {
+            setThreadsContentData((prevState) => ({
+              ...prevState,
+              description: e.target.value,
+            }));
+          }}
         ></textarea>
         <label htmlFor="descriptionInput">Description</label>
       </div>
