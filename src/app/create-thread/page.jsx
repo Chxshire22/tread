@@ -56,7 +56,7 @@ export default function CreateThreadsPage() {
           <img src={preview} className="preview-img" alt="preview" />
         ) : (
           <>
-            <CardImage size={40} /> <p>Upload Tread Picture</p>
+            <CardImage size={40} /> <p>Upload Image</p>
           </>
         )}
       </label>
@@ -68,10 +68,12 @@ export default function CreateThreadsPage() {
       />
 
       {/* Select destination */}
-      <div className="my-3">
+
+      <div className="my-3 form-floating">
         <select
           className="form-select"
           aria-label="destination"
+          id="floatingSelect"
           onChange={(e) => {
             setThreadData((prevState) => ({
               ...prevState,
@@ -79,13 +81,12 @@ export default function CreateThreadsPage() {
             }));
           }}
         >
-          <option defaultValue={null} value="0">
-            Select destination
-          </option>
+          <option disabled selected value style={{ display: "none" }}></option>
           <option value="1">Map</option>
           <option value="2">Countries</option>
           <option value="3">Here</option>
         </select>
+        <label htmlFor="floatingSelect">Destination</label>
       </div>
       {/* Input title */}
       <div className="form-floating mb-3">

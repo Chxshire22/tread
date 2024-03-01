@@ -93,6 +93,7 @@ a {
   object-position: center;
   border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* BLOCKS */
@@ -169,4 +170,15 @@ a {
   object-fit: cover;
   object-position: center;
   overflow: hidden;
+}
+
+/* CAROUSEL */
+
+.carousel-img,
+.carousel-inner {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
 }
