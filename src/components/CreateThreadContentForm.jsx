@@ -12,7 +12,6 @@ import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
 import {
-  uploadBytes,
   ref as storageRef,
   getDownloadURL,
   uploadString,

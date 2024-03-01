@@ -6,6 +6,18 @@ import { CardImage } from "react-bootstrap-icons";
 import { useRouter } from "next/navigation";
 import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
+import { BACKEND_URL } from "@/app/constants";
+import {
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
+
+import {
+  storage,
+  DB_STORAGE_THREAD_CONTENT_IMAGE_KEY,
+  DB_STORAGE_THREAD_IMAGE_KEY,
+} from "@/utils/firebase";
 
 // TO MOVE TO UTILS
 
@@ -13,8 +25,6 @@ export default function CreateThreadForm() {
   const [preview, setPreview] = useState(null);
 
   const [threadData, setThreadData] = useState({
-    threadsDp:
-      "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
     title: "",
     startDateOfTravel: null,
     endDateOfTravel: null,
@@ -43,11 +53,24 @@ export default function CreateThreadForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/threads",
-        threadData
+      const sendThreadData = await axios.post(`${BACKEND_URL}api/threads`, threadData);
+      const storageRefInstance = storageRef(
+        storage,
+        DB_STORAGE_THREAD_IMAGE_KEY +
+          `${sendThreadData.data.id}/` +
+          preview.split(",")[1].substring(4, 14)
       );
-      console.log(res.data);
+
+      if (preview) await uploadString(storageRefInstance, preview, "data_url");
+      const imageSrc = preview
+        ? await getDownloadURL(storageRefInstance)
+        : null;
+      const sendThreadImgUpdateData = await axios.put(`${BACKEND_URL}api/threads`, {
+        ...threadData, id: sendThreadData.data.id, threadsDp:imageSrc
+      })
+
+      console.log(sendThreadData.data);
+      console.log(sendThreadImgUpdateData.data);
     } catch (error) {
       console.log(error);
     }
@@ -141,7 +164,7 @@ export default function CreateThreadForm() {
               }));
             }}
           />
-          <label htmlFor="startDateInput">End date</label>
+          <label htmlFor="startDateInput">Start date</label>
         </div>
         <div className="form-floating mb-3 date-input">
           <input
@@ -163,8 +186,7 @@ export default function CreateThreadForm() {
         disabled={
           threadData.destination == "" ||
           threadData.title == "" ||
-          threadData.startDateOfTravel == null ||
-          threadData.endDateOfTravel == null
+          threadData.startDateOfTravel == null
             ? true
             : false
         }
