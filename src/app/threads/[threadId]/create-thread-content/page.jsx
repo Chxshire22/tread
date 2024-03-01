@@ -8,9 +8,6 @@ import { useEffect } from "react";
 export default function CreateThreadContent() {
   const { threadId } = useParams();
 
-  // useEffect(() => {
-  //   console.log(threadId);
-  // }, []);
   // confirmed that threadId is being passed correctly
 
   const imageArr = [

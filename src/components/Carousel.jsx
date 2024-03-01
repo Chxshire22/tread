@@ -1,4 +1,5 @@
 
+
 export default function Carousel(props) {
 
   const { images } = props;
@@ -18,7 +19,7 @@ export default function Carousel(props) {
             >
               <img
                 src={image}
-                className="d-block w-100 carousel-img"
+                className={`d-block w-100 carousel-img`}
                 alt="..."
               />
             </div>

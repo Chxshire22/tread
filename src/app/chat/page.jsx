@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import styles from "./chat.module.css";
 import ChatroomBlock from "@/components/ChatroomBlock";
 
@@ -90,7 +89,7 @@ export default function Chats() {
             src="https://i.pinimg.com/564x/d4/74/1c/d4741cb779ddec6509ca1ae0cb137a7d.jpg"
             alt="user profile image"
           />
-          <h1 className="page-title">Messages</h1>
+          <h1 className={styles.headerTitle}>Messages</h1>
         </header>
         <hr />
         <div className="">
