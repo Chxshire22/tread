@@ -229,10 +229,14 @@ box-shadow: 2px 4px 98px -22px rgba(0,0,0,0.6);
 .arrow-right{
   right: 0;
 }
-
 .remove-img{
   z-index: 10;
   top: 0;
   left: 0;
   margin: 0.2em;
+}
+
+/* dropdown */
+.dropdown-package{
+  z-index: 10;
 }

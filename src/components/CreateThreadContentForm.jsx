@@ -2,23 +2,33 @@
 
 import Carousel from "@/components/Carousel";
 import { useEffect, useState } from "react";
-import { imgOptimization } from "./CreateThreadForm";
-import { CardImage, PlusSquareFill } from "react-bootstrap-icons";
+import { CardImage, JournalMedical, PlusSquareFill } from "react-bootstrap-icons";
+import Select from "react-select";
+import { imgOptimization } from "@/utils/imageOptimization";
+import axios from "axios";
+import { BACKEND_URL } from "@/app/constants";
 
 export default function CreateThreadContentForm({ threadId }) {
+  // SET UP FORM
   const [imgArr, setImgArr] = useState([]);
+  const [categoriesArr, setCategoriesArr] = useState([]);
+
+  // SEND TO BACKEND
+
   const [threadsContentData, setThreadsContentData] = useState({
     location: "",
     time: "",
     description: "",
   });
+  const [categoriesForBackend, setCategoriesForBackend] = useState([]);
+
+  console.log(threadsContentData);
 
   const imageArr = [
     "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
     "https://i.pinimg.com/236x/16/13/d2/1613d2927c0c9f1a7ac7f7b8b0d7c31e.jpg",
     "https://i.pinimg.com/236x/75/e9/ef/75e9ef58248657fc164181b57a68c42c.jpg",
   ];
-
 
   // NOTE: Thread content category is to be posted to threads_contents_categories table
   // NOTE: Thread content images to be posted to threads_contents_display_picture table
@@ -39,15 +49,41 @@ export default function CreateThreadContentForm({ threadId }) {
 
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
-      // const blob = new Blob([file], { type: file.type });
       const optimizedImgs = await imgOptimization(file, 768);
       setImgArr((prevState) => [...prevState, optimizedImgs]);
     }
   };
 
+  /**
+   * This code block contains two functions that work together to fetch categories from a backend API and handle changes to a dropdown menu.
+   *
+   * useEffect() is used to fetch categories from a backend API when the component mounts. The categories are then mapped to an array of objects, each containing a value (the category id) and a label (the category name), and this array is stored in the state using the setCategoriesArr function.
+   *
+   * handleDropDownChange() maps the selected categories to an array of objects, each containing a categoriesId (the category id) and a threadsContentId (the thread id). This array is then stored in the state using the setCategoriesForBackend function.
+   *
+   * @param {Event} e - The event object from the dropdown menu change event.
+   */
   useEffect(() => {
-    console.log(imgArr);
-  }, [imgArr]);
+    const fetchCategories = async () => {
+      const categories = await axios.get(`${BACKEND_URL}/api/categories`);
+      const categoriesData = categories.data;
+      const categoriesArr = categoriesData.map((category) => ({
+        value: category.id,
+        label: category.name,
+      }));
+      setCategoriesArr(categoriesArr);
+    };
+    fetchCategories();
+  }, []);
+
+  const handleDropDownChange = (e) => {
+    const categoryIdForBackend = e.map((each) => ({
+      categoriesId: each.value,
+      threadsContentId: Number(threadId),
+    }));
+    console.log(categoryIdForBackend);
+    setCategoriesForBackend(categoryIdForBackend);
+  };
 
   return (
     <div>
@@ -76,25 +112,17 @@ export default function CreateThreadContentForm({ threadId }) {
       </div>
 
       {/* CATEGORY SELECT */}
-      <div className="my-3 form-floating">
-        <select
-          className="form-select"
-          aria-label="category"
-          id="floatingSelect"
-          onChange={(e) => {
-            setThreadData((prevState) => ({
-              ...prevState,
-              category: e.target.value,
-            }));
-          }}
-        >
-          <option disabled selected value style={{ display: "none" }}></option>
-          <option value="1">Map</option>
-          <option value="2">Category</option>
-          <option value="3">Here</option>
-        </select>
-        <label htmlFor="floatingSelect">Category</label>
-      </div>
+
+      <Select
+        isMulti
+        name="categories"
+        options={categoriesArr}
+        className="basic-multi-select my-3 dropdown-package"
+        classNamePrefix="select"
+        placeholder="Categories"
+        maxMenuHeight={150}
+        onChange={handleDropDownChange}
+      />
 
       {/* LOCATION INPUT */}
 
@@ -104,6 +132,7 @@ export default function CreateThreadContentForm({ threadId }) {
           className="form-control"
           id="locationInput"
           placeholder="Location"
+          maxMenuHeight={150}
           onChange={(e) => {
             setThreadsContentData((prevState) => ({
               ...prevState,
@@ -122,7 +151,7 @@ export default function CreateThreadContentForm({ threadId }) {
           type="time"
           className="form-control"
           id="timeInput"
-          placeholder="Time"
+          placeholder="Recommended Time"
           onChange={(e) => {
             setThreadsContentData((prevState) => ({
               ...prevState,
@@ -131,7 +160,7 @@ export default function CreateThreadContentForm({ threadId }) {
           }}
         />
         <label className="form-label" htmlFor="timeInput">
-          Time
+          Recommended Time
         </label>
       </div>
 
@@ -140,7 +169,7 @@ export default function CreateThreadContentForm({ threadId }) {
       <div className="form-floating mb-3">
         <textarea
           className="form-control"
-          placeholder="Description"
+          placeholder="Share your experience!"
           id="descriptionInput"
           style={{ height: "100px" }}
           onChange={(e) => {
@@ -150,11 +179,11 @@ export default function CreateThreadContentForm({ threadId }) {
             }));
           }}
         ></textarea>
-        <label htmlFor="descriptionInput">Description</label>
+        <label htmlFor="descriptionInput">Share your experience!</label>
       </div>
       <button
         // onClick={handleSubmit}
-
+        disabled={imgArr.length === 0  || threadsContentData.description =="" || threadsContentData.location == "" ? true:false }
         className="btn btn-submit-form"
       >
         Post
