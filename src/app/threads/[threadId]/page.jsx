@@ -1,7 +1,5 @@
 import React from "react";
-import ThreadContainer from "@/components/Threads/ThreadContainer";
-import { routeModule } from "next/dist/build/templates/app-page";
-import { Router } from "express";
+import ThreadContainer from "@/components/ThreadContainer";
 
 export default function page() {
   return (
