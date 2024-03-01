@@ -70,6 +70,9 @@ a {
   margin-top: 1rem;
 }
 
+.spacer {
+  height: 4rem;
+}
 /* HEADERS */
 
 .page-header-back {
@@ -80,9 +83,6 @@ a {
   margin-bottom: 1rem;
 }
 
-.spacer {
-  height: 4rem;
-}
 
 /* PROFILE PICTURES */
 .pfp-sm {

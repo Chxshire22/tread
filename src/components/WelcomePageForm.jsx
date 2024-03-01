@@ -33,9 +33,9 @@ export const WelcomePageForm = () => {
   return (
     <>
       {user && <p>Hi! {user.name}</p>} <h1> Welcome to Treads!</h1>
-      <p>Let's get started by setting up your profile.</p>
+      <p>Let&apos;s get started by setting up your profile.</p>
       <p>Tell us a little about yourself.</p>
-      <p>Don't worry, you can change this later.</p>
+      <p>Don&apos;t worry, you can change this later.</p>
       <p>👟</p>
       <br />
       <form onSubmit={handleSubmit}>

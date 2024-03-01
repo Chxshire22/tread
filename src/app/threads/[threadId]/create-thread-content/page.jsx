@@ -2,13 +2,26 @@
 
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 import Carousel from "@/components/Carousel";
-import { useParams } from "next/navigation";
-import { useEffect } from "react";
+import { useState } from "react";
 
-export default function CreateThreadContent() {
-  const { threadId } = useParams();
+export default function CreateThreadContent({params}) {
+
+  const { threadId } = params;
+
+  // const { threadId } = useParams();
+
+  useEffect(()=>{
+    console.log(threadId)
+  },[threadId])
 
   // confirmed that threadId is being passed correctly
+
+  const [threadData, setThreadData] = useState({
+    category: "",
+    location: "",
+    time: "",
+    description: "",
+  });
 
   const imageArr = [
     "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
@@ -16,14 +29,12 @@ export default function CreateThreadContent() {
     "https://i.pinimg.com/236x/75/e9/ef/75e9ef58248657fc164181b57a68c42c.jpg",
   ];
 
-
   // NOTE: Thread content category is to be posted to threads_contents_categories table
   // NOTE: Thread content images to be posted to threads_contents_display_picture table
-  // The rest (location, description, recommended time) is to be posted to threads_content table 
+  // The rest (location, description, recommended time) is to be posted to threads_content table
   // Try to implement removal of specific images from carousel
   // Try to implement adding of images to carousel
-  // Try to implement limit on number of images upload 
-
+  // Try to implement limit on number of images upload
 
   return (
     <div className="page-container">

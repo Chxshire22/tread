@@ -12,9 +12,8 @@ export default function page() {
       }}
     >
       <h1 style={{ margin: "1rem" }}>Thread:</h1>
-      <ThreadContainer threadId={1} />
+      <ThreadContainer />
     </div>
   );
 }
 
-Router.push(`threads/${threadId}/create-thread-content`)
