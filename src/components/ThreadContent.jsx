@@ -10,6 +10,8 @@ export default function ThreadContent({ content }) {
         padding: "10px",
         color: "black",
         width: "60vw",
+        border: "1px solid black",
+        margin: "1rem",
       }}
     >
       <div>Location: {content.location}</div>

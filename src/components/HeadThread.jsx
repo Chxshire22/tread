@@ -36,11 +36,7 @@ export default function HeadThread({ content }) {
       </div>
       <div style={{ textAlign: "center" }}>Title: {content.title}</div>
       <div style={{ textAlign: "center", padding: "10px" }}>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg/1280px-Views_of_Mount_Fuji_from_%C5%8Cwakudani_20211202.jpg"
-          width="180"
-          height="120"
-        />
+        <img src={content.threadsDp} width="180" height="120" />
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <GeoAlt />
