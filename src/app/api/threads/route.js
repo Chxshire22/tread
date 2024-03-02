@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Thread from "../../models/Thread";
+import { request } from "http";
 
 export async function GET() {
   try {
@@ -27,10 +28,40 @@ export async function POST(request) {
       destination,
       startDateOfTravel,
       endDateOfTravel,
-      threadsDp
+      threadsDp,
     });
     return NextResponse.json(thread);
   } catch (err) {
     return NextResponse.status(400).json({ error: true, msg: err });
+  }
+}
+
+export async function PUT(request) {
+  const {
+    userId,
+    title,
+    destination,
+    startDateOfTravel,
+    endDateOfTravel,
+    threadsDp,
+    id,
+  } = await request.json();
+  try {
+    const threads = await Thread.update({
+      userId,
+      title,
+      destination,
+      startDateOfTravel,
+      endDateOfTravel,
+      threadsDp,
+    },{
+      where:{
+        id
+      }
+    });
+    return NextResponse.json(threads);
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json({ error: true, msg: err });
   }
 }
