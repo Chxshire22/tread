@@ -1,7 +1,17 @@
-import React from 'react'
+import CreateThreadContentForm from "@/components/CreateThreadContentForm";
+import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 
-export default function CreateThreadContent() {
+
+export default function CreateThreadContent({params}) {
+
+  const { threadId } = params;
+
   return (
-    <div>CreateThreadContent</div>
-  )
+    <div className="page-container">
+      <PageHeaderWithBackBtn title="Create Thread Content" />
+
+      <CreateThreadContentForm threadId={threadId} />
+      
+    </div>
+  );
 }

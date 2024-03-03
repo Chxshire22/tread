@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
+import HeadThread from "@/components/HeadThread";
 import Link from "next/link";
-import ThreadContainer from "@/components/ThreadContainer";
 
 export default function page() {
   const headThread = {
@@ -10,22 +12,6 @@ export default function page() {
     startDate: "Dec 2023",
     endDate: "Jan 2024",
   };
-  const threadContentList = [
-    {
-      id: 1,
-      location: "Tokyo",
-      description: "Fun",
-      recommended_time: "2pm",
-    },
-    {
-      id: 2,
-      location: "Osaka",
-      description: "Not Fun",
-      recommended_time: "3pm",
-    },
-  ];
-
-  //API for thread based on threadID
 
   return (
     <div
@@ -37,10 +23,14 @@ export default function page() {
       }}
     >
       <h1 style={{ margin: "1rem" }}>Profile Stuff</h1>
-      <ThreadContainer
-        headThread={headThread}
-        threadContentList={threadContentList}
-      />
+      <Link href="threads/1">
+        <HeadThread content={headThread} />
+      </Link>
+      <button
+        style={{ backgroundColor: "darkblue", padding: "1rem", color: "white" }}
+      >
+        Add a new thread
+      </button>
     </div>
   );
 }

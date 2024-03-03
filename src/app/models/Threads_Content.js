@@ -41,7 +41,7 @@ Threads_Content.init(
       allowNull: false,
       type: DataTypes.STRING,
     },
-    recommended_time: {
+    recommendedTime: {
       type: DataTypes.STRING,
     },
     createdAt: {
