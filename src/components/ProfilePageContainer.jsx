@@ -25,7 +25,7 @@ export default function ProfilePageContainer({ username }) {
     if (username) {
       fetchData();
     }
-  }, []);
+  }, [username]);
 
   return (
     <div>

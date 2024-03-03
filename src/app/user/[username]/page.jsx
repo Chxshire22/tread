@@ -1,7 +1,7 @@
 //Components Import
 import ProfilePageContainer from "@/components/ProfilePageContainer";
 import { AddFriend } from "@/components/Buttons";
-import GetProfileId from "@/utils/GetProfileId";
+import GetProfileId from "@/components/GetProfileId";
 
 export default async function ProfilePage({ params }) {
   return (
@@ -11,7 +11,7 @@ export default async function ProfilePage({ params }) {
       <h2>My Trips</h2>
       {/* TESTING - TO BE REMOVED  */}
       <AddFriend />
-      {/* <GetProfileId /> */}
+      <GetProfileId />
     </div>
   );
 }
