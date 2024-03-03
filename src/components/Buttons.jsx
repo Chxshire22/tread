@@ -1,7 +1,6 @@
 import styles from "../styles/buttons.module.css";
 import Link from "next/link";
 import { PlusCircleFill } from "react-bootstrap-icons";
-import { AddFriendLogic } from "@/utils/AddFriendLogic";
 
 export const LoginButton = () => {
   return (
@@ -37,10 +36,6 @@ export function CreatePostButton() {
 
 export const SaveContinue = () => {
   return <div>Buttons</div>;
-};
-
-export const AddFriend = () => {
-  return <button>Add Friend</button>;
 };
 
 export const SendMessage = () => {

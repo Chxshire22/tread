@@ -3,13 +3,11 @@ import Image from "next/image";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import AddFriend from "./AddFriend";
 //Components Import
-import { useUserId } from "./GetCurrentUser";
-import { AddFriend, SendMessage } from "./Buttons";
+import { SendMessage } from "./Buttons";
 
 export default function ProfilePageContainer({ username }) {
-  const { currentUser } = useUserId();
   const [userData, setUserData] = useState(null);
 
   useEffect(() => {
@@ -38,7 +36,7 @@ export default function ProfilePageContainer({ username }) {
       />
       <div>
         <strong>{"@" + userData?.username}</strong>
-        <AddFriend />
+        <AddFriend userData={userData} />
       </div>
       <Container>{userData?.bio}</Container>
       <br />
