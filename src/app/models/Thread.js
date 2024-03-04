@@ -59,7 +59,7 @@ Thread.init(
     sequelize,
     modelName: "Thread",
     tableName: "threads",
-    underscored: true
+    underscored: true,
   }
 );
 

@@ -1,9 +1,12 @@
 import React from "react";
-import ThreadContainer from "@/components/ThreadContainer";
+import MainThreadsPage from "@/components/MainThreadsPage";
 
-export default function page({params}) {
-  const { threadId } = params;
-  
+export default function page() {
+
+  //getcurrentuser
+
+  const userId = 1
+
   return (
     <div
       style={{
@@ -14,8 +17,7 @@ export default function page({params}) {
       }}
     >
       <h1 style={{ margin: "1rem" }}>Profile Stuff</h1>
-      <ThreadContainer threadId={threadId}
-      />
+      <MainThreadsPage userId={userId}/>
     </div>
   );
 }
