@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { GeoAlt } from "react-bootstrap-icons";
 
-export default function HeadThread({ content }) {
+export default function HeadThread({ content, userDp }) {
   return (
     <div
       style={{
@@ -18,12 +18,7 @@ export default function HeadThread({ content }) {
       }}
     >
       <div style={{ display: "flex", padding: "5px" }}>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg/1200px-Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg"
-          width="50"
-          height="50"
-          alt="User Image"
-        />
+        <img src={userDp} width="50" height="50" alt="User Image" />
         <div
           style={{
             paddingLeft: "5px",

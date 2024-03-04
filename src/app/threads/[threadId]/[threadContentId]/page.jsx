@@ -1,37 +1,37 @@
+"use client";
+
 import React from "react";
 import ThreadContent from "@/components/ThreadContent";
-import { Chat, HeartFill } from "react-bootstrap-icons";
-import { ChatLeftFill } from "react-bootstrap-icons";
+import { ChatLeftFill, HeartFill } from "react-bootstrap-icons";
+import Comments from "@/components/Comments";
+import Likes from "@/components/Likes";
 
-export default function FullThreadContent() {
-  const threadContent = {
-    id: 1,
-    location: "Tokyo",
-    description: "Fun",
-    recommended_time: "2pm",
-  };
-
-  //axios call to get threadContent by threadContentId
-  //axios call to get comments and likes 
-
+export default function FullThreadContent({ params }) {
+  const { threadContentId } = params;
+  const userId = 1;
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <ThreadContent content={threadContent} />
+    <div>
       <div
         style={{
           display: "flex",
-          justifyContent: "space-evenly",
-          width: "60%",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <HeartFill />
-        <ChatLeftFill />
+        <ThreadContent threadContentId={threadContentId} />
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+          }}
+        >
+          <ChatLeftFill />
+          <HeartFill style={{ marginInline: "1rem" }} />
+        </div>
+        <div style={{ width: "60vw" }}>
+          <Likes threadContentId={threadContentId} userId={userId} />
+          <Comments threadContentId={threadContentId} userId={userId} />
+        </div>
       </div>
     </div>
   );

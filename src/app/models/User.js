@@ -6,7 +6,9 @@ class User extends Model {
     this.hasMany(models.Thread);
     this.hasMany(models.Threads_Contents_Comment);
     this.hasMany(models.Threads_Contents_Like);
-    this.hasMany(models.Saved_Thread);
+    this.belongsToMany(models.Thread, {
+      through: "Saved_Thread",
+    });
     this.hasMany(models.Notification);
     this.hasMany(models.Message);
     this.hasMany(models.Friendship, {
@@ -20,7 +22,8 @@ class User extends Model {
   }
 }
 
-User.init({
+User.init(
+  {
     id: {
       allowNull: false,
       autoIncrement: true,

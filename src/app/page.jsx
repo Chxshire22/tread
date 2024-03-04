@@ -1,6 +1,10 @@
 "use client";
 //Components Import
-import { LoginButton, SignUpButton, CreatePostButton } from "@/components/Buttons";
+import {
+  LoginButton,
+  SignUpButton,
+  CreatePostButton,
+} from "@/components/Buttons";
 import { useUserId } from "@/components/GetCurrentUser";
 
 export default function Home() {
