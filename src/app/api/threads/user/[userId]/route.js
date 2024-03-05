@@ -1,14 +1,14 @@
-import Thread from "@/app/models/Thread";
-import User from "@/app/models/User";
+import { User, Thread } from "@/app/models"
 import { NextResponse } from "next/server";
 
 export async function GET(res, { params: { userId } }) {
   try {
     const userThreads = await Thread.findAll({
       where: { userId: userId },
+      include: [User]
     });
     if (!userThreads) {
-      return NextResponse.json({ error: true, msg: `user n ot found` });
+      return NextResponse.json({ error: true, msg: `user not found` });
     }
 
     return NextResponse.json(userThreads);

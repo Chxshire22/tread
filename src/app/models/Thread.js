@@ -1,14 +1,14 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
 class Thread extends Model {
-  static associate(models) {
-    this.belongsTo(models.User);
-    this.hasMany(models.Threads_Content);
-    this.belongsToMany(models.User, {
-      through: "Saved_Thread",
-    });
-  }
+  // static associate(models) {
+  //   this.belongsTo(models.User);
+  //   this.hasMany(models.Threads_Content);
+  //   this.belongsToMany(models.User, {
+  //     through: "Saved_Thread",
+  //   });
+  // }
 }
 Thread.init(
   {
