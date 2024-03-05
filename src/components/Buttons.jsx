@@ -1,6 +1,8 @@
+"use client";
 import styles from "../styles/buttons.module.css";
 import Link from "next/link";
 import { PlusCircleFill } from "react-bootstrap-icons";
+import { useRouter } from "next/navigation";
 
 export const LoginButton = () => {
   return (
@@ -40,4 +42,9 @@ export const SaveContinue = () => {
 
 export const SendMessage = () => {
   return <button>Send Message</button>;
+};
+
+export const BackButton = () => {
+  const router = useRouter();
+  return <button onClick={() => router.back()}>Back</button>;
 };

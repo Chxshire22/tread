@@ -1,10 +1,20 @@
-import React from "react";
 import Image from "next/image";
 import { GeoAlt } from "react-bootstrap-icons";
+import { formatDate } from "@/utils/dateUtils";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-export default function HeadThread({ content, userDp }) {
+export default function HeadThread({ thread, userDp, username }) {
+  console.log(thread);
+  const router = useRouter();
+  // const userDpUrl = thread.user;
+  // console.log(userDpUrl);
+  const handleClick = () => {
+    router.push(`/threads/${thread.id}`);
+  };
   return (
     <div
+      onClick={handleClick}
       style={{
         fontWeight: "bold",
         marginBottom: "20px",
@@ -18,7 +28,9 @@ export default function HeadThread({ content, userDp }) {
       }}
     >
       <div style={{ display: "flex", padding: "5px" }}>
-        <img src={userDp} width="50" height="50" alt="User Image" />
+        {/* USER DP */}
+        <Image width="50" height="50" alt="User Image" />
+        {/* NAME */}
         <div
           style={{
             paddingLeft: "5px",
@@ -26,16 +38,19 @@ export default function HeadThread({ content, userDp }) {
             alignItems: "center",
           }}
         >
-          Ben
+          @{username}
         </div>
       </div>
-      <div style={{ textAlign: "center" }}>Title: {content.title}</div>
+
+      {/* TITLE */}
+      <div style={{ textAlign: "center" }}> {thread?.title} </div>
       <div style={{ textAlign: "center", padding: "10px" }}>
-        <img src={content.threadsDp} width="180" height="120" />
+        {/* THREAD DP */}
+        <Image src={thread?.threadsDP} width="180" height="120" alt="" />
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <GeoAlt />
-        <p>{content.destination}</p>
+        <p></p>
       </div>
       <div
         style={{
@@ -43,8 +58,8 @@ export default function HeadThread({ content, userDp }) {
           justifyContent: "space-evenly",
         }}
       >
-        <p>Start: {content.startDate}</p>
-        <p>End: {content.endDate}</p>
+        <p>{formatDate(thread?.startDateOfTravel)}</p> ✈️
+        {thread?.endDateOfTravel && <p>{formatDate(thread?.endDateOfTravel)} </p>}
       </div>
     </div>
   );

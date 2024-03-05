@@ -1,9 +1,8 @@
-import React from "react";
+//Components Import
 import ThreadContainer from "@/components/ThreadContainer";
+import { BackButton } from "@/components/Buttons";
 
-export default function page({params}) {
-  const { threadId } = params;
-  
+export default function page({ params }) {
   return (
     <div
       style={{
@@ -13,9 +12,8 @@ export default function page({params}) {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ margin: "1rem" }}>Profile Stuff</h1>
-      <ThreadContainer threadId={threadId}
-      />
+      <BackButton />
+      <ThreadContainer threadId={params.threadId} />
     </div>
   );
 }
