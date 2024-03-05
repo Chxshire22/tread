@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Notification from "../../models/Notification";
+import { Notification } from "@/app/models";
 
 export async function GET() {
   try {
@@ -17,7 +17,7 @@ export async function POST(request) {
       userId: userId,
       type: type,
       content: content,
-      viewed: viewed
+      viewed: viewed,
     });
     return NextResponse.json(notification);
   } catch (err) {

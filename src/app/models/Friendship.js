@@ -1,20 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class Friendship extends Model {
-
-  static associate(models) {
-    this.belongsToMany(models.Message, { through: "Chatroom" });
-    this.belongsTo(models.User, {
-      as: "Requestor",
-      foreignKey: "requestorId",
-    });
-    this.belongsTo(models.User, {
-      as: "Receiver",
-      foreignKey: "receiverId",
-    });
-  }
-}
+class Friendship extends Model {}
 
 Friendship.init(
   {

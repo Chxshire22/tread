@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Chatroom from "../../models/Chatroom";
+import { Chatroom } from "@/app/models";
 
 export async function GET() {
   try {
@@ -11,11 +11,9 @@ export async function GET() {
   }
 }
 
-
 //filepath + http operation POST/GET router
 export async function POST(request) {
-
-  // basically controller 
+  // basically controller
   const { friendshipId, messageId } = await request.json();
   try {
     const chatroom = await Chatroom.create({

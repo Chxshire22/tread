@@ -1,11 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class Notification extends Model {
-  static associate(models) {
-    this.belongsTo(models.User);
-  }
-}
+class Notification extends Model {}
 
 Notification.init(
   {

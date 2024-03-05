@@ -1,12 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class Chatroom extends Model {
-  static associate(models) {
-    this.belongsTo(models.Friendship);
-    this.belongsTo(models.Message);
-  }
-}
+class Chatroom extends Model {}
 Chatroom.init(
   {
     id: {

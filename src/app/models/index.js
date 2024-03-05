@@ -9,6 +9,8 @@ import Message from "./Message";
 import Friendship from "./Friendship";
 import Category from "./Category";
 import Threads_Contents_Category from "./Threads_Contents_Category";
+import Saved_Thread from "./Saved_Thread";
+import Chatroom from "./Chatroom";
 
 //User associations
 User.hasMany(Thread, { foreignKey: "userId" });
@@ -63,5 +65,48 @@ Threads_Contents_Display_Picture.belongsTo(Threads_Content);
 Threads_Contents_Like.belongsTo(User);
 Threads_Contents_Like.belongsTo(Threads_Content);
 
+//Saved_thread
+Saved_Thread.belongsTo(User);
+Saved_Thread.belongsTo(Thread);
 
-module.exports = { User, Thread, Threads_Content, Threads_Contents_Category, Threads_Contents_Comment, Threads_Contents_Display_Picture, Threads_Contents_Like };
+//Notification
+Notification.belongsTo(User);
+
+//Message
+Message.belongsToMany(User, { through: "Chatroom" });
+
+//Chatroom
+Chatroom.belongsTo(Friendship);
+Chatroom.belongsTo(Message);
+
+//Friendship
+Friendship.belongsToMany(Message, { through: "Chatroom" });
+Friendship.belongsTo(User, {
+  as: "Requestor",
+  foreignKey: "requestorId",
+});
+Friendship.belongsTo(User, {
+  as: "Receiver",
+  foreignKey: "receiverId",
+});
+
+//Category
+Category.belongsToMany(Threads_Content, {
+  through: "Threads_Contents_Category",
+});
+
+module.exports = {
+  User,
+  Thread,
+  Threads_Content,
+  Threads_Contents_Category,
+  Threads_Contents_Comment,
+  Threads_Contents_Display_Picture,
+  Threads_Contents_Like,
+  Saved_Thread,
+  Notification,
+  Message,
+  Chatroom,
+  Friendship,
+  Category,
+};

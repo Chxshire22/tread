@@ -1,10 +1,9 @@
 import { NextResponse } from "next/server";
-import Threads_Contents_Category from "../../../models/Threads_Contents_Category";
+import { Threads_Contents_Category } from "@/app/models";
 
 export async function GET() {
   try {
-    const threads_contents_categories =
-      await Threads_Contents_Category.findAll();
+    const threads_contents_categories = await Threads_Contents_Category.findAll();
     return NextResponse.json(threads_contents_categories);
   } catch (err) {
     return NextResponse.json({ error: true, msg: err });
