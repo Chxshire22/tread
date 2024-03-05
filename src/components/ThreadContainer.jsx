@@ -10,7 +10,6 @@ import HeadThread from "./HeadThread";
 export default function ThreadContainer({ threadId }) {
   const [isOpen, setIsOpen] = useState(false);
   const [threadsContentData, setThreadsContentData] = useState(null);
-  const [headThread, setHeadThread] = useState({});
   const [threadContentList, setThreadContentList] = useState({});
   const router = useRouter();
 
@@ -20,7 +19,7 @@ export default function ThreadContainer({ threadId }) {
         const threadsResponse = await axios.get(`/api/threads/${threadId}`);
         setThreadsContentData(threadsResponse.data);
       } catch (error) {
-        console.log(error);
+        console.log(`fetch error`, error);
       }
     };
 
@@ -40,11 +39,11 @@ export default function ThreadContainer({ threadId }) {
   //   fetchData();
   // }, []);
 
-  const handleClick = (e, threadContentId) => {
-    e.preventDefault();
-    const newPath = `${headThread.id}/${threadContentId}`;
-    router.push(newPath);
-  };
+  // const handleClick = (e, threadContentId) => {
+  //   e.preventDefault();
+  //   const newPath = `${headThread.id}/${threadContentId}`;
+  //   router.push(newPath);
+  // };
 
   return (
     <div style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}>

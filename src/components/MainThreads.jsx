@@ -16,8 +16,6 @@ export default function MainThreads({ username }) {
         const userId = usernameData.data.id;
         setUserDp(usernameData.data.userDpUrl || null);
         const threadsResponse = await axios.get(`/api/threads/user/${userId}`);
-        console.log("threadsResponse.data:", threadsResponse.data); // Add this line
-
         setThreadsArray(threadsResponse.data);
       } catch (error) {
         console.log(error);
@@ -30,8 +28,9 @@ export default function MainThreads({ username }) {
   return (
     <div>
       {threadsArray.map((thread) => (
-        <HeadThread thread={thread} userDp={userDp} username={username} key={thread.id} />
+        <HeadThread key={thread.id} thread={thread} />
       ))}
+      {/*  userDp={userDp} username={username} */}
       {/* {threadsArray &&
         threadsArray.map((thread) => (
           <Link href={`/threads/${thread.id}`} key={thread.id}>

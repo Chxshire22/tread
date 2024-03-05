@@ -4,14 +4,15 @@ import { formatDate } from "@/utils/dateUtils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function HeadThread({ thread, userDp, username }) {
-  console.log(thread);
+export default function HeadThread({ thread, threadsContentData }) {
+  console.log(`data`, thread);
   const router = useRouter();
   // const userDpUrl = thread.user;
   // console.log(userDpUrl);
   const handleClick = () => {
     router.push(`/threads/${thread.id}`);
   };
+
   return (
     <div
       onClick={handleClick}
@@ -29,7 +30,7 @@ export default function HeadThread({ thread, userDp, username }) {
     >
       <div style={{ display: "flex", padding: "5px" }}>
         {/* USER DP */}
-        <Image width="50" height="50" alt="User Image" />
+        {/* <Image width="50" height="50" alt="User Image" /> */}
         {/* NAME */}
         <div
           style={{
@@ -38,7 +39,7 @@ export default function HeadThread({ thread, userDp, username }) {
             alignItems: "center",
           }}
         >
-          @{username}
+          @{thread?.User?.username}
         </div>
       </div>
 
@@ -46,7 +47,7 @@ export default function HeadThread({ thread, userDp, username }) {
       <div style={{ textAlign: "center" }}> {thread?.title} </div>
       <div style={{ textAlign: "center", padding: "10px" }}>
         {/* THREAD DP */}
-        <Image src={thread?.threadsDP} width="180" height="120" alt="" />
+        {/* <Image src={thread?.threadsDP} width="180" height="120" alt="" /> */}
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <GeoAlt />

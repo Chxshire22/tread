@@ -73,7 +73,7 @@ Saved_Thread.belongsTo(Thread);
 Notification.belongsTo(User);
 
 //Message
-Message.belongsToMany(User, { through: "Chatroom" });
+Message.belongsToMany(Friendship, { through: "Chatroom" });
 
 //Chatroom
 Chatroom.belongsTo(Friendship);
