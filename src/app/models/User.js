@@ -1,26 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class User extends Model {
-  static associate(models) {
-    this.hasMany(models.Thread);
-    this.hasMany(models.Threads_Contents_Comment);
-    this.hasMany(models.Threads_Contents_Like);
-    this.belongsToMany(models.Thread, {
-      through: "Saved_Thread",
-    });
-    this.hasMany(models.Notification);
-    this.hasMany(models.Message);
-    this.hasMany(models.Friendship, {
-      as: "Requestor",
-      foreignKey: "requestorId",
-    });
-    this.hasMany(models.Friendship, {
-      as: "Receiver",
-      foreignKey: "receiverId",
-    });
-  }
-}
+class User extends Model {}
 
 User.init(
   {

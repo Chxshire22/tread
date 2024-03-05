@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import Thread from "../../models/Thread";
-import { request } from "http";
+import { Thread } from "@/app/models";
 
 export async function GET() {
   try {

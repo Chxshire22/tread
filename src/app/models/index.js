@@ -1,51 +1,67 @@
-"use strict";
+import User from "./User";
+import Thread from "./Thread";
+import Threads_Content from "./Threads_Content";
+import Threads_Contents_Comment from "./Threads_Contents_Comment";
+import Threads_Contents_Like from "./Threads_Contents_Like";
+import Threads_Contents_Display_Picture from "./Threads_Contents_Display_Picture";
+import Notification from "./Notification";
+import Message from "./Message";
+import Friendship from "./Friendship";
+import Category from "./Category";
+import Threads_Contents_Category from "./Threads_Contents_Category";
 
-const fs = require("fs");
-const path = require("path");
-const Sequelize = require("sequelize");
-const process = require("process");
-const basename = path.basename(__filename);
-const env = process.env.NODE_ENV || "development";
-const config = require(__dirname + "/../config/database.js")[env];
-const db = {};
-
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(
-    config.database,
-    config.username,
-    config.password,
-    config
-  );
-}
-
-fs.readdirSync(__dirname)
-  .filter((file) => {
-    return (
-      file.indexOf(".") !== 0 &&
-      file !== basename &&
-      file.slice(-3) === ".js" &&
-      file.indexOf(".test.js") === -1
-    );
-  })
-  .forEach((file) => {
-    const model = require(path.join(__dirname, file))(
-      sequelize,
-      Sequelize.DataTypes
-    );
-    db[model.name] = model;
-  });
-
-Object.keys(db).forEach((modelName) => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
+//User associations
+User.hasMany(Thread, { foreignKey: "userId" });
+User.hasMany(Threads_Contents_Comment, { foreignKey: "userId" });
+User.belongsToMany(Threads_Content, {
+  through: "Threads_Contents_Like",
+});
+User.belongsToMany(Thread, {
+  through: "Saved_Thread",
+});
+User.hasMany(Notification);
+User.hasMany(Message);
+User.hasMany(Friendship, {
+  as: "Requestor",
+  foreignKey: "requestorId",
+});
+User.hasMany(Friendship, {
+  as: "Receiver",
+  foreignKey: "receiverId",
 });
 
+//Thread associations
+Thread.belongsTo(User, { foreignKey: "userId" });
+Thread.hasMany(Threads_Content);
+Thread.belongsToMany(User, {
+  through: "Saved_Thread",
+});
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+//Thread_Content associations
+Threads_Content.belongsTo(Thread);
+Threads_Content.hasMany(Threads_Contents_Comment, { foreignKey: "threadsContentsId" });
+Threads_Content.belongsToMany(User, {
+  through: "Threads_Contents_Like",
+});
+Threads_Content.hasMany(Threads_Contents_Display_Picture);
+Threads_Content.belongsToMany(Category, {
+  through: "Threads_Contents_Category",
+});
 
-module.exports = db;
+//Threads_Content_Category
+Threads_Contents_Category.belongsTo(Category);
+Threads_Contents_Category.belongsTo(Threads_Content);
+
+//Threads_Contents_Comment
+Threads_Contents_Comment.belongsTo(User, { foreignKey: "userId" });
+Threads_Contents_Comment.belongsTo(Threads_Content, { foreignKey: "threadsContentsId" });
+
+//Threads_Contents_Display_Picture
+Threads_Contents_Display_Picture.belongsTo(Threads_Content);
+
+//Threads_Contents_Like
+Threads_Contents_Like.belongsTo(User);
+Threads_Contents_Like.belongsTo(Threads_Content);
+
+
+module.exports = { User, Thread, Threads_Content, Threads_Contents_Category, Threads_Contents_Comment, Threads_Contents_Display_Picture, Threads_Contents_Like };
