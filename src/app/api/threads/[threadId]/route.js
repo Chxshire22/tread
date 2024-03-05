@@ -1,4 +1,4 @@
-import Thread from "@/app/models/Thread";
+import { Thread } from "@/app/models";
 import { NextResponse } from "next/server";
 
 export async function GET(res, { params: { threadId } }) {

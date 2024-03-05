@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Message from "../../models/Message";
+import { Message } from "@/app/models";
 
 export async function GET() {
   try {
@@ -18,7 +18,7 @@ export async function POST(request) {
       senderId: senderId,
       content: content,
       imageUrl: imageUrl,
-      viewed: viewed
+      viewed: viewed,
     });
     return NextResponse.json(message);
   } catch (err) {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Friendship from "../../models/Friendship";
+import { Friendship } from "@/app/models";
 
 export async function GET() {
   try {

@@ -1,12 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class Saved_Thread extends Model {
-  static associate(models) {
-    this.belongsTo(models.User);
-    this.belongsTo(models.Thread);
-  }
-}
+class Saved_Thread extends Model {}
 Saved_Thread.init(
   {
     id: {

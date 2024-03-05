@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Saved_Thread from "../../models/Saved_Thread";
+import { Saved_Thread } from "@/app/models";
 
 export async function GET() {
   try {

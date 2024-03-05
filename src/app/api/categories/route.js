@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Category from "../../models/Category";
+import { Category } from "@/app/models";
 
 export async function GET() {
   try {
@@ -15,7 +15,7 @@ export async function POST(request) {
   const { name } = await request.json();
   try {
     const category = await Category.create({
-      name
+      name,
     });
     return NextResponse.json(category);
   } catch (err) {

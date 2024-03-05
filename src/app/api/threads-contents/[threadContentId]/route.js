@@ -1,4 +1,4 @@
-import Threads_Content from "@/app/models/Threads_Content";
+import { Threads_Content } from "@/app/models";
 import { NextResponse } from "next/server";
 
 export async function GET(res, { params: { threadContentId } }) {
