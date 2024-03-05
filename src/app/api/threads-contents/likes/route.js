@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Threads_Contents_Like from "../../../models/Threads_Contents_Like";
+import { Threads_Contents_Like } from "@/app/models";
 
 export async function GET() {
   try {

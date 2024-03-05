@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
-import Threads_Contents_Comment from "@/app/models/Threads_Contents_Comment";
+import {Threads_Contents_Comment, User, Threads_Content} from "@/app/models";
 
 export async function GET(res, { params: { threadContentId } }) {
   try {
     const user = await Threads_Contents_Comment.findAll({
       where: { threadsContentsId: threadContentId },
+      include: [ User ]
     });
 
     if (!user) {

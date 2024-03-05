@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Threads_Contents_Comment from "../../../models/Threads_Contents_Comment";
+import { Threads_Contents_Comment } from "@/app/models";
 
 export async function GET() {
   try {

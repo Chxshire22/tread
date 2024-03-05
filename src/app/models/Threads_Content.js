@@ -1,21 +1,7 @@
 import sequelize from "../config/sequelize";
-const { Model, DataTypes } = require("sequelize");
+import { Model, DataTypes } from "sequelize";
 
-class Threads_Content extends Model {
-  static associate(models) {
-    this.belongsTo(models.Thread);
-    this.belongsToMany(models.User, {
-      through: "Thread_Contents_Comment",
-    });
-    this.belongsToMany(models.User, {
-      through: "Thread_Contents_Like",
-    });
-    this.hasMany(models.Threads_Content_Display_Picture);
-    this.belongsToMany(models.Category, {
-      through: "Threads_Contents_Category",
-    });
-  }
-}
+class Threads_Content extends Model {}
 
 Threads_Content.init(
   {

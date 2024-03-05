@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Threads_Content from "../../models/Threads_Content";
+import { Threads_Content } from "@/app/models";
 
 export async function GET() {
   try {
@@ -13,13 +13,13 @@ export async function GET() {
 
 export async function POST(request) {
   const { threadId, location, description, time } = await request.json();
-  console.log(description)
+  console.log(description);
   try {
     const threadsContent = await Threads_Content.create({
       threadId: threadId,
       location: location,
       description: description,
-      recommendedTime: time
+      recommendedTime: time,
     });
     return NextResponse.json(threadsContent);
   } catch (err) {
