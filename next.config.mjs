@@ -11,6 +11,15 @@ const nextConfig = {
     ],
     domains: ["st3.depositphotos.com"],
   },
+  // webpack: (config, { isServer }) => {
+  //   if (!isServer) {
+  //     config.node = {
+  //       net: "empty",
+  //     };
+  //   }
+
+  //   return config;
+  // },
 };
 
 export default nextConfig;

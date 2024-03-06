@@ -1,7 +1,8 @@
 import React from 'react'
+import TestComp from './test'
 
-export default function Chatroom() {
+export default async function Chatroom() {
   return (
-    <div>A chat with another user</div>
+    <TestComp/>
   )
 }
