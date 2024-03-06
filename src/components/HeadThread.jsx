@@ -4,8 +4,9 @@ import { formatDate } from "@/utils/dateUtils";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function HeadThread({ thread, threadsContentData }) {
-  console.log(`data`, thread);
+export default function HeadThread({ thread }) {
+  // console.log(`threadscontentdata`, threadsContentData);
+  console.log(`thread`, thread);
   const router = useRouter();
   // const userDpUrl = thread.user;
   // console.log(userDpUrl);

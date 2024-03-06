@@ -1,10 +1,11 @@
 //Components Import
 import ThreadContainer from "@/components/ThreadContainer";
-import { BackButton } from "@/components/Buttons";
+import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 
 export default function page({ params }) {
   return (
     <div
+      className="page-container"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -12,7 +13,8 @@ export default function page({ params }) {
         justifyContent: "center",
       }}
     >
-      <BackButton />
+      <PageHeaderWithBackBtn title={"Threads"} />
+      username userDP
       <ThreadContainer threadId={params.threadId} />
     </div>
   );

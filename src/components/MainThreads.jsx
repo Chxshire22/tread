@@ -27,9 +27,14 @@ export default function MainThreads({ username }) {
 
   return (
     <div>
-      {threadsArray.map((thread) => (
-        <HeadThread key={thread.id} thread={thread} />
-      ))}
+      {threadsArray
+        .slice()
+        .reverse()
+        .map(
+          (thread) => (
+            console.log(`thread`, thread), (<HeadThread key={thread.id} thread={thread} />)
+          )
+        )}
       {/*  userDp={userDp} username={username} */}
       {/* {threadsArray &&
         threadsArray.map((thread) => (

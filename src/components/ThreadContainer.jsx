@@ -17,14 +17,15 @@ export default function ThreadContainer({ threadId }) {
     const fetchData = async () => {
       try {
         const threadsResponse = await axios.get(`/api/threads/${threadId}`);
-        setThreadsContentData(threadsResponse.data);
+        setThreadsContentData(threadsResponse.data[0]);
+        console.log(threadsResponse.data);
       } catch (error) {
         console.log(`fetch error`, error);
       }
     };
 
     fetchData();
-  }, [threadId]);
+  }, []);
 
   // useEffect(() => {
   //   const fetchData = async () => {
@@ -47,7 +48,7 @@ export default function ThreadContainer({ threadId }) {
 
   return (
     <div style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}>
-      <HeadThread threadsContentData={threadsContentData} />
+      <HeadThread thread={threadsContentData} />
       <div style={{ borderTop: "1px solid #000", width: "100%", height: "0px" }}></div>
       <button
         onClick={() => setIsOpen(!isOpen)}
