@@ -22,7 +22,7 @@ User.belongsToMany(Thread, {
   through: "Saved_Thread",
 });
 User.hasMany(Notification);
-User.hasMany(Message);
+User.hasMany(Message, { foreignKey: "senderId" });
 User.hasMany(Friendship, {
   as: "Requestor",
   foreignKey: "requestorId",
@@ -78,6 +78,7 @@ Notification.belongsTo(User);
 
 //Message
 Message.belongsTo(Chatroom, { foreignKey: "chatroomId" });
+Message.belongsTo(User, { foreignKey: "senderId" });
 
 //Chatroom
 Chatroom.belongsTo(Friendship, { foreignKey: "friendshipId" });
