@@ -12,7 +12,7 @@ const io = new Server(httpServer, {
 
 io.on("connection", async (socket) => {
   console.log(socket.id);
-  socket.emit("connection", "test");
+  socket.emit("connection", "connected to websocket server");
 
   socket.on("test2", (data) => {
     console.log(data);

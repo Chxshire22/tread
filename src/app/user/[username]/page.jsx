@@ -1,4 +1,5 @@
 //Components Import
+import Navbar from "@/components/Navbar";
 import ProfilePageContainer from "@/components/ProfilePageContainer";
 
 export default async function ProfilePage({ params }) {
@@ -8,6 +9,7 @@ export default async function ProfilePage({ params }) {
       <br />
       <h2>My Trips</h2>
       {/* TESTING - TO BE REMOVED  */}
+      <Navbar />
     </div>
   );
 }

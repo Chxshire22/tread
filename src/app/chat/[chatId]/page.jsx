@@ -1,8 +1,9 @@
-import React from 'react'
-import TestComp from './test'
+import React from "react";
+import ChatUi from "@/components/ChatUi";
 
-export default async function Chatroom() {
+export default async function Chatroom({ params }) {
+  const { chatId } = params;
   return (
-    <TestComp/>
-  )
+    <ChatUi chatId={chatId} />
+  );
 }

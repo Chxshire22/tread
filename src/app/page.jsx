@@ -6,6 +6,7 @@ import {
   CreatePostButton,
 } from "@/components/Buttons";
 import { useUserId } from "@/components/GetCurrentUser";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   const { currentUser } = useUserId();
@@ -29,6 +30,7 @@ export default function Home() {
         </>
       )}
       <CreatePostButton />
+      <Navbar />
     </main>
   );
 }
