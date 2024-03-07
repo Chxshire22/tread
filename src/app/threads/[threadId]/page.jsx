@@ -1,11 +1,11 @@
-import React from "react";
+//Components Import
 import ThreadContainer from "@/components/ThreadContainer";
+import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 
-export default function page({params}) {
-  const { threadId } = params;
-  
+export default function page({ params }) {
   return (
     <div
+      className="page-container"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -13,9 +13,9 @@ export default function page({params}) {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ margin: "1rem" }}>Profile Stuff</h1>
-      <ThreadContainer threadId={threadId}
-      />
+      <PageHeaderWithBackBtn title={"Threads"} />
+      username userDP
+      <ThreadContainer threadId={params.threadId} />
     </div>
   );
 }

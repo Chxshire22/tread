@@ -15,35 +15,38 @@ export default function AddFriend({ userData }) {
   const { currentUser } = useUserId();
   const currentUserId = currentUser?.id;
   const profileUserId = userData?.id;
-  const [friendshipsData, setFriendshipsData] = useState(null);
+  const [pendingFriendshipsData, setPendingFriendshipsData] = useState(null);
+  const [isFriendsData, setIsFriendsData] = useState(null);
 
   //1. check profile viewed is NOT currentUser
   const isCurrentUserProfile = currentUserId === profileUserId;
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`/api/friendships`);
-      setFriendshipsData(response.data);
+      const responsePending = await axios.get(`/api/friendships/pending`);
+      const responseFriends = await axios.get(`/api/friendships/friends`);
+
+      setPendingFriendshipsData(responsePending.data);
+      setIsFriendsData(responseFriends.data);
     } catch (error) {
       console.error("Error fetching friendships:", error);
     }
   };
+  const pendingFriendship = pendingFriendshipsData?.find(
+    (friendship) =>
+      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
+  );
+
+  const ifFriendshipExists = isFriendsData?.find(
+    (friendship) =>
+      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
+  );
 
   useEffect(() => {
     fetchData();
-    console.log(friendshipsData);
   }, [currentUserId, profileUserId]);
-
-  //2.1 check if currentUser and profileUser has status FRIENDS. If true, return "Friends"
-  const existingFriendship = friendshipsData?.find(
-    (friendship) =>
-      (friendship.requestorId === currentUserId &&
-        friendship.receiverId === profileUserId &&
-        friendship.status === "friends") ||
-      (friendship.requestorId === profileUserId &&
-        friendship.receiverId === currentUserId &&
-        friendship.status === "friends")
-  );
 
   const handleAddFriend = async () => {
     try {
@@ -60,7 +63,9 @@ export default function AddFriend({ userData }) {
 
   if (isCurrentUserProfile) {
     return null;
-  } else if (existingFriendship) {
+  } else if (pendingFriendship) {
+    return <div> Request Sent 💌 Pending </div>;
+  } else if (ifFriendshipExists) {
     return <div>Friends 🧑🏻‍🤝‍🧑🏼 </div>;
   } else {
     return (
