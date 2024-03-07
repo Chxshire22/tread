@@ -4,12 +4,36 @@ import { useEffect, useState } from "react";
 import { CardImage, SendFill } from "react-bootstrap-icons";
 import { io } from "socket.io-client";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
+import { useUserId } from "@/components/GetCurrentUser";
 
 export default function ChatUi({ chatId }) {
-  const [buttonContent, setButtonContent] = useState("send event");
+  // Data to set up the page
+  const { currentUser } = useUserId();
+  useEffect(() => {
+    if (currentUser) {
+      setSendMessageData((prev) => {
+        return { ...prev, senderId: currentUser.id };
+      });
+    }
+  }, [currentUser]);
+
+
+  // Data to send to the server
+  const [sendMessageData, setSendMessageData] = useState({
+    senderId: null,
+    content: "",
+    imageUrl: "",
+    viewed: false,
+  });
+
+
+  useEffect(() => {
+    console.log(sendMessageData);
+  }, [sendMessageData]);
 
   // get friendship id from params
 
+  // initiate socket connection
   const socket = io("http://localhost:5000");
 
   useEffect(() => {
@@ -33,26 +57,23 @@ export default function ChatUi({ chatId }) {
   });
 
   socket.on("responseEvent", (data) => {
-    setButtonContent(`received response from server ${data}`);
     console.log(data);
   });
-
-  const sendSocketEvent = () => {
-    // console.log("test2");
-    socket.emit("test2", "Hello, Server!"); //name of event, then data to send to server
-  };
 
   const handleSendMessage = (e) => {
     e.preventDefault();
     console.log("sent");
+    socket.emit("test2", "Hello, Server!");
+
+    setSendMessageData((prev) => {
+      return { ...prev, imageUrl: "", content: "" };
+    });
   };
 
   return (
     <>
       <div className="page-container">
         <PageHeaderWithBackBtn title="Chat" />
-        {/* this is for me to test if the socket is still working */}
-        {/* <button onClick={() => sendSocketEvent()}>{buttonContent}</button> */}
       </div>
 
       <div className="message-bar-container">
@@ -69,8 +90,17 @@ export default function ChatUi({ chatId }) {
             <CardImage size={20} color="#00A0F3" />{" "}
           </label>
           <input type="file" name="" accept="images/*" id="chat-image-upload" />
-          <input type="text" placeholder="Send message" />
-          <button>
+          <input
+            type="text"
+            placeholder="Send message"
+            value={sendMessageData.content}
+            onChange={(e) => {
+              setSendMessageData((prev) => {
+                return { ...prev, content: e.target.value };
+              });
+            }}
+          />
+          <button type="submit">
             {" "}
             <SendFill color="#00A0F3" size={20} />{" "}
           </button>

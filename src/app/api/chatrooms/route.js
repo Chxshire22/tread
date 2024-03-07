@@ -1,9 +1,31 @@
 import { NextResponse } from "next/server";
 import { Chatroom } from "@/app/models";
+import { Friendship } from "@/app/models";
+import { User } from "@/app/models";
 
 export async function GET() {
   try {
-    const chatrooms = await Chatroom.findAll();
+    const chatrooms = await Chatroom.findAll({
+      attributes:["id", "friendshipId"],
+      include: [
+        {
+          model: Friendship,
+          attributes: ["requestorId", "receiverId"],
+          include: [
+            {
+              model: User,
+              as: "requestor",
+              attributes: ["username", "userDpUrl"],
+            },
+            {
+              model: User,
+              as: "receiver",
+              attributes: ["username", "userDpUrl"],
+            },
+          ],
+        },
+      ],
+    });
     return NextResponse.json(chatrooms);
   } catch (err) {
     console.log(err);
@@ -14,11 +36,10 @@ export async function GET() {
 //filepath + http operation POST/GET router
 export async function POST(request) {
   // basically controller
-  const { friendshipId, messageId } = await request.json();
+  const { friendshipId } = await request.json();
   try {
     const chatroom = await Chatroom.create({
       friendshipId: friendshipId,
-      messageId: messageId,
     });
     return NextResponse.json(chatroom);
   } catch (err) {

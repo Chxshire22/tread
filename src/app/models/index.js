@@ -41,7 +41,9 @@ Thread.belongsToMany(User, {
 
 //Thread_Content associations
 Threads_Content.belongsTo(Thread);
-Threads_Content.hasMany(Threads_Contents_Comment, { foreignKey: "threadsContentsId" });
+Threads_Content.hasMany(Threads_Contents_Comment, {
+  foreignKey: "threadsContentsId",
+});
 Threads_Content.belongsToMany(User, {
   through: "Threads_Contents_Like",
 });
@@ -56,7 +58,9 @@ Threads_Contents_Category.belongsTo(Threads_Content);
 
 //Threads_Contents_Comment
 Threads_Contents_Comment.belongsTo(User, { foreignKey: "userId" });
-Threads_Contents_Comment.belongsTo(Threads_Content, { foreignKey: "threadsContentsId" });
+Threads_Contents_Comment.belongsTo(Threads_Content, {
+  foreignKey: "threadsContentsId",
+});
 
 //Threads_Contents_Display_Picture
 Threads_Contents_Display_Picture.belongsTo(Threads_Content);
@@ -73,20 +77,20 @@ Saved_Thread.belongsTo(Thread);
 Notification.belongsTo(User);
 
 //Message
-Message.belongsToMany(Friendship, { through: "Chatroom" });
+Message.belongsTo(Chatroom, { foreignKey: "chatroomId" });
 
 //Chatroom
-Chatroom.belongsTo(Friendship);
-Chatroom.belongsTo(Message);
+Chatroom.belongsTo(Friendship, { foreignKey: "friendshipId" });
+Chatroom.hasMany(Message, { foreignKey: "chatroomId" });
 
 //Friendship
-Friendship.belongsToMany(Message, { through: "Chatroom" });
+Friendship.hasOne(Chatroom, { foreignKey: "friendshipId" });
 Friendship.belongsTo(User, {
-  as: "Requestor",
+  as: "requestor",
   foreignKey: "requestorId",
 });
 Friendship.belongsTo(User, {
-  as: "Receiver",
+  as: "receiver",
   foreignKey: "receiverId",
 });
 
