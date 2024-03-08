@@ -9,7 +9,7 @@ const nextConfig = {
         pathname: "*",
       },
     ],
-    domains: ["st3.depositphotos.com"],
+    domains: ["st3.depositphotos.com", "st.depositphotos.com"],
   },
   // webpack: (config, { isServer }) => {
   //   if (!isServer) {

@@ -18,35 +18,41 @@ export default function AddFriend({ userData }) {
   const [pendingFriendshipsData, setPendingFriendshipsData] = useState(null);
   const [isFriendsData, setIsFriendsData] = useState(null);
 
-  //1. check profile viewed is NOT currentUser
+  // check profile viewed is NOT currentUser
   const isCurrentUserProfile = currentUserId === profileUserId;
 
   const fetchData = async () => {
     try {
       const responsePending = await axios.get(`/api/friendships/pending`);
       const responseFriends = await axios.get(`/api/friendships/friends`);
-
+      
       setPendingFriendshipsData(responsePending.data);
       setIsFriendsData(responseFriends.data);
     } catch (error) {
       console.error("Error fetching friendships:", error);
     }
   };
+
+  //Find all pending friendships
   const pendingFriendship = pendingFriendshipsData?.find(
     (friendship) =>
-      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
-      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
+      (friendship.requestorId === currentUserId &&
+        friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId &&
+        friendship.receiverId === currentUserId)
   );
 
   const ifFriendshipExists = isFriendsData?.find(
     (friendship) =>
-      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
-      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
+      (friendship.requestorId === currentUserId &&
+        friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId &&
+        friendship.receiverId === currentUserId)
   );
 
-  useEffect(() => {
-    fetchData();
-  }, [currentUserId, profileUserId]);
+    useEffect(() => {
+      fetchData();
+    }, [currentUserId, profileUserId]);
 
   const handleAddFriend = async () => {
     try {

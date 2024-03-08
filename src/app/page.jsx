@@ -6,6 +6,7 @@ import {
   CreatePostButton,
 } from "@/components/Buttons";
 import { useUserId } from "@/components/GetCurrentUser";
+import HomePageThreads from "@/components/HomePageThreads";
 import Navbar from "@/components/Navbar";
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
           <SignUpButton />
         </>
       )}
+      <HomePageThreads/>
       <CreatePostButton />
       <Navbar />
     </main>

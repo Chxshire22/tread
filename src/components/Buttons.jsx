@@ -35,6 +35,14 @@ export function CreatePostButton() {
   );
 }
 
+export function CreateThreadContentButton({ threadId }) {
+  return (
+    <Link href={`/threads/${threadId}/create-thread-content`} className="create-thread-btn">
+      <PlusCircleFill color="#000066" size={40} />
+    </Link>
+  );
+}
+
 export const SaveContinue = () => {
   return <div>Buttons</div>;
 };

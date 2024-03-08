@@ -1,6 +1,8 @@
+"use client";
 //Components Import
 import ThreadContainer from "@/components/ThreadContainer";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
+import { CreateThreadContentButton } from "@/components/Buttons";
 
 export default function page({ params }) {
   return (
@@ -14,8 +16,9 @@ export default function page({ params }) {
       }}
     >
       <PageHeaderWithBackBtn title={"Threads"} />
-      username userDP
+      username userDP - Needed?
       <ThreadContainer threadId={params.threadId} />
+      <CreateThreadContentButton threadId={params.threadId} />
     </div>
   );
 }

@@ -5,11 +5,15 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function HeadThread({ thread }) {
-  // console.log(`threadscontentdata`, threadsContentData);
-  console.log(`thread`, thread);
   const router = useRouter();
-  // const userDpUrl = thread.user;
-  // console.log(userDpUrl);
+  const userDpUrl =
+    thread?.User?.userDpUrl ||
+    "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
+
+  const threadDp =
+    thread?.threadsDP ||
+    "https://st.depositphotos.com/1008648/2313/i/380/depositphotos_23132682-stock-photo-travel-the-world-monuments-concept.jpg";
+
   const handleClick = () => {
     router.push(`/threads/${thread.id}`);
   };
@@ -31,7 +35,7 @@ export default function HeadThread({ thread }) {
     >
       <div style={{ display: "flex", padding: "5px" }}>
         {/* USER DP */}
-        {/* <Image width="50" height="50" alt="User Image" /> */}
+        <Image src={userDpUrl} width="50" height="50" alt="User Image" />
         {/* NAME */}
         <div
           style={{
@@ -48,11 +52,11 @@ export default function HeadThread({ thread }) {
       <div style={{ textAlign: "center" }}> {thread?.title} </div>
       <div style={{ textAlign: "center", padding: "10px" }}>
         {/* THREAD DP */}
-        {/* <Image src={thread?.threadsDP} width="180" height="120" alt="" /> */}
+        <Image src={threadDp} width="180" height="120" alt="" />
       </div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <GeoAlt />
-        <p></p>
+        <p>{thread?.destination} </p>
       </div>
       <div
         style={{

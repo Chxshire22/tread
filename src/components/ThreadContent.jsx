@@ -1,21 +1,20 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { BACKEND_URL } from "@/app/constants";
+import Image from "next/image";
+import { GeoAlt } from "react-bootstrap-icons";
 
 export default function ThreadContent({ threadContentId }) {
   const [threadContent, setThreadContent] = useState({});
   const userDp =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg/1200px-Joseph_Siffrein_Duplessis_-_Benjamin_Franklin_-_Google_Art_Project.jpg";
+    "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
 
   //get userDp from includes user
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${BACKEND_URL}/api/threads-contents/${threadContentId}`
-        );
+        const response = await axios.get(`/api/threads-contents/${threadContentId}`);
         setThreadContent(response.data[0]);
+        console.log(response.data[0]);
       } catch (error) {
         console.log(error);
       }
@@ -27,7 +26,6 @@ export default function ThreadContent({ threadContentId }) {
   return (
     <div
       style={{
-        fontWeight: "bold",
         marginBottom: "10px",
         backgroundColor: "white",
         padding: "10px",
@@ -37,10 +35,13 @@ export default function ThreadContent({ threadContentId }) {
         margin: "1rem",
       }}
     >
-      <img src={userDp} width="50" height="50" alt="User Image" />
-      <div>Location: {threadContent.location}</div>
-      <div>Description: {threadContent.description}</div>
-      <div>Recommended Time: {threadContent.recommended_time}</div>
+      <Image src={userDp} width="50" height="50" alt="User Image" />
+      <h4>
+        <GeoAlt />
+        {threadContent.location}{" "}
+      </h4>
+      <p>"{threadContent.description}"</p>{" "}
+      {threadContent.recommendedTime && <p> Recommended Time: {threadContent.recommendedTime} </p>}
     </div>
   );
 }
