@@ -12,13 +12,20 @@ const io = new Server(httpServer, {
 
 io.on("connection", async (socket) => {
   console.log(socket.id);
-  socket.emit("connection", "connected to websocket server");
 
-  socket.on("test2", (data) => {
+  socket.on("test", (data) => {
     console.log(data);
-    socket.emit("responseEvent", "Hello Client!");
   }); 
 
+  socket.on("joinRoom", (chatId) => {
+    socket.join(chatId);
+    console.log(`User joined room: ${chatId}`);
+  });
+
+  socket.on("sendMessage", sendMessageData=>{
+    console.log(sendMessageData);
+    io.to(sendMessageData.chatroomId).emit("message", sendMessageData);
+  })
 });
 
 httpServer.listen(5000, () => {

@@ -9,6 +9,8 @@ import { imgOptimization } from "@/utils/imageOptimization";
 
 export default function ChatUi({ chatId }) {
   // Data to set up the page
+  const [messagesArr, setMessagesArr] = useState([]);
+  const [socketState, setSocketState] = useState();
   const { currentUser } = useUserId();
   useEffect(() => {
     if (currentUser) {
@@ -25,46 +27,43 @@ export default function ChatUi({ chatId }) {
     content: "",
     imageUrl: "",
     viewed: false,
+    chatroomId: chatId,
   });
-
-  useEffect(() => {
-    console.log(sendMessageData);
-  }, [sendMessageData]);
 
   // get friendship id from params
 
   // initiate socket connection
-  const socket = io("http://localhost:5000");
 
   useEffect(() => {
+    const socket = io(`http://localhost:5000`);
+    setSocketState(socket);
     const handleConnect = () => {
       console.log("connected");
     };
     socket.on("connect", handleConnect);
 
-    console.log("socket: ", socket);
+    socket.emit("joinRoom", `${chatId}`);
+    socket.on("connection", (data) => {
+      console.log(data);
+    });
+
     return () => {
+      socket.disconnect();
       socket.removeAllListeners();
     };
   }, []);
 
   useEffect(() => {
-    console.log(chatId);
-  }, [chatId]);
-
-  socket.on("connection", (data) => {
-    console.log(data);
-  });
-
-  socket.on("responseEvent", (data) => {
-    console.log(data);
-  });
+    socketState?.on("message", (message) => {
+      console.log(message);
+      console.log(`this is the message ${message.content}`);
+    });
+  }, [socketState]);
 
   const handleSendMessage = (e) => {
     e.preventDefault();
+    socketState.emit("sendMessage", sendMessageData);
     console.log("sent");
-    socket.emit("test2", "Hello, Server!");
-
     setSendMessageData((prev) => {
       return { ...prev, imageUrl: "", content: "" };
     });
@@ -81,11 +80,17 @@ export default function ChatUi({ chatId }) {
     setPreview(optimizedImg);
   };
 
+  const messageBubble = () => {
+    return <></>;
+  };
+
   return (
     <>
       <div className="page-container">
         <PageHeaderWithBackBtn title="Chat" />
       </div>
+
+      {/* MESSAGES CONTAINER */}
 
       <div className="message-bar-container">
         {preview && (
@@ -121,6 +126,7 @@ export default function ChatUi({ chatId }) {
             onChange={handleImageChange}
           />
           <input
+            autoFocus
             type="text"
             placeholder="Send message"
             value={sendMessageData.content}
