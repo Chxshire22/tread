@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { BACKEND_URL } from "@/app/constants";
 import { useState, useEffect, useContext, createContext } from "react";
 const UserContext = createContext();
 
@@ -15,7 +14,7 @@ function GetCurrentUser({ children }) {
       try {
         // This route is to get user from DB based on user from Auth0
         // user.name is actually an EMAIL in Auth0
-        const response = await axios.get(`${BACKEND_URL}/api/user/${user.name}`);
+        const response = await axios.get(`/api/user/${user.name}`);
         setCurrentUser(response.data);
       } catch (err) {
         console.error(err);

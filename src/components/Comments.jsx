@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
@@ -29,14 +28,11 @@ export default function Comments({ threadContentId, userId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let response = await axios.post(
-      `${BACKEND_URL}/api/threads-contents/comments`,
-      {
-        threadsContentsId: threadContentId,
-        userId: userId,
-        comment: commentInput,
-      }
-    );
+    let response = await axios.post(`${BACKEND_URL}/api/threads-contents/comments`, {
+      threadsContentsId: threadContentId,
+      userId: userId,
+      comment: commentInput,
+    });
     setComments((prevComments) => [...prevComments, response.data]);
     setCommentInput("");
     {

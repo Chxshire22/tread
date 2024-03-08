@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -28,7 +27,7 @@ export default function PendingRequest({ username }) {
     try {
       await axios.put(`/api/friendships`, {
         friendshipId: friendshipId,
-        newStatus: newStatus
+        newStatus: newStatus,
       });
       if (newStatus == "friends") {
         alert("Friend request accepted!");
