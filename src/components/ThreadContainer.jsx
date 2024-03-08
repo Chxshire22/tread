@@ -9,7 +9,7 @@ import HeadThread from "./HeadThread";
 
 export default function ThreadContainer({ threadId }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [threadsContentData, setThreadsContentData] = useState(null);
+  const [threadsData, setThreadsData] = useState(null);
   const [threadContentList, setThreadContentList] = useState({});
   const router = useRouter();
 
@@ -17,38 +17,25 @@ export default function ThreadContainer({ threadId }) {
     const fetchData = async () => {
       try {
         const threadsResponse = await axios.get(`/api/threads/${threadId}`);
-        setThreadsContentData(threadsResponse.data[0]);
-        console.log(threadsResponse.data);
+        setThreadsData(threadsResponse.data[0]);
+        setThreadContentList(threadsResponse.data[0].Threads_Contents);
       } catch (error) {
         console.log(`fetch error`, error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [threadId]);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(`/api/threads-contents/threads/${threadId}`);
-  //       setThreadContentList(response.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  // const handleClick = (e, threadContentId) => {
-  //   e.preventDefault();
-  //   const newPath = `${headThread.id}/${threadContentId}`;
-  //   router.push(newPath);
-  // };
+  const handleClick = (e, threadContentId) => {
+    e.preventDefault();
+    const newPath = `/threads/${threadId}/${threadContentId}`;
+    router.push(newPath);
+  };
 
   return (
     <div style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}>
-      <HeadThread thread={threadsContentData} />
+      <HeadThread thread={threadsData} />
       <div style={{ borderTop: "1px solid #000", width: "100%", height: "0px" }}></div>
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -63,18 +50,18 @@ export default function ThreadContainer({ threadId }) {
       >
         {isOpen ? "Hide Itinerary" : "Show Itinerary"}
       </button>
-      {/* {isOpen && (
+      {isOpen && (
         <div style={{ display: "flex" }}>
           <div style={{ width: "10px", height: "300px", backgroundColor: "#000" }}></div>
           <div>
             {threadContentList.map((threadContent) => (
               <a href="#" onClick={(e) => handleClick(e, threadContent.id)} key={threadContent.id}>
-                <ThreadContent threadContentId={threadContent.id} userDp={userDp} />
+                <ThreadContent threadContentId={threadContent.id} />
               </a>
             ))}
           </div>
         </div>
-      )} */}
+      )}
     </div>
   );
 }
