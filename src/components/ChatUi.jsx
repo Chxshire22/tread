@@ -89,15 +89,13 @@ export default function ChatUi({ chatId }) {
     }
   }, [friendshipData, currentUser]);
 
-
-  // this crap doesnt work wtf 
+  // this crap doesnt work wtf
   useLayoutEffect(() => {
     scrollToBottom();
   });
 
-  useEffect(() => {
-    console.log(otheruser);
-  }, [otheruser]);
+  // use intersection observer with useRef to update messages as viewed
+
 
   // listen for messages
   useEffect(() => {
