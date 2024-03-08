@@ -39,6 +39,9 @@ export default function Comments({ threadContentId, userId }) {
     );
     setComments((prevComments) => [...prevComments, response.data]);
     setCommentInput("");
+    {
+      /* Add row in notification  for comments here */
+    }
   };
 
   return (

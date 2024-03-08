@@ -26,6 +26,7 @@ export default function FullThreadContent({ params }) {
           }}
         >
           <ChatLeftFill />
+          {/* Add row in notification  for likes here */}
           <HeartFill style={{ marginInline: "1rem" }} />
         </div>
         <div style={{ width: "60vw" }}>

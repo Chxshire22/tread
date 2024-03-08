@@ -24,3 +24,22 @@ export async function POST(request) {
     return NextResponse.status(400).json({ error: true, msg: err });
   }
 }
+
+export async function PUT(request) {
+  const { friendshipId, newStatus } = await request.json();
+  try {
+    const updatedFriendship = await Friendship.update(
+      {
+        status: newStatus,
+      },
+      {
+        where: {
+          id: friendshipId
+        }
+      }
+    );
+    return NextResponse.json(updatedFriendship);
+  } catch (err) {
+    return NextResponse.status(400).json({ error: true, msg: err });
+  }
+}
