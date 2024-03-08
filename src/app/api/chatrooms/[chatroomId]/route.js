@@ -3,7 +3,7 @@ import { Chatroom, Message } from "@/app/models";
 import { Friendship } from "@/app/models";
 import { User } from "@/app/models";
 
-export async function GET(res, {params: {chatroomId}}) {
+export async function GET(request, { params: { chatroomId } }) {
   try {
     const chatrooms = await Chatroom.findOne({
       where: { id: chatroomId },
@@ -16,18 +16,18 @@ export async function GET(res, {params: {chatroomId}}) {
             {
               model: User,
               as: "Requestor",
-              attributes: ["username", "userDpUrl"],
+              attributes: ["username", "userDpUrl", "id"],
             },
             {
               model: User,
               as: "Receiver",
-              attributes: ["username", "userDpUrl"],
+              attributes: ["username", "userDpUrl", "id"],
             },
           ],
         },
         {
-          model: Message
-        }
+          model: Message,
+        },
       ],
     });
     return NextResponse.json(chatrooms);
@@ -36,3 +36,4 @@ export async function GET(res, {params: {chatroomId}}) {
     return NextResponse.json({ error: true, msg: err });
   }
 }
+

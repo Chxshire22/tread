@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { CardImage, SendFill, XCircleFill } from "react-bootstrap-icons";
 import { io } from "socket.io-client";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
@@ -17,6 +17,8 @@ import axios from "axios";
 export default function ChatUi({ chatId }) {
   // Data to set up the page
   const [messagesArr, setMessagesArr] = useState([]);
+  const [friendshipData, setFriendshipData] = useState({}); // [requestor, receiver
+  const [otheruser, setOtherUser] = useState({});
   const [socketState, setSocketState] = useState();
   const { currentUser } = useUserId();
   useEffect(() => {
@@ -59,20 +61,43 @@ export default function ChatUi({ chatId }) {
       console.log(data);
     });
 
-    const pastMessages = async () => {
+    const getChatroomData = async () => {
       const res = await axios.get(`/api/chatrooms/${chatId}`);
       console.log(res.data);
-      const chatroomData = res.data
-      console.log(chatroomData.Messages)
+      const chatroomData = res.data;
+      console.log(chatroomData.Messages);
       setMessagesArr(chatroomData.Messages);
+      setFriendshipData(chatroomData.Friendship);
     };
-    pastMessages();
+    getChatroomData();
+
+    // update all of the other user's messages as viewed
 
     return () => {
       socket.disconnect();
       socket.removeAllListeners();
     };
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      setOtherUser(
+        currentUser.id === friendshipData.requestorId
+          ? friendshipData.Receiver
+          : friendshipData.Requestor
+      );
+    }
+  }, [friendshipData, currentUser]);
+
+
+  // this crap doesnt work wtf 
+  useLayoutEffect(() => {
+    scrollToBottom();
+  });
+
+  useEffect(() => {
+    console.log(otheruser);
+  }, [otheruser]);
 
   // listen for messages
   useEffect(() => {
@@ -116,7 +141,6 @@ export default function ChatUi({ chatId }) {
     setPreview(null);
   };
 
-
   // handle image change
   const handleImageChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -140,14 +164,6 @@ export default function ChatUi({ chatId }) {
 
             {/* MESSAGES CONTAINER */}
             <ul className="message-container">
-              {/* <li className="message-bubble bubble-right">
-                <p>test with image</p>
-                <img
-                  className="message-img"
-                  src="https://i.pinimg.com/564x/a2/26/bd/a226bd725a81ef06ed3391cb12d6d188.jpg"
-                  alt=""
-                />
-              </li> */}
               {messagesArr.map((message, index) => {
                 return (
                   <li
@@ -164,6 +180,7 @@ export default function ChatUi({ chatId }) {
                         className="message-img"
                         src={message.imageUrl}
                         alt=""
+                        loading="lazy"
                       />
                     )}
                   </li>
