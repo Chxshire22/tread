@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CardImage, SendFill } from "react-bootstrap-icons";
+import { CardImage, SendFill, XCircleFill } from "react-bootstrap-icons";
 import { io } from "socket.io-client";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 import { useUserId } from "@/components/GetCurrentUser";
+import { imgOptimization } from "@/utils/imageOptimization";
 
 export default function ChatUi({ chatId }) {
   // Data to set up the page
@@ -17,15 +18,14 @@ export default function ChatUi({ chatId }) {
     }
   }, [currentUser]);
 
-
   // Data to send to the server
+  const [preview, setPreview] = useState(null);
   const [sendMessageData, setSendMessageData] = useState({
     senderId: null,
     content: "",
     imageUrl: "",
     viewed: false,
   });
-
 
   useEffect(() => {
     console.log(sendMessageData);
@@ -70,6 +70,17 @@ export default function ChatUi({ chatId }) {
     });
   };
 
+  const handleImageChange = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setPreview(null);
+      return;
+    }
+    const file = e.target.files[0];
+
+    let optimizedImg = await imgOptimization(file, 768);
+    setPreview(optimizedImg);
+  };
+
   return (
     <>
       <div className="page-container">
@@ -77,19 +88,38 @@ export default function ChatUi({ chatId }) {
       </div>
 
       <div className="message-bar-container">
-        {/* <div className="message-img-preview-container">
-          <img
-            src="https://i.pinimg.com/236x/ce/e4/20/cee4208fc79d2a00489155c71236e1d1.jpg"
-            alt=""
-            className="preview-img"
-          />
-        </div> */}
+        {preview && (
+          <div className="message-img-preview-container">
+            <div
+              className="preview-img"
+              style={{
+                backgroundImage: `url(${preview})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            >
+              <div className="remove-img">
+                <XCircleFill
+                  size={25}
+                  color="#bf5464"
+                  onClick={() => setPreview(null)}
+                />
+              </div>
+            </div>
+          </div>
+        )}
         <form onSubmit={handleSendMessage} className="send-message-bar">
           <label htmlFor="chat-image-upload">
             {" "}
-            <CardImage size={20} color="#00A0F3" />{" "}
+            <CardImage size={20} color="#00A0F3" />
           </label>
-          <input type="file" name="" accept="images/*" id="chat-image-upload" />
+          <input
+            type="file"
+            name=""
+            accept="images/*"
+            id="chat-image-upload"
+            onChange={handleImageChange}
+          />
           <input
             type="text"
             placeholder="Send message"

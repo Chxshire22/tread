@@ -41,11 +41,7 @@ export default function CreateThreadContentForm({ threadId }) {
 
   console.log(threadsContentData);
 
-  const imageArr = [
-    "https://i.pinimg.com/564x/f2/8b/b9/f28bb92377db206cdcbf1948d69fcfd7.jpg",
-    "https://i.pinimg.com/236x/16/13/d2/1613d2927c0c9f1a7ac7f7b8b0d7c31e.jpg",
-    "https://i.pinimg.com/236x/75/e9/ef/75e9ef58248657fc164181b57a68c42c.jpg",
-  ];
+
 
   // NOTE: Thread content category is to be posted to threads_contents_categories table
   // NOTE: Thread content images to be posted to threads_contents_display_picture table
