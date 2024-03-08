@@ -1,11 +1,11 @@
-import { Thread, User } from "@/app/models";
+import { Thread, User, Threads_Content } from "@/app/models";
 import { NextResponse } from "next/server";
 
 export async function GET(res, { params: { threadId } }) {
   try {
     const user = await Thread.findAll({
       where: { id: threadId },
-      include: [User],
+      include: [User, Threads_Content],
     });
 
     if (!user) {

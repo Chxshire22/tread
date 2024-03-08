@@ -3,9 +3,9 @@ import Image from "next/image";
 import { Container } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AddFriend from "./AddFriend";
 //Components Import
 import { SendMessage } from "./Buttons";
+import AddFriend from "./AddFriend";
 
 export default function ProfilePageContainer({ username }) {
   const [userData, setUserData] = useState(null);
