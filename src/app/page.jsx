@@ -6,6 +6,7 @@ import {
   CreatePostButton,
 } from "@/components/Buttons";
 import { useUserId } from "@/components/GetCurrentUser";
+import HomePageThreads from "@/components/HomePageThreads";
 
 export default function Home() {
   const { currentUser } = useUserId();
@@ -28,6 +29,7 @@ export default function Home() {
           <SignUpButton />
         </>
       )}
+      <HomePageThreads/>
       <CreatePostButton />
     </main>
   );

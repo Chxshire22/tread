@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Friendship } from "@/app/models";
+import { Friendship, User } from "@/app/models";
 
 export async function GET() {
   try {
@@ -20,6 +20,25 @@ export async function POST(request) {
       status: status,
     });
     return NextResponse.json(friendship);
+  } catch (err) {
+    return NextResponse.status(400).json({ error: true, msg: err });
+  }
+}
+
+export async function PUT(request) {
+  const { friendshipId, newStatus } = await request.json();
+  try {
+    const updatedFriendship = await Friendship.update(
+      {
+        status: newStatus,
+      },
+      {
+        where: {
+          id: friendshipId
+        }
+      }
+    );
+    return NextResponse.json(updatedFriendship);
   } catch (err) {
     return NextResponse.status(400).json({ error: true, msg: err });
   }
