@@ -19,7 +19,7 @@ export async function POST(request) {
       content,
       imageUrl,
       viewed,
-      chatroomId,
+      chatroomId: Number(chatroomId)
     });
     return NextResponse.json(message);
   } catch (err) {

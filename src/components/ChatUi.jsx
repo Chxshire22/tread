@@ -40,7 +40,6 @@ export default function ChatUi({ chatId }) {
     imageUrl: "",
     viewed: false,
     chatroomId: chatId,
-    createdAt: new Date(),
   });
 
   // get friendship id from params
@@ -60,9 +59,14 @@ export default function ChatUi({ chatId }) {
       console.log(data);
     });
 
-    // const pastMessages = async () => {
-    //   const res = await axios.get('')
-    // }
+    const pastMessages = async () => {
+      const res = await axios.get(`/api/chatrooms/${chatId}`);
+      console.log(res.data);
+      const chatroomData = res.data
+      console.log(chatroomData.Messages)
+      setMessagesArr(chatroomData.Messages);
+    };
+    pastMessages();
 
     return () => {
       socket.disconnect();
@@ -112,9 +116,6 @@ export default function ChatUi({ chatId }) {
     setPreview(null);
   };
 
-  useEffect(() => {
-    console.log(preview);
-  }, [preview]);
 
   // handle image change
   const handleImageChange = async (e) => {

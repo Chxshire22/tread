@@ -5,7 +5,7 @@ import { User } from "@/app/models";
 
 export async function GET(res, {params: {chatroomId}}) {
   try {
-    const chatrooms = await Chatroom.findAll({
+    const chatrooms = await Chatroom.findOne({
       where: { id: chatroomId },
       attributes: ["id", "friendshipId"],
       include: [
