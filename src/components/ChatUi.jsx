@@ -12,6 +12,7 @@ import {
   uploadString,
 } from "@firebase/storage";
 import { storage, DB_STORAGE_CHAT_IMAGE_KEY } from "@/utils/firebase";
+import axios from "axios";
 
 export default function ChatUi({ chatId }) {
   // Data to set up the page
@@ -59,6 +60,10 @@ export default function ChatUi({ chatId }) {
       console.log(data);
     });
 
+    // const pastMessages = async () => {
+    //   const res = await axios.get('')
+    // }
+
     return () => {
       socket.disconnect();
       socket.removeAllListeners();
@@ -99,7 +104,7 @@ export default function ChatUi({ chatId }) {
       imageSrc = await getDownloadURL(storageRefInstance);
       console.log(imageSrc);
     }
-    socketState.emit("sendMessage", {...sendMessageData, imageUrl: imageSrc});
+    socketState.emit("sendMessage", { ...sendMessageData, imageUrl: imageSrc });
     console.log("sent");
     setSendMessageData((prev) => {
       return { ...prev, imageUrl: "", content: "" };
@@ -134,14 +139,14 @@ export default function ChatUi({ chatId }) {
 
             {/* MESSAGES CONTAINER */}
             <ul className="message-container">
-              <li className="message-bubble bubble-right">
+              {/* <li className="message-bubble bubble-right">
                 <p>test with image</p>
                 <img
                   className="message-img"
                   src="https://i.pinimg.com/564x/a2/26/bd/a226bd725a81ef06ed3391cb12d6d188.jpg"
                   alt=""
                 />
-              </li>
+              </li> */}
               {messagesArr.map((message, index) => {
                 return (
                   <li
@@ -152,7 +157,7 @@ export default function ChatUi({ chatId }) {
                         : "bubble-right"
                     }`}
                   >
-                    {message.content&&(<p>{message.content}</p>)}
+                    {message.content && <p>{message.content}</p>}
                     {message.imageUrl && (
                       <img
                         className="message-img"
