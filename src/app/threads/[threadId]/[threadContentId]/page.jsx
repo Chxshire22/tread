@@ -1,13 +1,12 @@
 "use client";
 
-import React from "react";
-import ThreadContent from "@/components/ThreadContent";
 import { ChatLeftFill, HeartFill } from "react-bootstrap-icons";
+//Component imports
 import Comments from "@/components/Comments";
 import Likes from "@/components/Likes";
-
+import ThreadContent from "@/components/ThreadContent";
+import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 export default function FullThreadContent({ params }) {
-  const { threadContentId } = params;
   const userId = 1;
   return (
     <div>
@@ -18,7 +17,8 @@ export default function FullThreadContent({ params }) {
           alignItems: "center",
         }}
       >
-        <ThreadContent threadContentId={threadContentId} />
+        <PageHeaderWithBackBtn title={"Threads"} />
+        <ThreadContent threadContentId={params.threadContentId} />
         <div
           style={{
             display: "flex",
@@ -30,8 +30,8 @@ export default function FullThreadContent({ params }) {
           <HeartFill style={{ marginInline: "1rem" }} />
         </div>
         <div style={{ width: "60vw" }}>
-          <Likes threadContentId={threadContentId} userId={userId} />
-          <Comments threadContentId={threadContentId} userId={userId} />
+          <Likes threadContentId={params.threadContentId} userId={userId} />
+          <Comments threadContentId={params.threadContentId} userId={userId} />
         </div>
       </div>
     </div>

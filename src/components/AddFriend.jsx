@@ -18,7 +18,7 @@ export default function AddFriend({ userData }) {
   const [pendingFriendshipsData, setPendingFriendshipsData] = useState(null);
   const [isFriendsData, setIsFriendsData] = useState(null);
 
-  //1. check profile viewed is NOT currentUser
+  // check profile viewed is NOT currentUser
   const isCurrentUserProfile = currentUserId === profileUserId;
 
   const fetchData = async () => {
