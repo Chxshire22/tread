@@ -34,8 +34,11 @@ io.on("connection", async (socket) => {
 });
 
 const sendToBackend = async () => {
-  const res = await axios.post("http://localhost:3000/api/messages", messageToBackend);
-  console.log(res.data);
+  try {
+    await axios.post("http://localhost:3000/api/messages", messageToBackend);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 httpServer.listen(5000, () => {
