@@ -296,6 +296,12 @@ li {
   -moz-box-shadow: 14px 10px 54px -17px rgba(0, 0, 0, 0.74);
 }
 
+.message-img {
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
 /* CAROUSEL */
 
 .carousel-img,

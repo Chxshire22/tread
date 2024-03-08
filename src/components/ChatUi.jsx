@@ -6,6 +6,12 @@ import { io } from "socket.io-client";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 import { useUserId } from "@/components/GetCurrentUser";
 import { imgOptimization } from "@/utils/imageOptimization";
+import {
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
+import { storage, DB_STORAGE_CHAT_IMAGE_KEY } from "@/utils/firebase";
 
 export default function ChatUi({ chatId }) {
   // Data to set up the page
@@ -26,7 +32,7 @@ export default function ChatUi({ chatId }) {
   };
 
   // Data to send to the server
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState("");
   const [sendMessageData, setSendMessageData] = useState({
     senderId: null,
     content: "",
@@ -76,16 +82,34 @@ export default function ChatUi({ chatId }) {
   }, [messagesArr]);
 
   // send message
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
     if (sendMessageData.content === "" && sendMessageData.imageUrl === "")
       return;
-    socketState.emit("sendMessage", sendMessageData);
+    let imageSrc = "";
+
+    if (preview) {
+      const storageRefInstance = storageRef(
+        storage,
+        DB_STORAGE_CHAT_IMAGE_KEY +
+          `${chatId}/` +
+          preview.split(",")[1].substring(4, 14)
+      );
+      await uploadString(storageRefInstance, preview, "data_url");
+      imageSrc = await getDownloadURL(storageRefInstance);
+      console.log(imageSrc);
+    }
+    socketState.emit("sendMessage", {...sendMessageData, imageUrl: imageSrc});
     console.log("sent");
     setSendMessageData((prev) => {
       return { ...prev, imageUrl: "", content: "" };
     });
+    setPreview(null);
   };
+
+  useEffect(() => {
+    console.log(preview);
+  }, [preview]);
 
   // handle image change
   const handleImageChange = async (e) => {
@@ -110,6 +134,14 @@ export default function ChatUi({ chatId }) {
 
             {/* MESSAGES CONTAINER */}
             <ul className="message-container">
+              <li className="message-bubble bubble-right">
+                <p>test with image</p>
+                <img
+                  className="message-img"
+                  src="https://i.pinimg.com/564x/a2/26/bd/a226bd725a81ef06ed3391cb12d6d188.jpg"
+                  alt=""
+                />
+              </li>
               {messagesArr.map((message, index) => {
                 return (
                   <li
@@ -120,7 +152,14 @@ export default function ChatUi({ chatId }) {
                         : "bubble-right"
                     }`}
                   >
-                    <p>{message.content}</p>
+                    {message.content&&(<p>{message.content}</p>)}
+                    {message.imageUrl && (
+                      <img
+                        className="message-img"
+                        src={message.imageUrl}
+                        alt=""
+                      />
+                    )}
                   </li>
                 );
               })}
