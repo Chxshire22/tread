@@ -24,11 +24,11 @@ User.belongsToMany(Thread, {
 User.hasMany(Notification);
 User.hasMany(Message, { foreignKey: "senderId" });
 User.hasMany(Friendship, {
-  as: "Requestor",
+  as: "requestor",
   foreignKey: "requestorId",
 });
 User.hasMany(Friendship, {
-  as: "Receiver",
+  as: "receiver",
   foreignKey: "receiverId",
 });
 
@@ -87,11 +87,11 @@ Chatroom.hasMany(Message, { foreignKey: "chatroomId" });
 //Friendship
 Friendship.hasOne(Chatroom, { foreignKey: "friendshipId" });
 Friendship.belongsTo(User, {
-  as: "requestor",
+  as: "Requestor",
   foreignKey: "requestorId",
 });
 Friendship.belongsTo(User, {
-  as: "receiver",
+  as: "Receiver",
   foreignKey: "receiverId",
 });
 

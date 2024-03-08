@@ -17,7 +17,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: grey;
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 100vw;
 }
 
@@ -40,6 +40,10 @@ hr {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+li {
+  list-style-type: none;
 }
 
 .page-title {
@@ -253,15 +257,43 @@ a {
 
 /* CHAT */
 .message-container {
-  /* height: 100dvh; */
+  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 0.5rem;
   width: 100%;
   gap: 0.5rem;
   flex: 1;
+  overflow-y: scroll;
+  /* overflow-anchor: none; */
+  /* height: calc(100dvh - 4rem - 4rem); */
+}
+
+.message-bubble > p {
+  margin: 0;
+}
+.message-bubble {
+  background-color: rgba(175, 216, 242, 0.7);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+
+.bubble-right {
+  margin-right: auto;
+  border-radius: 15px 15px 15px 0;
+  box-shadow: -17px 10px 54px -17px rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: -17px 10px 54px -17px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: -17px 10px 54px -17px rgba(0, 0, 0, 0.74);
+}
+.bubble-left {
+  margin-left: auto;
+
+  border-radius: 15px 15px 0 15px;
+
+  box-shadow: 14px 10px 54px -17px rgba(0, 0, 0, 0.74);
+  -webkit-box-shadow: 14px 10px 54px -17px rgba(0, 0, 0, 0.74);
+  -moz-box-shadow: 14px 10px 54px -17px rgba(0, 0, 0, 0.74);
 }
 
 /* CAROUSEL */

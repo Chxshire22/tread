@@ -14,12 +14,12 @@ export async function GET() {
           include: [
             {
               model: User,
-              as: "requestor",
+              as: "Requestor",
               attributes: ["username", "userDpUrl"],
             },
             {
               model: User,
-              as: "receiver",
+              as: "Receiver",
               attributes: ["username", "userDpUrl"],
             },
           ],

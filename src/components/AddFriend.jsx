@@ -25,7 +25,7 @@ export default function AddFriend({ userData }) {
     try {
       const responsePending = await axios.get(`/api/friendships/pending`);
       const responseFriends = await axios.get(`/api/friendships/friends`);
-      
+
       setPendingFriendshipsData(responsePending.data);
       setIsFriendsData(responseFriends.data);
     } catch (error) {
@@ -50,9 +50,9 @@ export default function AddFriend({ userData }) {
         friendship.receiverId === currentUserId)
   );
 
-    useEffect(() => {
-      fetchData();
-    }, [currentUserId, profileUserId]);
+  useEffect(() => {
+    fetchData();
+  }, [currentUserId, profileUserId]);
 
   const handleAddFriend = async () => {
     try {

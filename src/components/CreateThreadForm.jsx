@@ -81,7 +81,7 @@ export default function CreateThreadForm() {
       {" "}
       <label htmlFor="file-upload" className="img-preview-placeholder ">
         {preview ? (
-          <Image src={preview} className="preview-img" alt="preview" />
+          <img src={preview} className="preview-img" alt="preview" />
         ) : (
           <>
             <CardImage size={40} /> <p>Upload Image</p>
