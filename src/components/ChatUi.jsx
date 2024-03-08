@@ -53,6 +53,7 @@ export default function ChatUi({ chatId }) {
     };
   }, []);
 
+  // listen for messages
   useEffect(() => {
     socketState?.on("message", (message) => {
       console.log(message);
@@ -60,6 +61,7 @@ export default function ChatUi({ chatId }) {
     });
   }, [socketState]);
 
+  // send message
   const handleSendMessage = (e) => {
     e.preventDefault();
     socketState.emit("sendMessage", sendMessageData);
@@ -69,6 +71,7 @@ export default function ChatUi({ chatId }) {
     });
   };
 
+  // handle image change
   const handleImageChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
       setPreview(null);
@@ -81,17 +84,25 @@ export default function ChatUi({ chatId }) {
   };
 
   const messageBubble = () => {
-    return <></>;
+    return (
+      <>
+        <div>
+          <span>Hello</span>
+        </div>
+      </>
+    );
   };
 
   return (
     <>
       <div className="page-container">
         <PageHeaderWithBackBtn title="Chat" />
+
+        {/* MESSAGES CONTAINER */}
+        <div className="message-container"></div>
+        <div className="spacer"></div>
       </div>
-
-      {/* MESSAGES CONTAINER */}
-
+      {/* Send Message Bar  */}
       <div className="message-bar-container">
         {preview && (
           <div className="message-img-preview-container">
