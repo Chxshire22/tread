@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useCallback,
+  useState,
+} from "react";
 import { CardImage, SendFill, XCircleFill } from "react-bootstrap-icons";
 import { io } from "socket.io-client";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
@@ -94,8 +100,24 @@ export default function ChatUi({ chatId }) {
     scrollToBottom();
   });
 
-  // use intersection observer with useRef to update messages as viewed
+  // use intersection observer with useRef and useCallback to update messages as viewed
+  const observer = useRef();
 
+  const messageRef = useCallback(
+    (node) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          console.log("intersecting");
+          // update message as viewed
+          // axios.post(`/api/chatrooms/${chatId}/messages/${message.id}`, {viewed: true})
+        }
+      });
+      if (node) observer.current.observe(node);
+      console.log(node);
+    },
+    [messagesArr]
+  );
 
   // listen for messages
   useEffect(() => {
@@ -165,6 +187,7 @@ export default function ChatUi({ chatId }) {
               {messagesArr.map((message, index) => {
                 return (
                   <li
+                    ref={message.viewed ? null : messageRef} // this hopefully sets messageRef to null if the message has been viewed
                     key={index}
                     className={`message-bubble ${
                       message.senderId == currentUser.id
