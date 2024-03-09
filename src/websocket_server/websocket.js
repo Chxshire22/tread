@@ -3,6 +3,7 @@ const { Server } = require("socket.io");
 const createserver = require("http").createServer;
 
 let messageToBackend = {};
+let resultFromBackend = {};
 
 const httpServer = createserver();
 const io = new Server(httpServer, {
@@ -35,7 +36,12 @@ io.on("connection", async (socket) => {
 
 const sendToBackend = async () => {
   try {
-    await axios.post("http://localhost:3000/api/messages", messageToBackend);
+    const res = await axios.post(
+      "http://localhost:3000/api/messages",
+      messageToBackend
+    );
+    console.log(res.data);
+    return res.data;
   } catch (err) {
     console.log(err);
   }

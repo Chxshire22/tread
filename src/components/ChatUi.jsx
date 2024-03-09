@@ -24,7 +24,7 @@ export default function ChatUi({ chatId }) {
   // Data to set up the page
   const [messagesArr, setMessagesArr] = useState([]);
   const [friendshipData, setFriendshipData] = useState({}); // [requestor, receiver
-  const [otheruser, setOtherUser] = useState({});
+  const [otherUser, setOtherUser] = useState({});
   const [socketState, setSocketState] = useState();
   const { currentUser } = useUserId();
   useEffect(() => {
@@ -48,12 +48,10 @@ export default function ChatUi({ chatId }) {
     imageUrl: "",
     viewed: false,
     chatroomId: chatId,
+    createdAt: new Date(),
   });
 
-  // get friendship id from params
-
   // initiate socket connection
-
   useEffect(() => {
     const socket = io(`http://localhost:5000`);
     setSocketState(socket);
@@ -105,12 +103,13 @@ export default function ChatUi({ chatId }) {
 
   const messageRef = useCallback(
     (node) => {
-      if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          console.log("intersecting");
-          // update message as viewed
-          // axios.post(`/api/chatrooms/${chatId}/messages/${message.id}`, {viewed: true})
+          const messageTimestamp = node.getAttribute("data-message-timestamp");
+          console.log(messageTimestamp);
+
+          updateViewed(messageTimestamp);
+          observer.current.disconnect();
         }
       });
       if (node) observer.current.observe(node);
@@ -119,11 +118,32 @@ export default function ChatUi({ chatId }) {
     [messagesArr]
   );
 
+  const updateViewed = async (messageTimestamp) => { //actually what should happen is that on intersection ovservation, socket should emit an event to the server to update the message as viewed, return it to front end and then update the front end
+    try {
+      const res = await axios.put(`/api/chatrooms/${chatId}/viewed`, {
+        senderId: otherUser?.id,
+        createdAt: messageTimestamp,
+      });
+      console.log(res.data);
+
+      setMessagesArr((prevMessagesArr) => {
+        return prevMessagesArr.map((message) => {
+          if (message.createdAt === messageTimestamp) {
+            return { ...message, viewed: true };
+          }
+          return message;
+        });
+      });
+    } catch (err) {
+      console.error("error updating viewed messages", err);
+    }
+  };
+
   // listen for messages
   useEffect(() => {
     socketState?.on("message", (message) => {
       console.log(message);
-      console.log(`this is the message ${message.content}`);
+      // console.log(`this is the message ${message.content}`);
       setMessagesArr((prev) => {
         return [...prev, message];
       });
@@ -132,7 +152,6 @@ export default function ChatUi({ chatId }) {
 
   useEffect(() => {
     console.log(messagesArr);
-    scrollToBottom();
   }, [messagesArr]);
 
   // send message
@@ -159,6 +178,7 @@ export default function ChatUi({ chatId }) {
       return { ...prev, imageUrl: "", content: "" };
     });
     setPreview(null);
+    scrollToBottom();
   };
 
   // handle image change
@@ -187,7 +207,14 @@ export default function ChatUi({ chatId }) {
               {messagesArr.map((message, index) => {
                 return (
                   <li
-                    ref={message.viewed ? null : messageRef} // this hopefully sets messageRef to null if the message has been viewed
+                    data-message-timestamp={message.createdAt} //because the messageId is not sent to the front end when getting an emit from socket and the socket can't send back result of the post request, I will use createdAt to identify the message and update front end
+                    ref={
+                      message.viewed
+                        ? null
+                        : message.senderId === otherUser?.id
+                        ? messageRef
+                        : null
+                    } // this hopefully sets messageRef to null if the message has been viewed
                     key={index}
                     className={`message-bubble ${
                       message.senderId == currentUser.id

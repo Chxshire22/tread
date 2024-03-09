@@ -12,14 +12,15 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { senderId, content, imageUrl, viewed, chatroomId } = await request.json();
+  const { senderId, content, imageUrl, viewed, chatroomId, createdAt } = await request.json();
   try {
     const message = await Message.create({
       senderId,
       content,
       imageUrl,
       viewed,
-      chatroomId: Number(chatroomId)
+      chatroomId: Number(chatroomId),
+      createdAt,
     });
     return NextResponse.json(message);
   } catch (err) {
