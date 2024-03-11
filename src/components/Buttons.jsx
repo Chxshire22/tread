@@ -44,10 +44,3 @@ export function CreateThreadContentButton({ threadId }) {
   );
 }
 
-export const SaveContinue = () => {
-  return <div>Buttons</div>;
-};
-
-export const SendMessage = () => {
-  return <button>Send Message</button>;
-};
