@@ -1,10 +1,5 @@
 "use client";
-import {
-  HouseFill,
-  Search,
-  PersonCircle,
-  ChatSquareFill,
-} from "react-bootstrap-icons";
+import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
 import Link from "next/link";
 import navStyles from "../styles/navbar.module.css";
 import { LoginButton } from "./Buttons";
@@ -43,14 +38,6 @@ const Navbar = () => {
                   <li>
                     <a href={`/user/${username}`} className="dropdown-item">
                       My Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={`/user/${username}/pending-requests`}
-                      className="dropdown-item"
-                    >
-                      Pending Requests
                     </a>
                   </li>
                   <li>
