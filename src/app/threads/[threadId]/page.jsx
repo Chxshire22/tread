@@ -16,7 +16,6 @@ export default function page({ params }) {
       }}
     >
       <PageHeaderWithBackBtn title={"Threads"} />
-      username userDP - Needed?
       <ThreadContainer threadId={params.threadId} />
       <CreateThreadContentButton threadId={params.threadId} />
     </div>
