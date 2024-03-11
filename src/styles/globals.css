@@ -74,6 +74,7 @@ li {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-cornflower-blue);
+  text-decoration: none;
 }
 
 /* BUTTONS */
