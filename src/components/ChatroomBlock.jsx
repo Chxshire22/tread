@@ -13,7 +13,7 @@ function ChatroomBlock(props) {
         src="https://i.pinimg.com/564x/75/e9/15/75e915cd3a3495980a7cb1ea50ec039e.jpg" //should be otherUser.pfp
         alt=""
         className="pfp-sm"
-        onClick={() => router.push(`/profile/${otherUser.id}`)}
+        onClick={() => router.push(`/user/${otherUser.username}`)}
       />
       <div
         onClick={() => router.push(`/chat/${chatroomId}`)}
