@@ -59,10 +59,14 @@ li {
   padding-top: 0.5rem;
 }
 
-.chat-preview {
+.chat-preview,
+.chat-preview-unread {
   margin: 0;
   font-size: 0.8rem;
   font-weight: 600;
+}
+.chat-preview-unread {
+  color: var(--color-cornflower-blue);
 }
 
 /* LABELS */
@@ -110,6 +114,18 @@ li {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
+}
+
+.chats-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.chats-header > h1 {
+  margin: 0;
 }
 
 /* PROFILE PICTURES */

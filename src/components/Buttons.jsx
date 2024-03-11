@@ -1,7 +1,5 @@
-import styles from "../styles/buttons.module.css";
 import Link from "next/link";
 import { PlusCircleFill } from "react-bootstrap-icons";
-import { useRouter } from "next/navigation";
 
 export const LoginButton = () => {
   return (
@@ -37,7 +35,10 @@ export function CreatePostButton() {
 
 export function CreateThreadContentButton({ threadId }) {
   return (
-    <Link href={`/threads/${threadId}/create-thread-content`} className="create-thread-btn">
+    <Link
+      href={`/threads/${threadId}/create-thread-content`}
+      className="create-thread-btn"
+    >
       <PlusCircleFill color="#000066" size={40} />
     </Link>
   );
