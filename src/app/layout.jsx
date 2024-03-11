@@ -12,9 +12,7 @@ export const metadata = {
   description: "~~~",
 };
 
-// NOTE: 
-// DO NOT PUT NAVBAR HERE, MANY COMPONENTS SUCH AS - CREATE THREAD, CREATE THREAD CONTENT, CHATROOM, HAVE A BACK BUTTON. 
-// IF YOU GO ON INSTA, THERE IS NO NAVBAR ON THE CHATROOM PAGE OR POST CREATION, ONLY A BACK BUTTON
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
