@@ -1,4 +1,5 @@
 //Components Import
+import Navbar from "@/components/Navbar";
 import ProfilePageContainer from "@/components/ProfilePageContainer";
 import MainThreads from "@/components/MainThreads";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default async function ProfilePage({ params }) {
       </div>
       <h2>My Trips</h2>
       <MainThreads username={params.username} />
+      <Navbar />
     </div>
   );
 }

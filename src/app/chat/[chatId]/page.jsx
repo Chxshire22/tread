@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+import ChatUi from "@/components/ChatUi";
 
-export default function Chatroom() {
+export default async function Chatroom({ params }) {
+  const { chatId } = params;
   return (
-    <div>A chat with another user</div>
-  )
+    <ChatUi chatId={chatId} />
+  );
 }

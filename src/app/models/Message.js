@@ -18,6 +18,14 @@ Message.init(
         key: "id",
       },
     },
+    chatroomId: {
+      allowNull: false,
+      type: DataTypes.INTEGER,
+      references: {
+        model: "chatrooms",
+        key: "id",
+      },
+    },
     content: {
       type: DataTypes.TEXT,
     },
