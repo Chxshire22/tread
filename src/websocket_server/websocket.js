@@ -62,9 +62,9 @@ const updateViewedStatus = async (chatroomId, senderId, createdAt) => {
   console.log("senderId: ", senderId);
   console.log("createdAt: ", createdAt);
   try {
-    const res = await axios.put(`/api/chatrooms/${chatroomId}/viewed`, {
-      senderId,
-      createdAt,
+    const res = await axios.put(`http://localhost:3000/api/chatrooms/${chatroomId}/viewed`, {
+      senderId: senderId,
+      createdAt:createdAt,
     });
     console.log("response for viewed status: ",res.data);
   } catch (error) {
