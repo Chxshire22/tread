@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
         <UserProvider>
           <GetCurrentUser>
             <main>{children}</main>
-            <Navbar />
           </GetCurrentUser>
         </UserProvider>
         {/* DO NOT REMOVE: THIS IS SO THAT BOOSTRAP JS WORKS */}

@@ -18,14 +18,7 @@ Chatroom.init(
         key: "id",
       },
     },
-    messageId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: "messages",
-        key: "id",
-      },
-    },
+
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
