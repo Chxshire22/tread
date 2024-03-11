@@ -51,8 +51,24 @@ export default function ChatUi({ chatId }) {
     createdAt: new Date(),
   });
 
-  // initiate socket connection
-  useEffect(() => {
+  /**
+   * This useEffect hook is used to establish a socket connection, join a chat room, fetch chat room data, and set up cleanup logic when the component unmounts.
+   *
+   * At the start, it creates a socket connection to the server at 'http://localhost:5000' and sets the socket state.
+   * It then sets up a listener for the 'connect' event and logs 'connected' when the event is fired.
+   *
+   * The socket then emits a 'joinRoom' event with the chatId as the data.
+   * It also sets up a listener for the 'connection' event and logs the data received when the event is fired.
+   *
+   * The hook then defines an asynchronous function to fetch chat room data from the '/api/chatrooms/{chatId}' endpoint.
+   * It logs the response data and sets the messages array and friendship data states with the received data.
+   *
+   * The function is then called to fetch the chat room data.
+   *
+   * In the cleanup function, the socket connection is disconnected and all listeners are removed.
+   *
+   * This hook runs once when the component mounts because its dependency array is empty.
+   */ useEffect(() => {
     const socket = io(`http://localhost:5000`);
     setSocketState(socket);
     const handleConnect = () => {
@@ -84,7 +100,7 @@ export default function ChatUi({ chatId }) {
   }, []);
 
   useEffect(() => {
-    console.log(currentUser)
+    console.log(currentUser);
     if (currentUser) {
       setOtherUser(
         currentUser.id === friendshipData.requestorId
@@ -92,22 +108,34 @@ export default function ChatUi({ chatId }) {
           : friendshipData.Requestor
       );
     }
-
   }, [friendshipData, currentUser]);
 
-  useEffect(()=>{
-    if(otherUser){
-      console.log(otherUser)
+  useEffect(() => {
+    if (otherUser) {
+      console.log(otherUser);
     }
-  },[otherUser])
+  }, [otherUser]);
 
   // this crap doesnt work wtf
   useLayoutEffect(() => {
     scrollToBottom();
   });
 
-  // use intersection observer with useRef and useCallback to update messages as viewed
-  const observer = useRef();
+  /**
+   * This code block contains several functions and hooks related to handling messages in a chat application.
+   *
+   * observer is a ref that will be used to store an IntersectionObserver instance.
+   *
+   * messageRef is a callback that is invoked with a DOM node. It creates an IntersectionObserver that watches the node and, when the node intersects with the viewport, retrieves the message's timestamp, sends it to the backend to update the viewed status, and then disconnects the observer.
+   *
+   * updateViewedBackend is a function that emits an 'updateViewedStatus' event through the socket connection, sending an object containing the chat room id, the sender's id, and the message's timestamp.
+   *
+   * The first useEffect hook sets up a listener for the 'viewedStatusUpdate' event on the socket connection. When the event is fired, it logs the data received and updates the frontend with the viewed message data.
+   *
+   * updateFrontEnd is a function that updates the messages array in the state. It maps through the array and, for the message with the same timestamp as the viewed message data, it returns a new object with the same properties as the message but with the viewed property set to true.
+   *
+   * The second useEffect hook sets up a listener for the 'message' event on the socket connection. When the event is fired, it adds the new message to the messages array in the state.
+   */ const observer = useRef();
 
   const messageRef = useCallback(
     (node) => {
@@ -126,41 +154,36 @@ export default function ChatUi({ chatId }) {
     [messagesArr, otherUser]
   );
 
-  const updateViewedBackend =  (messageTimestamp) => { //actually what should happen is that on intersection obvservation, socket should emit an event to the server to update the message as viewed, return it to front end and then update the front end
-
-    console.log(otherUser)
+  const updateViewedBackend = (messageTimestamp) => {
     socketState.emit("updateViewedStatus", {
       chatroomId: chatId,
-      senderId: otherUser?.id, // not coming up 
+      senderId: otherUser?.id, // not coming up
       createdAt: messageTimestamp,
-    })
-
+    });
   };
 
   // listen for viewed status update
-  useEffect(()=>{
-    
+  useEffect(() => {
     socketState?.on("viewedStatusUpdate", (viewedMessageData) => {
-      console.log(viewedMessageData)
-      updateFrontEnd(viewedMessageData)
-    })
-  },[socketState])
+      console.log(viewedMessageData);
+      updateFrontEnd(viewedMessageData);
+    });
+  }, [socketState]);
 
-const updateFrontEnd = (viewedMessageData)=>{
-   setMessagesArr((prevMessageArr) => {
-     return prevMessageArr.map((message) => {
-       if (message.createdAt === viewedMessageData.createdAt) {
-         return { ...message, viewed: true };
-       }
-       return message;
-     });
-   });
-}
+  const updateFrontEnd = (viewedMessageData) => {
+    setMessagesArr((prevMessageArr) => {
+      return prevMessageArr.map((message) => {
+        if (message.createdAt === viewedMessageData.createdAt) {
+          return { ...message, viewed: true };
+        }
+        return message;
+      });
+    });
+  };
 
   // listen for messages
   useEffect(() => {
     socketState?.on("message", (message) => {
-      console.log(message);
       setMessagesArr((prev) => {
         return [...prev, message];
       });
@@ -171,7 +194,19 @@ const updateFrontEnd = (viewedMessageData)=>{
     console.log(messagesArr);
   }, [messagesArr]);
 
-  // send message
+  /**
+   * This asynchronous function handles the sending of a message.
+   * It performs the following operations:
+   * 1. Prevents the default form submission behavior.
+   * 2. Checks if both the content and imageUrl of the message are empty. If they are, it returns early.
+   * 3. If there is a preview image, it creates a reference to a location in the storage service using the chatId and a substring of the preview image data.
+   * 4. It then uploads the preview image to the storage service and retrieves the download URL, which is stored in the imageSrc variable.
+   * 5. It emits a 'sendMessage' event through the socket connection, sending an object containing the message data and the imageUrl.
+   * 6. It resets the sendMessageData state to its initial state and the preview state to null.
+   * 7. Finally, it scrolls to the bottom of the chat.
+   *
+   * @param {Event} e - The event object from the form submission event.
+   */
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (sendMessageData.content === "" && sendMessageData.imageUrl === "")
