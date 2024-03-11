@@ -1,6 +1,8 @@
 //Components Import
+import Navbar from "@/components/Navbar";
 import ProfilePageContainer from "@/components/ProfilePageContainer";
 import MainThreads from "@/components/MainThreads";
+import { PeopleFill } from "react-bootstrap-icons";
 import Link from "next/link";
 
 export default async function ProfilePage({ params }) {
@@ -11,14 +13,16 @@ export default async function ProfilePage({ params }) {
       <div
         style={{
           marginBottom: "5px",
-          backgroundColor: "lightblue",
           width: "30vw",
         }}
       >
-        <Link href={`/user/${params.username}/friends`}>Friends</Link>
+        <Link href={`/user/${params.username}/friends`}>
+          Friends <PeopleFill />
+        </Link>
       </div>
       <h2>My Trips</h2>
       <MainThreads username={params.username} />
+      <Navbar />
     </div>
   );
 }

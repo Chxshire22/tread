@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import styles from "./chat.module.css";
 import ChatroomBlock from "@/components/ChatroomBlock";
+import Navbar from "@/components/Navbar";
 
 export default function Chats() {
   const [chatrooms, setChatrooms] = useState([]);
@@ -96,6 +97,7 @@ export default function Chats() {
           <ChatroomBlock />
         </div>
       </div>
+        <Navbar />
     </>
   );
 }
