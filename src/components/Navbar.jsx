@@ -40,14 +40,6 @@ const Navbar = () => {
                       My Profile
                     </a>
                   </li>
-                  {/* <li>
-                    <a
-                      href={`/user/${username}/pending-requests`}
-                      className="dropdown-item"
-                    >
-                      Pending Requests
-                    </a>
-                  </li> */}
                   <li>
                     <a href="/notifications" className="dropdown-item">
                       Notifications

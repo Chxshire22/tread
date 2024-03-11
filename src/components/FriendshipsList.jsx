@@ -22,7 +22,6 @@ export default function FriendshipsList({ username }) {
         const responseFriends = await axios.get(`/api/friendships/${userId}`);
         const friendsData = responseFriends.data.filter((friend) => friend.status === "friends");
         const pendingData = responseFriends.data.filter((friend) => friend.status === "pending");
-        console.log(pendingData);
         setFriends(friendsData);
         setPendingRequests(pendingData);
       } catch (error) {
@@ -33,21 +32,36 @@ export default function FriendshipsList({ username }) {
   }, []);
 
   const renderPending = () => {
-    // if requestor = curr user, return : PENDING
-    // if receiver =/= curr user, return ACCEPT DECLINE
     return pendingRequests.map((request) => {
       if (request.Requestor.id === currUserId) {
         return <div key={request.id}>{request.Receiver.username} - Friend Request Sent</div>;
       } else if (request.Requestor.id !== currUserId) {
         return (
           <div key={request.id}>
-            <button>ACCEPT</button>
-            <button>DECLINE</button>
+            {request.Requestor.username}
+            <button onClick={() => handleAddFriend(request.id, "friends")}>ACCEPT</button>
+            <button onClick={() => handleAddFriend(request.id, "rejected")}>DECLINE</button>
           </div>
         );
       }
     });
   };
+
+  const handleAddFriend = async (friendshipId, newStatus) => {
+    try {
+      await axios.put(`/api/friendships`, {
+        friendshipId: friendshipId,
+        newStatus: newStatus,
+      });
+      if (newStatus == "friends") {
+        alert("Friend request accepted!");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  // TO DO:
+  //if userProfile is not currUser, Hide pending requests
 
   return (
     <div>
@@ -73,12 +87,12 @@ export default function FriendshipsList({ username }) {
         <li className="nav-item" role="presentation">
           <button
             className="nav-link"
-            id="pills-profile-tab"
+            id="pills-pending-tab"
             data-bs-toggle="pill"
-            data-bs-target="#pills-profile"
+            data-bs-target="#pills-pending"
             type="button"
             role="tab"
-            aria-controls="pills-profile"
+            aria-controls="pills-pending"
             aria-selected="false"
           >
             Pending request <PersonFillExclamation />
@@ -111,9 +125,9 @@ export default function FriendshipsList({ username }) {
         {/* PENDING FRIENDS REQUEST  CONTENT  */}
         <div
           className="tab-pane fade"
-          id="pills-profile"
+          id="pills-pending"
           role="tabpanel"
-          aria-labelledby="pills-profile-tab"
+          aria-labelledby="pills-pending-tab"
         >
           {renderPending()}
         </div>
