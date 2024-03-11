@@ -30,9 +30,8 @@ export default function Home() {
           <SignUpButton />
         </>
       )}
-      <HomePageThreads/>
+      <HomePageThreads />
       <CreatePostButton />
-      <Navbar />
     </main>
   );
 }

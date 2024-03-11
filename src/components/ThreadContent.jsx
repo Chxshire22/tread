@@ -14,7 +14,6 @@ export default function ThreadContent({ threadContentId }) {
       try {
         const response = await axios.get(`/api/threads-contents/${threadContentId}`);
         setThreadContent(response.data[0]);
-        console.log(response.data[0]);
       } catch (error) {
         console.log(error);
       }

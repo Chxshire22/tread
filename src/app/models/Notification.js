@@ -32,6 +32,17 @@ Notification.init(
       defaultValue: false,
       type: DataTypes.BOOLEAN,
     },
+    threadsContentsId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "threads_contents",
+        key: "id",
+      },
+    },
+    gotoUrl: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
