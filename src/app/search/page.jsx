@@ -1,11 +1,10 @@
-import Navbar from "@/components/Navbar";
-import React from "react";
+import React from 'react'
+import Search from '@/components/Search'
 
-export default function Search() {
+export default function page() {
   return (
     <div>
-      Search Page
-      <Navbar />
+      <Search/>
     </div>
-  );
+  )
 }

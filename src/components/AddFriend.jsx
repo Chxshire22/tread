@@ -56,11 +56,19 @@ export default function AddFriend({ userData }) {
 
   const handleAddFriend = async () => {
     try {
-      const response = await axios.post(`/api/friendships`, {
+      await axios.post(`/api/friendships`, {
         requestorId: currentUserId,
         receiverId: profileUserId,
         status: "pending",
       });
+      const responseNotification = await axios.post("/api/notifications", {
+        userId: profileUserId,
+        type: "add_friend",
+        content: `${currentUser.username} added you as a friend`,
+        viewed: false,
+        gotoUrl: `${window.location.origin}/user/${userData.username}/friends`,
+      });
+      console.log(responseNotification.data);
       alert("Friend request sent!");
     } catch (error) {
       console.error("Error adding friend:", error);
