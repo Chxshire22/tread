@@ -21,8 +21,8 @@ export default function ProfilePageContainer({ username }) {
     console.log(`curr user`, currentUserId);
     const fetchData = async () => {
       try {
-        // why not use currentUser.id + userData.id to check if friendship exists?
-        // use sequelize to return friendship data WHERE currentUser.id == requestorId or receiverId AND userData.id == requestorId or receiverId, then return friendship data
+        // can use currentUser.id + userData.id to check if friendship exists
+        // use sequelize to return friendship row WHERE currentUser.id == requestorId or receiverId AND userData.id == requestorId or receiverId
         const response = await axios.get(`/api/user/${username}`);
         // this is downloading all the existing friendship of the currentUser which is resource intensive, causing the app to slow down
         const friendshipRes = await axios.get(
