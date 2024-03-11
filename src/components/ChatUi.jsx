@@ -84,6 +84,7 @@ export default function ChatUi({ chatId }) {
   }, []);
 
   useEffect(() => {
+    console.log(currentUser)
     if (currentUser) {
       setOtherUser(
         currentUser.id === friendshipData.requestorId
@@ -91,7 +92,14 @@ export default function ChatUi({ chatId }) {
           : friendshipData.Requestor
       );
     }
+
   }, [friendshipData, currentUser]);
+
+  useEffect(()=>{
+    if(otherUser){
+      console.log(otherUser)
+    }
+  },[otherUser])
 
   // this crap doesnt work wtf
   useLayoutEffect(() => {
@@ -108,42 +116,51 @@ export default function ChatUi({ chatId }) {
           const messageTimestamp = node.getAttribute("data-message-timestamp");
           console.log(messageTimestamp);
 
-          updateViewed(messageTimestamp);
+          updateViewedBackend(messageTimestamp);
           observer.current.disconnect();
         }
       });
       if (node) observer.current.observe(node);
       console.log(node);
     },
-    [messagesArr]
+    [messagesArr, otherUser]
   );
 
-  const updateViewed = async (messageTimestamp) => { //actually what should happen is that on intersection ovservation, socket should emit an event to the server to update the message as viewed, return it to front end and then update the front end
-    try {
-      const res = await axios.put(`/api/chatrooms/${chatId}/viewed`, {
-        senderId: otherUser?.id,
-        createdAt: messageTimestamp,
-      });
-      console.log(res.data);
+  const updateViewedBackend =  (messageTimestamp) => { //actually what should happen is that on intersection obvservation, socket should emit an event to the server to update the message as viewed, return it to front end and then update the front end
 
-      setMessagesArr((prevMessagesArr) => {
-        return prevMessagesArr.map((message) => {
-          if (message.createdAt === messageTimestamp) {
-            return { ...message, viewed: true };
-          }
-          return message;
-        });
-      });
-    } catch (err) {
-      console.error("error updating viewed messages", err);
-    }
+    console.log(otherUser)
+    socketState.emit("updateViewedStatus", {
+      chatroomId: chatId,
+      senderId: otherUser?.id, // not coming up 
+      createdAt: messageTimestamp,
+    })
+
   };
+
+  // listen for viewed status update
+  useEffect(()=>{
+    
+    socketState?.on("viewedStatusUpdate", (viewedMessageData) => {
+      console.log(viewedMessageData)
+      updateFrontEnd(viewedMessageData)
+    })
+  },[socketState])
+
+const updateFrontEnd = (viewedMessageData)=>{
+   setMessagesArr((prevMessageArr) => {
+     return prevMessageArr.map((message) => {
+       if (message.createdAt === viewedMessageData.createdAt) {
+         return { ...message, viewed: true };
+       }
+       return message;
+     });
+   });
+}
 
   // listen for messages
   useEffect(() => {
     socketState?.on("message", (message) => {
       console.log(message);
-      // console.log(`this is the message ${message.content}`);
       setMessagesArr((prev) => {
         return [...prev, message];
       });

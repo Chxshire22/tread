@@ -8,7 +8,7 @@ export async function PUT(request, { params: { chatroomId } }) {
   try {
     const messages = await Message.update(
       { viewed: true },
-      { where: { chatroomId, senderId, createdAt } }
+      { where: { chatroomId, senderId } }
     );
     return NextResponse.json(messages);
   } catch (err) {
@@ -16,4 +16,3 @@ export async function PUT(request, { params: { chatroomId } }) {
     return NextResponse.json({ error: true, msg: err });
   }
 }
-

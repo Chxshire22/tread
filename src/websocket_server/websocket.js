@@ -29,8 +29,17 @@ io.on("connection", async (socket) => {
     // console.log(sendMessageData);
     io.to(sendMessageData.chatroomId).emit("message", sendMessageData);
     messageToBackend = sendMessageData;
-    console.log("messageToBackend", messageToBackend);
+    // console.log("messageToBackend", messageToBackend);
     sendToBackend();
+  });
+
+  socket.on("updateViewedStatus", (viewedMessageData) => {
+    // console.log(viewedMessageData);
+    updateViewedStatus(viewedMessageData.chatroomId, viewedMessageData.senderId, viewedMessageData.createdAt);
+    io.to(viewedMessageData.chatroomId).emit(
+      "viewedStatusUpdate",
+      viewedMessageData
+    );
   });
 });
 
@@ -40,10 +49,26 @@ const sendToBackend = async () => {
       "http://localhost:3000/api/messages",
       messageToBackend
     );
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   } catch (err) {
     console.log(err);
+  }
+};
+
+const updateViewedStatus = async (chatroomId, senderId, createdAt) => {
+
+  console.log("chatroomId: ", chatroomId);
+  console.log("senderId: ", senderId);
+  console.log("createdAt: ", createdAt);
+  try {
+    const res = await axios.put(`/api/chatrooms/${chatroomId}/viewed`, {
+      senderId,
+      createdAt,
+    });
+    console.log("response for viewed status: ",res.data);
+  } catch (error) {
+    console.log("error on updating viewed status: ", error);
   }
 };
 
