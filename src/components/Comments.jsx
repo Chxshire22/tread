@@ -7,7 +7,7 @@ export default function Comments({
   threadId,
   threadContentId,
   ThreadsContentUserId,
-  currentUserId,
+  currentUser,
 }) {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
@@ -35,7 +35,7 @@ export default function Comments({
     try {
       let responseComment = await axios.post(`/api/threads-contents/comments`, {
         threadsContentsId: threadContentId,
-        userId: currentUserId,
+        userId: currentUser.id,
         comment: commentInput,
       });
       setComments((prevComments) => [...prevComments, responseComment.data]);
@@ -43,12 +43,11 @@ export default function Comments({
       const responseNotification = await axios.post("/api/notifications", {
         userId: ThreadsContentUserId,
         type: "comment",
-        content: `${currentUserId} commented on your post`,
+        content: `${currentUser.username} commented on your post`,
         viewed: false,
         threadsContentsId: threadContentId,
         gotoUrl: `${window.location.origin}/threads/${threadId}/${threadContentId}`,
       });
-      console.log(responseNotification.data);
       alert("Comment sent to backend!");
     } catch (error) {
       console.error("Error sending like notification:", error);

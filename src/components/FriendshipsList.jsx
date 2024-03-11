@@ -39,19 +39,26 @@ export default function FriendshipsList({ username }) {
         return (
           <div key={request.id}>
             {request.Requestor.username}
-            <button onClick={() => handleAddFriend(request.id, "friends")}>ACCEPT</button>
-            <button onClick={() => handleAddFriend(request.id, "rejected")}>DECLINE</button>
+            <button onClick={() => handleAddFriend(request, "friends")}>ACCEPT</button>
+            <button onClick={() => handleAddFriend(request, "rejected")}>DECLINE</button>
           </div>
         );
       }
     });
   };
 
-  const handleAddFriend = async (friendshipId, newStatus) => {
+  const handleAddFriend = async (request, newStatus) => {
     try {
       await axios.put(`/api/friendships`, {
-        friendshipId: friendshipId,
+        friendshipId: request.id,
         newStatus: newStatus,
+      });
+      const responseNotification = await axios.post("/api/notifications", {
+        userId: request.Requestor.id,
+        type: "comment",
+        content: `${request.Receiver.username} accepted your friend request`,
+        viewed: false,
+        gotoUrl: `${window.location.origin}/user/${request.Requestor.username}/friends`,
       });
       if (newStatus == "friends") {
         alert("Friend request accepted!");

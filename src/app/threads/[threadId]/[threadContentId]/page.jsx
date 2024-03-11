@@ -29,14 +29,14 @@ export default function FullThreadContent({ params }) {
 
   const handleLike = async () => {
     try {
-      let responseLike = await axios.post(`/api/threads-contents/likes`, {
+      await axios.post(`/api/threads-contents/likes`, {
         threadsContentsId: threadsContentsId,
         userId: currentUser.id,
       });
       const response = await axios.post("/api/notifications", {
         userId: ThreadsContentUserId,
         type: "like",
-        content: `${currentUser.id} liked your post`,
+        content: `${currentUser.username} liked your post`,
         viewed: false,
         threadsContentsId: threadsContentsId,
         gotoUrl: `${window.location.origin}/threads/${params.threadId}/${params.threadContentId}`,
@@ -76,7 +76,7 @@ export default function FullThreadContent({ params }) {
               threadId = {params.threadId}
               threadContentId={params.threadContentId}
               ThreadsContentUserId={ThreadsContentUserId}
-              currentUserId={currentUser.id}
+              currentUser={currentUser}
             />
           </div>
         </div>

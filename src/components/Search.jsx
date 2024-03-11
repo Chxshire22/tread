@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function Search() {
   const [query, setQuery] = useState("");
@@ -35,7 +36,9 @@ export default function Search() {
       <div>
         <p>Users: </p>
         {results.users?.map((user) => (
-          <p key={user.id}>{user.username}</p>
+          <a href={`/user/${user.username}`} key={user.id}>
+            <p>{user.username}</p>
+          </a>
         ))}
       </div>
       <div>
