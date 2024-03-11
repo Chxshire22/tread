@@ -1,7 +1,10 @@
 import React from 'react'
+import Search from '@/components/Search'
 
-export default function Search() {
+export default function page() {
   return (
-    <div>Search Page</div>
+    <div>
+      <Search/>
+    </div>
   )
 }

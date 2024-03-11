@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
 
-export default function Comments({ threadContentId, userId }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function Comments({
+  threadId,
+  threadContentId,
+  ThreadsContentUserId,
+  currentUserId,
+}) {
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
 
@@ -13,7 +17,7 @@ export default function Comments({ threadContentId, userId }) {
     const getData = async () => {
       try {
         let response = await axios.get(
-          `${BACKEND_URL}/api/threads-contents/comments/${threadContentId}`
+          `/api/threads-contents/comments/${threadContentId}`
         );
         setComments(response.data);
       } catch (err) {
@@ -29,18 +33,27 @@ export default function Comments({ threadContentId, userId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let response = await axios.post(
-      `${BACKEND_URL}/api/threads-contents/comments`,
-      {
+    try {
+      let responseComment = await axios.post(`/api/threads-contents/comments`, {
         threadsContentsId: threadContentId,
-        userId: userId,
+        userId: currentUserId,
         comment: commentInput,
-      }
-    );
-    setComments((prevComments) => [...prevComments, response.data]);
-    setCommentInput("");
-    {
-      /* Add row in notification  for comments here */
+      });
+      setComments((prevComments) => [...prevComments, responseComment.data]);
+      setCommentInput("");
+      const responseNotification = await axios.post("/api/notifications", {
+        userId: ThreadsContentUserId,
+        type: "comment",
+        content: `${currentUserId} commented on your post`,
+        viewed: false,
+        threadsContentsId: threadContentId,
+        gotoUrl: `${window.location.origin}/threads/${threadId}/${threadContentId}`,
+      });
+      console.log(responseNotification.data);
+      alert("Comment sent to backend!");
+    } catch (error) {
+      console.error("Error sending like notification:", error);
+      alert("Failed to send like.");
     }
   };
 
