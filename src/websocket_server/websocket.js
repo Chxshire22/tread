@@ -5,6 +5,16 @@ const createserver = require("http").createServer;
 let messageToBackend = {};
 let resultFromBackend = {};
 
+
+/**
+ * This code block creates an HTTP server and a new instance of a socket.io server.
+ *
+ * The `createserver()` function is called to create a new HTTP server, which is stored in the `httpServer` constant.
+ *
+ * A new instance of a socket.io server is then created with the `httpServer` as the server to attach to. The second argument to the `Server` constructor is an options object.
+ *
+ * The `cors` property of the options object is another object that specifies the CORS policy for the socket.io server. The `origin` property is set to '*' to allow requests from any origin, and the `methods` property is an array containing 'GET' and 'POST' to specify that these HTTP methods are allowed.
+ */
 const httpServer = createserver();
 const io = new Server(httpServer, {
   cors: {
@@ -13,6 +23,20 @@ const io = new Server(httpServer, {
   },
 });
 
+
+/**
+ * This code block sets up several event listeners on a socket.io server.
+ *
+ * When a new connection is established, it logs the id of the socket that connected.
+ *
+ * It sets up a listener for a 'test' event. When this event is fired, it logs the data received.
+ *
+ * It sets up a listener for a 'joinRoom' event. When this event is fired, it adds the socket to a room with the id received and logs a message indicating that a user joined the room.
+ *
+ * It sets up a listener for a 'sendMessage' event. When this event is fired, it emits a 'message' event to all sockets in the room with the id specified in the message data. It also assigns the message data to the messageToBackend variable and calls the sendToBackend function.
+ *
+ * It sets up a listener for an 'updateViewedStatus' event. When this event is fired, it calls the updateViewedStatus function with the chat room id, sender id, and message timestamp from the viewed message data. It also emits a 'viewedStatusUpdate' event to all sockets in the room with the id specified in the viewed message data.
+ */
 io.on("connection", async (socket) => {
   console.log(socket.id);
 

@@ -68,7 +68,8 @@ export default function ChatUi({ chatId }) {
    * In the cleanup function, the socket connection is disconnected and all listeners are removed.
    *
    * This hook runs once when the component mounts because its dependency array is empty.
-   */ useEffect(() => {
+   */ 
+  useEffect(() => {
     const socket = io(`http://localhost:5000`);
     setSocketState(socket);
     const handleConnect = () => {
@@ -122,7 +123,7 @@ export default function ChatUi({ chatId }) {
   });
 
   /**
-   * This code block contains several functions and hooks related to handling messages in a chat application.
+   * This code block contains several functions and hooks related to handling messages in this chat component.
    *
    * observer is a ref that will be used to store an IntersectionObserver instance.
    *
@@ -135,7 +136,8 @@ export default function ChatUi({ chatId }) {
    * updateFrontEnd is a function that updates the messages array in the state. It maps through the array and, for the message with the same timestamp as the viewed message data, it returns a new object with the same properties as the message but with the viewed property set to true.
    *
    * The second useEffect hook sets up a listener for the 'message' event on the socket connection. When the event is fired, it adds the new message to the messages array in the state.
-   */ const observer = useRef();
+   */ 
+  const observer = useRef();
 
   const messageRef = useCallback(
     (node) => {
@@ -157,7 +159,7 @@ export default function ChatUi({ chatId }) {
   const updateViewedBackend = (messageTimestamp) => {
     socketState.emit("updateViewedStatus", {
       chatroomId: chatId,
-      senderId: otherUser?.id, // not coming up
+      senderId: otherUser?.id, 
       createdAt: messageTimestamp,
     });
   };
