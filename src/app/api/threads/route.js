@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
-import { Thread } from "@/app/models";
+import { Thread, User } from "@/app/models";
 
 export async function GET() {
   try {
-    const threads = await Thread.findAll();
+    const threads = await Thread.findAll({
+      include: [User],
+    });
     return NextResponse.json(threads);
   } catch (err) {
     console.log(err);
@@ -12,14 +14,8 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const {
-    userId,
-    title,
-    destination,
-    startDateOfTravel,
-    endDateOfTravel,
-    threadsDp,
-  } = await request.json();
+  const { userId, title, destination, startDateOfTravel, endDateOfTravel, threadsDp } =
+    await request.json();
   try {
     const thread = await Thread.create({
       userId,
@@ -36,28 +32,24 @@ export async function POST(request) {
 }
 
 export async function PUT(request) {
-  const {
-    userId,
-    title,
-    destination,
-    startDateOfTravel,
-    endDateOfTravel,
-    threadsDp,
-    id,
-  } = await request.json();
+  const { userId, title, destination, startDateOfTravel, endDateOfTravel, threadsDp, id } =
+    await request.json();
   try {
-    const threads = await Thread.update({
-      userId,
-      title,
-      destination,
-      startDateOfTravel,
-      endDateOfTravel,
-      threadsDp,
-    },{
-      where:{
-        id
+    const threads = await Thread.update(
+      {
+        userId,
+        title,
+        destination,
+        startDateOfTravel,
+        endDateOfTravel,
+        threadsDp,
+      },
+      {
+        where: {
+          id,
+        },
       }
-    });
+    );
     return NextResponse.json(threads);
   } catch (err) {
     console.log(err);

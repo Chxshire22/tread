@@ -33,7 +33,6 @@ export default function MainThreads({ username }) {
         .map((thread) => (
           <HeadThread key={thread.id} thread={thread} />
         ))}
-      {/*  userDp={userDp} username={username} */}
     </div>
   );
 }
