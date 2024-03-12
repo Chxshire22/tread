@@ -8,8 +8,14 @@ const nextConfig = {
         port: "",
         pathname: "*",
       },
+      // {
+      //   protocol: "https",
+      //   hostname: "firebasestorage.googleapis.com",
+      //   port: "",
+      //   pathname: "*",
+      // },
     ],
-    domains: ["st3.depositphotos.com", "st.depositphotos.com"],
+    domains: ["firebasestorage.googleapis.com", "st3.depositphotos.com", "st.depositphotos.com"],
   },
   // webpack: (config, { isServer }) => {
   //   if (!isServer) {
