@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 //Component imports
 import ThreadContent from "./ThreadContent";
 import HeadThread from "./HeadThread";
+import { PersonCircle } from "react-bootstrap-icons";
 
 export default function ThreadContainer({ threadId }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,13 +36,21 @@ export default function ThreadContainer({ threadId }) {
 
   return (
     <div>
+      <a
+        className="btn btn-sm btn-outline-secondary "
+        style={{ color: "#1d4886" }}
+        href={`/user/${threadsData?.User?.username}`}
+      >
+        <PersonCircle className="personcircle" /> {threadsData?.User?.username}
+      </a>
       <HeadThread thread={threadsData} />
-      <button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? "Hide Itinerary" : "Show Itinerary"}
-      </button>
+      {threadContentList && threadContentList.length > 1 && (
+        <button className="btn btn-primary itinerary-btn" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "Hide Itinerary" : "Show Itinerary"}
+        </button>
+      )}
       {isOpen && (
         <div style={{ display: "flex" }}>
-          <div style={{ width: "10px", height: "300px", backgroundColor: "#000" }}></div>
           <div>
             {threadContentList.map((threadContent) => (
               <a href="#" onClick={(e) => handleClick(e, threadContent.id)} key={threadContent.id}>

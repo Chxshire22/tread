@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Image from "next/image";
-import { GeoAlt } from "react-bootstrap-icons";
+import { GeoAltFill } from "react-bootstrap-icons";
 
 export default function ThreadContent({ threadContentId }) {
   const [threadContent, setThreadContent] = useState({});
@@ -23,24 +23,23 @@ export default function ThreadContent({ threadContentId }) {
   }, []);
 
   return (
-    <div
-      style={{
-        marginBottom: "10px",
-        backgroundColor: "white",
-        padding: "10px",
-        color: "black",
-        width: "60vw",
-        border: "1px solid black",
-        margin: "1rem",
-      }}
-    >
-      <Image src={userDp} width="50" height="50" alt="User Image" />
-      <h4>
-        <GeoAlt />
-        {threadContent.location}{" "}
-      </h4>
-      <p>"{threadContent.description}"</p>{" "}
-      {threadContent.recommendedTime && <p> Recommended Time: {threadContent.recommendedTime} </p>}
+    <div className="card  tc-card-main">
+      <img src={userDp} className="card-img tc-card-img" alt="..." />
+      <div className="card-img-overlay">
+        <h5 className="card-title">
+          {" "}
+          <GeoAltFill className="GeoAlt" />
+          {threadContent.location}{" "}
+        </h5>
+        <p className="card-text">"{threadContent.description}"</p>
+        <p className="card-text tc-time">
+          <small>
+            {threadContent.recommendedTime && (
+              <p> Recommended Time: {threadContent.recommendedTime} </p>
+            )}
+          </small>
+        </p>
+      </div>
     </div>
   );
 }

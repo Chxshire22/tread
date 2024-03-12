@@ -24,7 +24,6 @@ export default function HeadThread({ thread }) {
             <div style={{ position: "relative", height: "300px", width: "100%" }}>
               <Image src={threadDp} alt="threadsdp" layout="fill" objectFit="cover" />
             </div>
-            <br />
           </div>
           <div className="card-footer ">
             {formatDate(thread?.startDateOfTravel)}

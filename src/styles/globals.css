@@ -91,6 +91,9 @@ li {
   transform: scale(1.1);
 }
 
+.itinerary-btn {
+  margin: 0.5rem;
+}
 /* LAYOUT */
 
 .page-container {
@@ -433,6 +436,10 @@ li {
 
 /* PROFILE PAGE */
 
+.personcircle {
+  color: #1d4886;
+}
+
 .profilepage-main {
   box-shadow: 0px 0px 20px #d3d3d3;
   margin: 0.5rem;
@@ -470,4 +477,90 @@ li {
 .profilepage-friends {
   display: flex;
   justify-content: center;
+}
+
+/* THREAT CONTENTS */
+
+.tc-card-main {
+  margin: 1%;
+  max-height: 60vh;
+  max-width: 90vw;
+  color: black;
+}
+
+.tc-card-img {
+  color: black;
+  opacity: 0.5;
+  backdrop-filter: blur(10px);
+}
+
+.tc-time {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+/* SEARCH PAGE */
+.search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem;
+}
+
+.search-bar {
+  border-radius: 40px;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-btn {
+  margin-left: auto;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 25rem;
+}
+
+.sr-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  margin: 6px;
+}
+
+.sr-thread {
+  color: #ffffff;
+  background-color: #1d4886;
+  border-radius: 40px;
+  padding: 5px 20px;
+}
+
+.sr-threadcontent {
+  color: #ffffff;
+  background-color: #1d8650;
+  border-radius: 40px;
+  padding: 5px 20px;
+}
+
+.sr-p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }
