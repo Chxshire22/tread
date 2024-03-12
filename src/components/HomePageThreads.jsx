@@ -47,22 +47,18 @@ export default function HomePageThreads() {
               <p className="card-title">
                 <strong>
                   <big>{thread.title}</big>
-                </strong>
-                <small>
-                  {" "}
-                  by <strong>@{thread.User.username}</strong>
-                </small>
+                </strong>{" "}
               </p>
 
               <Image
                 src={thread.threadsDp || threadPlaceholderDp}
                 alt="threadsdp"
-                width={200}
+                width={300}
                 height={200}
               />
               <br />
               <a href={`/threads/${thread.id}`} className="btn btn-primary">
-                Go somewhere
+                @{thread.User.username}
               </a>
             </div>
             <div className="card-footer text-body-secondary">
