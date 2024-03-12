@@ -6,15 +6,7 @@ import { CreateThreadContentButton } from "@/components/Buttons";
 
 export default function page({ params }) {
   return (
-    <div
-      className="page-container"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div>
       <PageHeaderWithBackBtn title={"Threads"} />
       <ThreadContainer threadId={params.threadId} />
       <CreateThreadContentButton threadId={params.threadId} />

@@ -34,20 +34,9 @@ export default function ThreadContainer({ threadId }) {
   };
 
   return (
-    <div style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}>
+    <div>
       <HeadThread thread={threadsData} />
-      <div style={{ borderTop: "1px solid #000", width: "100%", height: "0px" }}></div>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          marginBottom: "10px",
-          backgroundColor: "lightgray",
-          padding: "1rem",
-          color: "black",
-          fontSize: "1rem",
-          marginTop: "10px",
-        }}
-      >
+      <button onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? "Hide Itinerary" : "Show Itinerary"}
       </button>
       {isOpen && (

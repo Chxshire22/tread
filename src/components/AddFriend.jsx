@@ -10,6 +10,7 @@
 import axios from "axios";
 import { useUserId } from "./GetCurrentUser";
 import { useState, useEffect } from "react";
+import { PersonFillCheck, PersonAdd } from "react-bootstrap-icons";
 
 export default function AddFriend({ userData }) {
   const { currentUser } = useUserId();
@@ -36,18 +37,14 @@ export default function AddFriend({ userData }) {
   //Find all pending friendships
   const pendingFriendship = pendingFriendshipsData?.find(
     (friendship) =>
-      (friendship.requestorId === currentUserId &&
-        friendship.receiverId === profileUserId) ||
-      (friendship.requestorId === profileUserId &&
-        friendship.receiverId === currentUserId)
+      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
   );
 
   const ifFriendshipExists = isFriendsData?.find(
     (friendship) =>
-      (friendship.requestorId === currentUserId &&
-        friendship.receiverId === profileUserId) ||
-      (friendship.requestorId === profileUserId &&
-        friendship.receiverId === currentUserId)
+      (friendship.requestorId === currentUserId && friendship.receiverId === profileUserId) ||
+      (friendship.requestorId === profileUserId && friendship.receiverId === currentUserId)
   );
 
   useEffect(() => {
@@ -78,13 +75,19 @@ export default function AddFriend({ userData }) {
   if (isCurrentUserProfile) {
     return null;
   } else if (pendingFriendship) {
-    return <div> Request Sent 💌 Pending </div>;
+    return <div className="btn btn-outline-secondary"> Request Sent 💌 Pending </div>;
   } else if (ifFriendshipExists) {
-    return <div>Friends 🧑🏻‍🤝‍🧑🏼 </div>;
+    return (
+      <div className="btn btn-outline-success">
+        Friends <PersonFillCheck size={20} />
+      </div>
+    );
   } else {
     return (
       <div>
-        <button onClick={handleAddFriend}>Add Friend</button>
+        <button className="btn btn-outline-info" onClick={handleAddFriend}>
+          Add Friend <PersonAdd size={20} />{" "}
+        </button>
       </div>
     );
   }
