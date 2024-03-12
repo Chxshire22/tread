@@ -41,8 +41,19 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href={`/user/${username}/notifications`} className="dropdown-item">
+                    <a
+                      href={`/user/${username}/notifications`}
+                      className="dropdown-item"
+                    >
                       Notifications
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`/user/${username}/saved-threads`}
+                      className="dropdown-item"
+                    >
+                      Saved Threads
                     </a>
                   </li>
                   <li>
