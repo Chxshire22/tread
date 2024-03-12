@@ -11,9 +11,7 @@ export default function Notifications({ username }) {
       try {
         const userData = await axios.get(`/api/user/${username}`);
         const userId = userData.data.id;
-        const responseNotifications = await axios.get(
-          `/api/notifications/${userId}`
-        );
+        const responseNotifications = await axios.get(`/api/notifications/${userId}`);
         setNotifications(responseNotifications.data);
       } catch (error) {
         console.log(error);
@@ -26,7 +24,7 @@ export default function Notifications({ username }) {
     try {
       await axios.put(`/api/notifications`, {
         notificationId: notificiationId,
-        viewed: true
+        viewed: true,
       });
     } catch (error) {
       console.error("Error:", error);
@@ -35,7 +33,6 @@ export default function Notifications({ username }) {
 
   return (
     <div>
-      <h2>Notifications:</h2>
       <ul>
         {notifications.map((notification) => (
           <Link
@@ -44,9 +41,9 @@ export default function Notifications({ username }) {
             onClick={() => handleClick(notification.id)}
           >
             <li>
-              {notification.content} -{" "}
-              {notification.viewed ? "Viewed" : "Not Viewed"}
+              {notification.content} - {notification.viewed ? "Viewed" : "Not Viewed"}
             </li>
+            <hr />
           </Link>
         ))}
       </ul>

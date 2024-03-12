@@ -1,10 +1,6 @@
 "use client";
 //Components Import
-import {
-  LoginButton,
-  SignUpButton,
-  CreatePostButton,
-} from "@/components/Buttons";
+import { LoginButton, SignUpButton, CreatePostButton } from "@/components/Buttons";
 import { useUserId } from "@/components/GetCurrentUser";
 import HomePageThreads from "@/components/HomePageThreads";
 import Navbar from "@/components/Navbar";
@@ -32,6 +28,7 @@ export default function Home() {
       )}
       <HomePageThreads />
       <CreatePostButton />
+      <Navbar />
     </main>
   );
 }

@@ -1,9 +1,9 @@
 //Components Import
-import Navbar from "@/components/Navbar";
 import ProfilePageContainer from "@/components/ProfilePageContainer";
 import MainThreads from "@/components/MainThreads";
 import { PeopleFill } from "react-bootstrap-icons";
 import Link from "next/link";
+import Navbar from "@/components/Navbar";
 
 export default async function ProfilePage({ params }) {
   return (
@@ -22,6 +22,7 @@ export default async function ProfilePage({ params }) {
       </div>
       <h2>My Trips</h2>
       <MainThreads username={params.username} />
+      <Navbar />
     </div>
   );
 }

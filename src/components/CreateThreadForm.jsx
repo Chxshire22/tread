@@ -66,6 +66,7 @@ export default function CreateThreadForm() {
         threadsDp: imageSrc,
       });
       setLoading(false);
+      router.push(`/`);
     } catch (error) {
       console.log(error);
     }
