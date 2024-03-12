@@ -21,6 +21,7 @@ export default async function ProfilePage({ params }) {
       </div>
       <h2>My Trips</h2>
       <MainThreads username={params.username} />
+      <Navbar />
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import styles from "../styles/buttons.module.css";
 import Link from "next/link";
 import { PlusCircleFill } from "react-bootstrap-icons";
 
@@ -36,16 +35,12 @@ export function CreatePostButton() {
 
 export function CreateThreadContentButton({ threadId }) {
   return (
-    <Link href={`/threads/${threadId}/create-thread-content`} className="create-thread-btn">
+    <Link
+      href={`/threads/${threadId}/create-thread-content`}
+      className="create-thread-btn"
+    >
       <PlusCircleFill color="#000066" size={40} />
     </Link>
   );
 }
 
-export const SaveContinue = () => {
-  return <div>Buttons</div>;
-};
-
-export const SendMessage = () => {
-  return <button>Send Message</button>;
-};

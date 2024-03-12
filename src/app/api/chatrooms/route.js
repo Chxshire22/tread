@@ -6,7 +6,7 @@ import { User } from "@/app/models";
 export async function GET() {
   try {
     const chatrooms = await Chatroom.findAll({
-      attributes:["id", "friendshipId"],
+      attributes: ["id", "friendshipId"],
       include: [
         {
           model: Friendship,
@@ -38,8 +38,10 @@ export async function POST(request) {
   // basically controller
   const { friendshipId } = await request.json();
   try {
-    const chatroom = await Chatroom.create({
-      friendshipId: friendshipId,
+    const [chatroom,created] = await Chatroom.findOrCreate({
+      where:{
+        friendshipId
+      }
     });
     return NextResponse.json(chatroom);
   } catch (err) {
