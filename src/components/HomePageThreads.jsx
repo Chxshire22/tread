@@ -48,7 +48,10 @@ export default function HomePageThreads() {
                 <strong>
                   <big>{thread.title}</big>
                 </strong>
-                <small> by @{thread.User.username}</small>
+                <small>
+                  {" "}
+                  by <strong>@{thread.User.username}</strong>
+                </small>
               </p>
 
               <Image
@@ -58,7 +61,7 @@ export default function HomePageThreads() {
                 height={200}
               />
               <br />
-              <a href="#" className="btn btn-primary">
+              <a href={`/threads/${thread.id}`} className="btn btn-primary">
                 Go somewhere
               </a>
             </div>
