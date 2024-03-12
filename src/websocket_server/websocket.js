@@ -3,7 +3,6 @@ const { Server } = require("socket.io");
 const createserver = require("http").createServer;
 
 let messageToBackend = {};
-let resultFromBackend = {};
 
 
 /**
