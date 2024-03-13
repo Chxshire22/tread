@@ -8,7 +8,11 @@ import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import Image from "next/image";
 import { BACKEND_URL } from "@/app/constants";
-import { ref as storageRef, getDownloadURL, uploadString } from "@firebase/storage";
+import {
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
 
 import { storage, DB_STORAGE_THREAD_IMAGE_KEY } from "@/utils/firebase";
 import { countries } from "countries-list";
@@ -49,9 +53,18 @@ export default function CreateThreadForm() {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+    let storageRefInstance;
     try {
-      const sendThreadData = await axios.post(`${BACKEND_URL}api/threads`, threadData);
-      const storageRefInstance = storageRef(
+      const sendThreadData = await axios.post(
+        `${BACKEND_URL}api/threads`,
+        threadData
+      );
+      if (!preview) {
+        setLoading(false);
+        router.push("/");
+        return;
+      }
+      storageRefInstance = storageRef(
         storage,
         DB_STORAGE_THREAD_IMAGE_KEY +
           `${sendThreadData.data.id}/` +
@@ -59,22 +72,27 @@ export default function CreateThreadForm() {
       );
 
       if (preview) await uploadString(storageRefInstance, preview, "data_url");
-      const imageSrc = preview ? await getDownloadURL(storageRefInstance) : null;
+      const imageSrc = preview
+        ? await getDownloadURL(storageRefInstance)
+        : null;
       await axios.put(`${BACKEND_URL}api/threads`, {
         ...threadData,
         id: sendThreadData.data.id,
         threadsDp: imageSrc,
       });
       setLoading(false);
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const countriesOptions = Object.entries(countries).map(([code, country], index) => ({
-    value: index,
-    label: country.name,
-  }));
+  const countriesOptions = Object.entries(countries).map(
+    ([code, country], index) => ({
+      value: index,
+      label: country.name,
+    })
+  );
 
   return (
     <div>
@@ -88,7 +106,12 @@ export default function CreateThreadForm() {
           </>
         )}
       </label>
-      <input type="file" id="file-upload" accept="image/*" onChange={handleImageChange} />
+      <input
+        type="file"
+        id="file-upload"
+        accept="image/*"
+        onChange={handleImageChange}
+      />
       {/* Select destination */}
       <Select
         name="country"
