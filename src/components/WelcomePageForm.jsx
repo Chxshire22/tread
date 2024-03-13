@@ -11,13 +11,13 @@ import {
   uploadString,
 } from "@firebase/storage";
 
-import { storage, DB_STORAGE_PFP_KEY } from "@/utils/firebase";
+import { storage, DB_STORAGE_PFP_KEY, DEFAULT_PFP } from "@/utils/firebase";
 
 export const WelcomePageForm = () => {
   //States
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(DEFAULT_PFP);
 
   const { user } = useUser();
   const router = useRouter();
@@ -35,27 +35,15 @@ export const WelcomePageForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // if (user) {
-    //   try {
-    //     await axios.post(`${BACKEND_URL}/api/user`, {
-    //       email: user.name,
-    //       username: username,
-    //       bio: bio,
-    //     });
-    //   } catch (error) {
-    //     return console.error(error);
-    //   }
-    // }
-    // router.push("/");
     e.preventDefault();
     try {
       const sendUserData = await axios.post(`${BACKEND_URL}api/user`, {
         email: user.name,
         username: username,
         bio: bio,
+        userDpUrl: DEFAULT_PFP,
       });
-      if (!preview) {
+      if (preview != DEFAULT_PFP) {
         router.push("/");
         return;
       } else {

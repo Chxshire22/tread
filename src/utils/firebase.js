@@ -23,3 +23,4 @@ export const DB_STORAGE_PFP_KEY = "profile-img/";
 export const DB_STORAGE_CHAT_IMAGE_KEY = "chat-img/";
 export const DB_STORAGE_THREAD_IMAGE_KEY = "thread-img/";
 export const DB_STORAGE_THREAD_CONTENT_IMAGE_KEY = "thread-content-img/";
+export const DEFAULT_PFP ="https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fdepositphotos_137014128-stock-illustration-user-profile-icon.jpg?alt=media&token=b4b2ea1f-6c73-4514-9155-a8d35f11a732";

@@ -12,14 +12,13 @@ export async function GET() {
 }
 
 export async function POST(request) {
-  const { email, username, bio } = await request.json();
+  const { email, username, bio, userDpUrl } = await request.json();
   try {
     const user = await User.create({
       email: email,
       username: username,
       bio: bio,
-      userDpUrl:
-        "https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fdepositphotos_137014128-stock-illustration-user-profile-icon.jpg?alt=media&token=b4b2ea1f-6c73-4514-9155-a8d35f11a732",
+      userDpUrl
     });
     return NextResponse.json(user);
   } catch (err) {
