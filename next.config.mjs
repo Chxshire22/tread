@@ -15,7 +15,12 @@ const nextConfig = {
       //   pathname: "*",
       // },
     ],
-    domains: ["firebasestorage.googleapis.com", "st3.depositphotos.com", "st.depositphotos.com"],
+    domains: [
+      "firebasestorage.googleapis.com",
+      "st3.depositphotos.com",
+      "st.depositphotos.com",
+      "upload.wikimedia.org",
+    ],
   },
   // webpack: (config, { isServer }) => {
   //   if (!isServer) {
