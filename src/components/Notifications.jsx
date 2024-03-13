@@ -2,6 +2,8 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { EyeFill } from "react-bootstrap-icons";
+import { EyeSlash } from "react-bootstrap-icons";
 
 export default function Notifications({ username }) {
   const [notifications, setNotifications] = useState([]);
@@ -11,7 +13,9 @@ export default function Notifications({ username }) {
       try {
         const userData = await axios.get(`/api/user/${username}`);
         const userId = userData.data.id;
-        const responseNotifications = await axios.get(`/api/notifications/${userId}`);
+        const responseNotifications = await axios.get(
+          `/api/notifications/${userId}`
+        );
         setNotifications(responseNotifications.data);
       } catch (error) {
         console.log(error);
@@ -32,18 +36,26 @@ export default function Notifications({ username }) {
   };
 
   return (
-    <div>
-      <ul>
+    <div className="notification-container">
+      <ul className="notification-list">
         {notifications.map((notification) => (
           <Link
             href={notification.gotoUrl}
             key={notification.id}
             onClick={() => handleClick(notification.id)}
+            className="notification-link"
           >
-            <li>
-              {notification.content} - {notification.viewed ? "Viewed" : "Not Viewed"}
+            <li
+              className={
+                notification.viewed
+                  ? "viewed notification-item"
+                  : "not-viewed notification-item"
+              }
+            >
+              {notification.content} -{" "}
+              {notification.viewed ? <EyeSlash /> : <EyeFill />}
             </li>
-            <hr />
+            <hr className="hr-separator" />
           </Link>
         ))}
       </ul>

@@ -1,16 +1,6 @@
 import { NextResponse } from "next/server";
 import { Saved_Thread } from "@/app/models";
 
-export async function GET() {
-  try {
-    const saved_threads = await Saved_Thread.findAll();
-    return NextResponse.json(saved_threads);
-  } catch (err) {
-    console.log(err);
-    return NextResponse.json({ error: true, msg: err });
-  }
-}
-
 export async function POST(request) {
   const { userId, threadId } = await request.json();
   try {

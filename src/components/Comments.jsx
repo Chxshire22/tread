@@ -82,7 +82,7 @@ export default function Comments({
             }}
           >
             <div style={{ fontSize: "16px", color: "#555" }}>
-              User {comment.userId}: {comment.comment}
+              {comment.User.username}: {comment.comment}
             </div>
           </div>
         ))}
