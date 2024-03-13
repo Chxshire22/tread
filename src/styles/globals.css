@@ -91,6 +91,9 @@ li {
   transform: scale(1.1);
 }
 
+.itinerary-btn {
+  margin: 0.5rem;
+}
 /* LAYOUT */
 
 .page-container {
@@ -143,6 +146,17 @@ li {
 .pfp-lg {
   width: 10rem;
   height: 10rem;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.pfp-l {
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
   object-fit: cover;
   object-position: center;
@@ -456,4 +470,167 @@ li {
   height: 1px;
   background-color: #eee;
   margin: 10px 0;
+}
+
+/* THREADS */
+.main-thread {
+  margin: 0.5rem;
+  border: 1px rgb(223, 223, 223) solid;
+}
+
+.GeoAlt {
+  color: red;
+}
+
+.card-header {
+  background-color: #1d4886;
+  color: white;
+  font-weight: 400;
+}
+
+.card-title {
+  font-weight: 600;
+}
+
+.card-footer {
+  background-color: #1d4886;
+  color: white;
+}
+
+.thread-username {
+  color: #080602;
+  background-color: #fcb130;
+  border-radius: 40px;
+  padding: 5px 20px;
+}
+
+/* PROFILE PAGE */
+
+.personcircle {
+  color: #1d4886;
+}
+
+.profilepage-main {
+  box-shadow: 0px 0px 20px #d3d3d3;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.profilepage-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.profilepage-username {
+  text-decoration: underline;
+  text-decoration-color: #fcb130;
+  text-decoration-thickness: 3px;
+  font-weight: 400;
+}
+
+.profilepage-bio {
+  text-align: center;
+}
+
+.profilepage-friends-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.profilepage-friends {
+  display: flex;
+  justify-content: center;
+}
+
+/* THREAT CONTENTS */
+
+.tc-card-main {
+  margin: 1%;
+  max-height: 60vh;
+  max-width: 90vw;
+  color: black;
+}
+
+.tc-card-img {
+  color: black;
+  opacity: 0.5;
+  backdrop-filter: blur(10px);
+}
+
+.tc-time {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+/* SEARCH PAGE */
+.search-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem;
+}
+
+.search-bar {
+  border-radius: 40px;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-btn {
+  margin-left: auto;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  width: 25rem;
+}
+
+.sr-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 3px;
+  margin: 6px;
+}
+
+.sr-thread {
+  color: #ffffff;
+  background-color: #1d4886;
+  border-radius: 40px;
+  padding: 5px 20px;
+}
+
+.sr-threadcontent {
+  color: #ffffff;
+  background-color: #1d8650;
+  border-radius: 40px;
+  padding: 5px 20px;
+}
+
+.sr-p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }

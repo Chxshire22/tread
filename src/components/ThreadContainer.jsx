@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import ThreadContent from "./ThreadContent";
 import HeadThread from "./HeadThread";
 import { useUserId } from "./GetCurrentUser";
+import { PersonCircle } from "react-bootstrap-icons";
 
 export default function ThreadContainer({ threadId }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,47 +43,33 @@ export default function ThreadContainer({ threadId }) {
         userId: currUserId,
         threadId: threadsData.id,
       });
-      console.log(responseSavedThread)
+      console.log(responseSavedThread);
       alert("Thread saved!");
     } catch (error) {
       console.error("Error adding friend:", error);
     }
-  }
+  };
 
   return (
-    <div
-      style={{ backgroundColor: "lightblue", padding: "1rem", margin: "1rem" }}
-    >
-      <HeadThread thread={threadsData} />
-      <div
-        style={{ borderTop: "1px solid #000", width: "100%", height: "0px" }}
-      ></div>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        style={{
-          marginBottom: "10px",
-          backgroundColor: "lightgray",
-          padding: "1rem",
-          color: "black",
-          fontSize: "1rem",
-          marginTop: "10px",
-        }}
+    <div>
+      <a
+        className="btn btn-sm btn-outline-secondary "
+        style={{ color: "#1d4886" }}
+        href={`/user/${threadsData?.User?.username}`}
       >
-        {isOpen ? "Hide Itinerary" : "Show Itinerary"}
-      </button>
-      <button style={{ marginInline: "1rem" }} onClick={handleSaveThread}>Save Thread</button>
+        <PersonCircle className="personcircle" /> {threadsData?.User?.username}
+      </a>
+      <HeadThread thread={threadsData} />
+      {threadContentList && threadContentList.length > 1 && (
+        <button className="btn btn-primary itinerary-btn" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? "Hide Itinerary" : "Show Itinerary"}
+        </button>
+      )}
       {isOpen && (
         <div style={{ display: "flex" }}>
-          <div
-            style={{ width: "10px", height: "300px", backgroundColor: "#000" }}
-          ></div>
           <div>
             {threadContentList.map((threadContent) => (
-              <a
-                href="#"
-                onClick={(e) => handleClick(e, threadContent.id)}
-                key={threadContent.id}
-              >
+              <a href="#" onClick={(e) => handleClick(e, threadContent.id)} key={threadContent.id}>
                 <ThreadContent threadContentId={threadContent.id} />
               </a>
             ))}

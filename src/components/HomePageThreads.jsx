@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { GeoAltFill, NintendoSwitch } from "react-bootstrap-icons";
+import { GeoAltFill, PersonCircle } from "react-bootstrap-icons";
 import { formatDate } from "@/utils/dateUtils";
 import Image from "next/image";
 
@@ -13,7 +13,6 @@ export default function HomePageThreads() {
       try {
         const response = await axios.get("/api/threads");
         setAllThreadsArray(response.data);
-        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -30,38 +29,32 @@ export default function HomePageThreads() {
         .slice()
         .reverse()
         .map((thread) => (
-          <div
-            style={{
-              margin: "1rem",
-              color: "black",
-              border: "1px black solid",
-            }}
-            key={thread.id}
-            className="card text-center"
-          >
+          <div key={thread.id} className="main-thread card text-center  ">
             <div className="card-header">
-              <GeoAltFill />
-              {thread.destination}
+              <GeoAltFill className="GeoAlt" /> {thread.destination}
             </div>
-            <div className="card-body">
+            <div
+              className="card-body"
+              onClick={() => (window.location.href = `/threads/${thread.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <p className="card-title">
-                <strong>
-                  <big>{thread.title}</big>
-                </strong>{" "}
+                <big>{thread.title}</big>{" "}
               </p>
-
-              <Image
-                src={thread.threadsDp || threadPlaceholderDp}
-                alt="threadsdp"
-                width={300}
-                height={200}
-              />
+              <div style={{ position: "relative", height: "300px", width: "100%" }}>
+                <Image
+                  src={thread.threadsDp || threadPlaceholderDp}
+                  alt="threadsdp"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
               <br />
-              <a href={`/threads/${thread.id}`} className="btn btn-primary">
-                @{thread.User.username}
+              <a className="thread-username" href={`/user/${thread.User.username}`}>
+                <PersonCircle className="personcircle" /> {thread.User.username}
               </a>
             </div>
-            <div className="card-footer text-body-secondary">
+            <div className="card-footer ">
               {formatDate(thread.startDateOfTravel)}
               {thread?.endDateOfTravel && <span> ✈️ {formatDate(thread.endDateOfTravel)}</span>}
             </div>

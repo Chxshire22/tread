@@ -9,13 +9,13 @@ export async function GET(res, { params: { query } }) {
     });
     const threadsPromise = Thread.findAll({
       where: { destination: { [Op.iLike]: `%${query}%` } },
+      include: [User],
     });
-    const threadsContentPromise = Threads_Content.findAll(
-      {
-        where: { location: { [Op.iLike]: `%${query}%` } },
-        include: [Thread]
-      }
-    );
+
+    const threadsContentPromise = Threads_Content.findAll({
+      where: { location: { [Op.iLike]: `%${query}%` } },
+      include: [{ model: Thread, include: [{ model: User }] }],
+    });
 
     const [users, threads, threadsContents] = await Promise.all([
       usersPromise,

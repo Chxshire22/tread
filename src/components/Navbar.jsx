@@ -1,10 +1,5 @@
 "use client";
-import {
-  HouseFill,
-  Search,
-  PersonCircle,
-  ChatSquareFill,
-} from "react-bootstrap-icons";
+import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
 import Link from "next/link";
 import navStyles from "../styles/navbar.module.css";
 import { LoginButton } from "./Buttons";
@@ -20,12 +15,8 @@ const Navbar = () => {
   useEffect(() => {
     const fetchUnviewedNotificationsCount = async () => {
       try {
-        const response = await axios.get(
-          `/api/notifications/${currentUser.id}`
-        );
-        const unviewed = response.data.filter(
-          (notification) => !notification.viewed
-        );
+        const response = await axios.get(`/api/notifications/${currentUser.id}`);
+        const unviewed = response.data.filter((notification) => !notification.viewed);
         setUnviewedCount(unviewed.length);
       } catch (error) {
         console.error("Failed to fetch unviewed notifications count", error);
@@ -67,21 +58,15 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href={`/user/${username}/notifications`}
-                      className="dropdown-item"
-                    >
+                    <a href={`/user/${username}/notifications`} className="dropdown-item">
                       Notifications{" "}
-                      <span className="notification-count">
-                        {unviewedCount}
-                      </span>
+                      {unviewedCount > 0 ? (
+                        <span className="notification-count">{unviewedCount}</span>
+                      ) : null}
                     </a>
                   </li>
                   <li>
-                    <a
-                      href={`/user/${username}/saved-threads`}
-                      className="dropdown-item"
-                    >
+                    <a href={`/user/${username}/saved-threads`} className="dropdown-item">
                       Saved Threads
                     </a>
                   </li>
