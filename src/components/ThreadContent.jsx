@@ -5,15 +5,16 @@ import { GeoAltFill } from "react-bootstrap-icons";
 
 export default function ThreadContent({ threadContentId }) {
   const [threadContent, setThreadContent] = useState({});
-  const userDp =
-    "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
+  const [threadContentDpArray, setThreadContentDpArray] = useState([]);
 
   //get userDp from includes user
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`/api/threads-contents/${threadContentId}`);
+        const dpRes = await axios.get(`/api/threads-contents/display-pictures/${threadContentId}`);
         setThreadContent(response.data[0]);
+        setThreadContentDpArray(dpRes.data);
       } catch (error) {
         console.log(error);
       }
@@ -22,9 +23,13 @@ export default function ThreadContent({ threadContentId }) {
     fetchData();
   }, []);
 
+  const threadContentDP =
+    threadContentDpArray[0]?.url ||
+    "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
+
   return (
     <div className="card  tc-card-main">
-      <img src={userDp} className="card-img tc-card-img" alt="..." />
+      <img src={threadContentDP} className="card-img tc-card-img" alt="..." />
       <div className="card-img-overlay">
         <h5 className="card-title">
           {" "}

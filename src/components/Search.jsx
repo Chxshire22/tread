@@ -51,7 +51,7 @@ export default function Search() {
         </div>
         <div>
           {results.threads?.map((thread) => (
-            <div key={thread.id} className="sr-container">
+            <a key={thread.id} className="sr-container" href={`/threads/${thread.id}`}>
               <div className="sr-thread">
                 <GeoAltFill className="GeoAlt" />
                 {thread.destination}
@@ -61,26 +61,37 @@ export default function Search() {
                 <div className=" thread-username">
                   {" "}
                   <PersonCircle className="personcircle" size={20} />
-                  User {thread.userId}
+                  {thread.User.username}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
         <div>
           {results.threadsContents?.map((threadsContent) => (
-            <div key={threadsContent.id} className="sr-container">
+            <a
+              key={threadsContent.id}
+              className="sr-container"
+              href={`/threads/${threadsContent.Thread.id}/${threadsContent.id}`}
+            >
               <div className="sr-threadcontent">"{threadsContent.location}"</div>
               <div className="sr-p">
                 <span>by</span>
                 <div className=" thread-username">
                   {" "}
                   <PersonCircle className="personcircle" size={20} />
-                  User {threadsContent.Thread.userId}
+                  {threadsContent.Thread.User.username}
                 </div>
               </div>
-            </div>
+            </a>
           ))}
+        </div>
+        <div>
+          {results.users?.length === 0 &&
+          results.threads?.length === 0 &&
+          results.threadsContents?.length === 0 ? (
+            <p>There seems to be no matching search results..</p>
+          ) : null}
         </div>
       </div>
     </div>
