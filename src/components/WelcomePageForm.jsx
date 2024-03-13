@@ -34,6 +34,7 @@ export const WelcomePageForm = () => {
     setPreview(optimizedImg);
   };
 
+  // TODO: Check if username is already taken
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
