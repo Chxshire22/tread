@@ -1,49 +1,111 @@
 "use client";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { imgOptimization } from "@/utils/imageOptimization";
 import { BACKEND_URL } from "@/app/constants";
+import {
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
+
+import { storage, DB_STORAGE_PFP_KEY } from "@/utils/firebase";
 
 export const WelcomePageForm = () => {
   //States
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
   const [profileImage, setProfileImage] = useState(null);
+  const [preview, setPreview] = useState(null);
 
   const { user } = useUser();
   const router = useRouter();
 
+  useEffect(() => {
+    if (!user) {
+      router.push("/");
+    }
+  }, [user]);
+
+  const handleImageChange = async (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setPreview(null);
+      return;
+    }
+    const file = e.target.files[0];
+
+    let optimizedImg = await imgOptimization(file, 768);
+    console.log(optimizedImg);
+    setPreview(optimizedImg);
+  };
+
   const handleSubmit = async (e) => {
+    // e.preventDefault();
+    // if (user) {
+    //   try {
+    //     await axios.post(`${BACKEND_URL}/api/user`, {
+    //       email: user.name,
+    //       username: username,
+    //       bio: bio,
+    //     });
+    //   } catch (error) {
+    //     return console.error(error);
+    //   }
+    // }
+    // router.push("/");
     e.preventDefault();
-    if (user) {
-      try {
-        await axios.post(`${BACKEND_URL}/api/user`, {
+    try {
+      const sendUserData = await axios.post(
+        `${BACKEND_URL}api/user`,
+        {
           email: user.name,
           username: username,
           bio: bio,
+        }
+      );
+      if (!preview) {
+        router.push("/");
+        return;
+      } else {
+        const storageRefInstance = storageRef(
+          storage,
+          DB_STORAGE_PFP_KEY +
+            sendUserData.data.username
+        );
+        await uploadString(storageRefInstance, preview, "data_url");
+        const imageSrc = preview
+          ? await getDownloadURL(storageRefInstance)
+          : null;
+        await axios.put(`${BACKEND_URL}api/user`, {
+          id: sendUserData.data.id,
+          threadsDp: imageSrc,
         });
-      } catch (error) {
-        return console.error(error);
+        router.push("/");
       }
+    } catch (error) {
+      console.log(error);
     }
-    router.push("/");
   };
 
   return (
-    <>
-      {user && <p>Hi! {user.name}</p>} <h1> Welcome to Treads!</h1>
+    <div className="page-container">
+      <h1> Welcome to Treads!</h1>
       <p>Let&apos;s get started by setting up your profile.</p>
       <p>Tell us a little about yourself.</p>
-      <p>Don&apos;t worry, you can change this later.</p>
-      <p>👟</p>
+      {/* <p>Don&apos;t worry, you can change this later.</p> */}
+      {/* <p>👟</p> */}
       <br />
       <form onSubmit={handleSubmit}>
+        <div>
+          <img src={preview} alt="" className="pfp-lg" />
+        </div>
         <input
           type="file"
           accept="image/*"
           value={profileImage}
-          onChange={(e) => setProfileImage(e.target.files[0])}
+          onChange={handleImageChange}
         />
         <input
           required
@@ -58,9 +120,11 @@ export const WelcomePageForm = () => {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         />
-        <button type="submit">Complete my profile!</button>
+        <button className="btn btn-submit-form" type="submit">
+          Complete my profile!
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 
