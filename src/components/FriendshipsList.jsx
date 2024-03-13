@@ -29,7 +29,7 @@ export default function FriendshipsList({ username }) {
       }
     };
     fetchData();
-  }, []);
+  }, [currUserId]);
 
   const renderPending = () => {
     return pendingRequests.map((request) => {

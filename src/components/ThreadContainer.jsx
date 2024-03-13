@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 //Component imports
 import ThreadContent from "./ThreadContent";
 import HeadThread from "./HeadThread";
+import { useUserId } from "./GetCurrentUser";
 import { PersonCircle } from "react-bootstrap-icons";
 
 export default function ThreadContainer({ threadId }) {
@@ -13,6 +14,8 @@ export default function ThreadContainer({ threadId }) {
   const [threadsData, setThreadsData] = useState(null);
   const [threadContentList, setThreadContentList] = useState({});
   const router = useRouter();
+  const { currentUser } = useUserId();
+  const currUserId = currentUser?.id;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +35,19 @@ export default function ThreadContainer({ threadId }) {
     e.preventDefault();
     const newPath = `/threads/${threadId}/${threadContentId}`;
     router.push(newPath);
+  };
+
+  const handleSaveThread = async () => {
+    try {
+      const responseSavedThread = await axios.post(`/api/saved-threads`, {
+        userId: currUserId,
+        threadId: threadsData.id,
+      });
+      console.log(responseSavedThread);
+      alert("Thread saved!");
+    } catch (error) {
+      console.error("Error adding friend:", error);
+    }
   };
 
   return (

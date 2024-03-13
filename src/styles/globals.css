@@ -402,6 +402,66 @@ li {
   z-index: 10;
 }
 
+/* Notifications */
+
+.notification-container {
+  margin-top: 1rem;
+  margin-right: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.notification-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.notification-item {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #e8e8e8;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.notification-item:hover {
+  background-color: #f56060;
+}
+
+.notification-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 0.25em 0.5em;
+  font-size: 0.75em;
+  margin-left: 0.5em;
+  vertical-align: super;
+}
+
+.notification-link {
+  text-decoration: none;
+  color: #003e81;
+  display: block;
+}
+
+.viewed {
+  color: #999;
+}
+
+.not-viewed {
+  font-weight: bold;
+}
+
+.hr-separator {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin: 10px 0;
+}
+
 /* THREADS */
 .main-thread {
   margin: 0.5rem;
