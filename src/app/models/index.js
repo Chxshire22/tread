@@ -47,7 +47,9 @@ Threads_Content.hasMany(Threads_Contents_Comment, {
 Threads_Content.belongsToMany(User, {
   through: "Threads_Contents_Like",
 });
-Threads_Content.hasMany(Threads_Contents_Display_Picture);
+Threads_Content.hasMany(Threads_Contents_Display_Picture, {
+  foreignKey: "threadsContentsId",
+});
 Threads_Content.belongsToMany(Category, {
   through: "Threads_Contents_Category",
 });
@@ -63,7 +65,9 @@ Threads_Contents_Comment.belongsTo(Threads_Content, {
 });
 
 //Threads_Contents_Display_Picture
-Threads_Contents_Display_Picture.belongsTo(Threads_Content);
+Threads_Contents_Display_Picture.belongsTo(Threads_Content, {
+  foreignKey: "threadsContentsId",
+});
 
 //Threads_Contents_Like
 Threads_Contents_Like.belongsTo(User);

@@ -1,13 +1,39 @@
 "use client";
-import { HouseFill, Search, PersonCircle, ChatSquareFill } from "react-bootstrap-icons";
+import {
+  HouseFill,
+  Search,
+  PersonCircle,
+  ChatSquareFill,
+} from "react-bootstrap-icons";
 import Link from "next/link";
 import navStyles from "../styles/navbar.module.css";
 import { LoginButton } from "./Buttons";
 import { useUserId } from "./GetCurrentUser";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const Navbar = () => {
   const { currentUser } = useUserId();
   const username = currentUser?.username;
+  const [unviewedCount, setUnviewedCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUnviewedNotificationsCount = async () => {
+      try {
+        const response = await axios.get(
+          `/api/notifications/${currentUser.id}`
+        );
+        const unviewed = response.data.filter(
+          (notification) => !notification.viewed
+        );
+        setUnviewedCount(unviewed.length);
+      } catch (error) {
+        console.error("Failed to fetch unviewed notifications count", error);
+      }
+    };
+
+    fetchUnviewedNotificationsCount();
+  }, [currentUser]);
 
   return (
     <nav className={navStyles.navcontainer}>
@@ -41,8 +67,22 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li>
-                    <a href={`/user/${username}/notifications`} className="dropdown-item">
-                      Notifications
+                    <a
+                      href={`/user/${username}/notifications`}
+                      className="dropdown-item"
+                    >
+                      Notifications{" "}
+                      <span className="notification-count">
+                        {unviewedCount}
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`/user/${username}/saved-threads`}
+                      className="dropdown-item"
+                    >
+                      Saved Threads
                     </a>
                   </li>
                   <li>

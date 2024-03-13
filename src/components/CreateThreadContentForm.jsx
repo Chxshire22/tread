@@ -2,20 +2,13 @@
 
 import Carousel from "@/components/Carousel";
 import { useEffect, useState } from "react";
-import {
-  CardImage,
-  JournalMedical,
-  PlusSquareFill,
-} from "react-bootstrap-icons";
+import { CardImage, JournalMedical, PlusSquareFill } from "react-bootstrap-icons";
 import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
-import {
-  ref as storageRef,
-  getDownloadURL,
-  uploadString,
-} from "@firebase/storage";
+import { ref as storageRef, getDownloadURL, uploadString } from "@firebase/storage";
+import { useRouter } from "next/navigation";
 
 import {
   storage,
@@ -28,7 +21,7 @@ export default function CreateThreadContentForm({ threadId }) {
   const [imgArr, setImgArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const router = useRouter();
   // SEND TO BACKEND
 
   const [threadsContentData, setThreadsContentData] = useState({
@@ -40,8 +33,6 @@ export default function CreateThreadContentForm({ threadId }) {
   const [categoriesForBackend, setCategoriesForBackend] = useState([]);
 
   console.log(threadsContentData);
-
-
 
   // NOTE: Thread content category is to be posted to threads_contents_categories table
   // NOTE: Thread content images to be posted to threads_contents_display_picture table
@@ -122,15 +113,12 @@ export default function CreateThreadContentForm({ threadId }) {
         `${BACKEND_URL}api/threads-contents`,
         threadsContentData
       );
-      const sendCategoriesData = await axios.post(
-        `${BACKEND_URL}api/threads-contents/categories`,
-        {
-          threadContentCategories: categoriesForBackend.map((categories) => ({
-            ...categories,
-            threadsContentsId: sendThreadsContentData.data.id,
-          })),
-        }
-      );
+      const sendCategoriesData = await axios.post(`${BACKEND_URL}api/threads-contents/categories`, {
+        threadContentCategories: categoriesForBackend.map((categories) => ({
+          ...categories,
+          threadsContentsId: sendThreadsContentData.data.id,
+        })),
+      });
       for (let image of imgArr) {
         const storageRefInstance = storageRef(
           storage,
@@ -153,6 +141,7 @@ export default function CreateThreadContentForm({ threadId }) {
         { threadContentImages: imgUrlAndId }
       );
       setLoading(false);
+      router.push(`/threads/${threadId}`);
     } catch (error) {
       console.log(error);
     }
