@@ -50,7 +50,7 @@ export default function FullThreadContent({ params }) {
   };
 
   return (
-    <div>
+    <div className="page-container">
       {currentUser ? (
         <div
           style={{
@@ -70,10 +70,10 @@ export default function FullThreadContent({ params }) {
             <ChatLeftFill />
             <HeartFill style={{ marginInline: "1rem" }} onClick={handleLike} />
           </div>
-          <div style={{ width: "60vw" }}>
+          <div style={{ width: "60vw", margin: "1rem" }}>
             <Likes threadContentId={params.threadContentId} />
             <Comments
-              threadId = {params.threadId}
+              threadId={params.threadId}
               threadContentId={params.threadContentId}
               ThreadsContentUserId={ThreadsContentUserId}
               currentUser={currentUser}
