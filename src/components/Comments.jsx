@@ -59,6 +59,7 @@ export default function Comments({
     <div
       style={{
         backgroundColor: "lightgray",
+        padding: "10px",
       }}
     >
       <div
