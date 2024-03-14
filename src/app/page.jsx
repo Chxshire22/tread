@@ -4,6 +4,8 @@ import { LoginButton, SignUpButton, CreatePostButton } from "@/components/Button
 import { useUserId } from "@/components/GetCurrentUser";
 import HomePageThreads from "@/components/HomePageThreads";
 import Navbar from "@/components/Navbar";
+import Image from "next/image";
+import AirThreadwhitecrop from "@/assets/AirThreadwhitecrop.png";
 
 export default function Home() {
   const { currentUser } = useUserId();
@@ -11,7 +13,9 @@ export default function Home() {
   return (
     <main>
       <div>
-        <h1>HOME PAGE - Treads</h1>
+        <div className="airthread-logo">
+          <Image src={AirThreadwhitecrop} alt="AirThread Logo" width={300} height={200} />
+        </div>
         {currentUser?.email && (
           <p>
             Hey👋<strong>{currentUser.username} </strong>
@@ -20,11 +24,11 @@ export default function Home() {
       </div>
 
       {!currentUser && (
-        <>
+        <div className="mainpage-btns">
           <LoginButton />
           <br />
           <SignUpButton />
-        </>
+        </div>
       )}
       <HomePageThreads />
       <CreatePostButton />

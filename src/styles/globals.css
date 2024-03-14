@@ -645,3 +645,17 @@ li {
   justify-content: center;
   gap: 7px;
 }
+
+.airthread-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.mainpage-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
