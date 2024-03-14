@@ -11,23 +11,16 @@ import {
   uploadString,
 } from "@firebase/storage";
 
-import { storage, DB_STORAGE_PFP_KEY } from "@/utils/firebase";
+import { storage, DB_STORAGE_PFP_KEY, DEFAULT_PFP } from "@/utils/firebase";
 
 export const WelcomePageForm = () => {
   //States
   const [username, setUsername] = useState("");
   const [bio, setBio] = useState("");
-  const [profileImage, setProfileImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+  const [preview, setPreview] = useState(DEFAULT_PFP);
 
   const { user } = useUser();
   const router = useRouter();
-
-  useEffect(() => {
-    if (!user) {
-      router.push("/");
-    }
-  }, [user]);
 
   const handleImageChange = async (e) => {
     if (!e.target.files || e.target.files.length === 0) {
@@ -41,38 +34,23 @@ export const WelcomePageForm = () => {
     setPreview(optimizedImg);
   };
 
+  // TODO: Check if username is already taken
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    // if (user) {
-    //   try {
-    //     await axios.post(`${BACKEND_URL}/api/user`, {
-    //       email: user.name,
-    //       username: username,
-    //       bio: bio,
-    //     });
-    //   } catch (error) {
-    //     return console.error(error);
-    //   }
-    // }
-    // router.push("/");
     e.preventDefault();
     try {
-      const sendUserData = await axios.post(
-        `${BACKEND_URL}api/user`,
-        {
-          email: user.name,
-          username: username,
-          bio: bio,
-        }
-      );
-      if (!preview) {
+      const sendUserData = await axios.post(`${BACKEND_URL}api/user`, {
+        email: user.name,
+        username: username,
+        bio: bio,
+        userDpUrl: DEFAULT_PFP,
+      });
+      if (preview != DEFAULT_PFP) {
         router.push("/");
         return;
       } else {
         const storageRefInstance = storageRef(
           storage,
-          DB_STORAGE_PFP_KEY +
-            sendUserData.data.username
+          DB_STORAGE_PFP_KEY + sendUserData.data.username
         );
         await uploadString(storageRefInstance, preview, "data_url");
         const imageSrc = preview
@@ -80,7 +58,7 @@ export const WelcomePageForm = () => {
           : null;
         await axios.put(`${BACKEND_URL}api/user`, {
           id: sendUserData.data.id,
-          threadsDp: imageSrc,
+          userDpUrl: imageSrc,
         });
         router.push("/");
       }
@@ -97,30 +75,42 @@ export const WelcomePageForm = () => {
       {/* <p>Don&apos;t worry, you can change this later.</p> */}
       {/* <p>👟</p> */}
       <br />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="welcome-form">
         <div>
           <img src={preview} alt="" className="pfp-lg" />
         </div>
         <input
           type="file"
           accept="image/*"
-          value={profileImage}
+          // value={profileImage}
           onChange={handleImageChange}
         />
-        <input
-          required
-          type="string"
-          placeholder="What's your username?"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Bio (optional)"
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-        />
-        <button className="btn btn-submit-form" type="submit">
+        <div className="form-floating">
+          <input
+            required
+            type="string"
+            placeholder="Username"
+            className="form-control"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="form-label">Username</label>
+        </div>
+        <div className="form-floating">
+          <input
+            type="text"
+            placeholder="Bio (optional)"
+            value={bio}
+            className="form-control"
+            onChange={(e) => setBio(e.target.value)}
+          />
+          <label htmlFor="">Bio</label>
+        </div>
+        <button
+          className="btn btn-submit-form"
+          type="submit"
+          disabled={bio == "" || username == "" ? true : false}
+        >
           Complete my profile!
         </button>
       </form>
