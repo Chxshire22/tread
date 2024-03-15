@@ -9,7 +9,8 @@ import { useUserId } from "@/components/GetCurrentUser";
 import { useEffect, useState } from "react";
 
 export default function FullThreadContent({ params }) {
-  const { currentUser } = useUserId({});
+  const { currentUser } = useUserId();
+  const currUserId = currentUser?.id;
   const [ThreadsContentUserId, setThreadsContentUserId] = useState();
   const threadsContentsId = params.threadContentId;
 
@@ -50,14 +51,14 @@ export default function FullThreadContent({ params }) {
   };
 
   return (
-    <div>
+    <div className="page-container">
       {currentUser ? (
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        // }}
         >
           <PageHeaderWithBackBtn title={"Threads"} />
           <ThreadContent threadContentId={params.threadContentId} />
@@ -70,10 +71,10 @@ export default function FullThreadContent({ params }) {
             <ChatLeftFill />
             <HeartFill style={{ marginInline: "1rem" }} onClick={handleLike} />
           </div>
-          <div style={{ width: "60vw" }}>
+          <div style={{ width: "60vw", margin: "1rem" }}>
             <Likes threadContentId={params.threadContentId} />
             <Comments
-              threadId = {params.threadId}
+              threadId={params.threadId}
               threadContentId={params.threadContentId}
               ThreadsContentUserId={ThreadsContentUserId}
               currentUser={currentUser}

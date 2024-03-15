@@ -60,7 +60,7 @@ export default function ThreadContainer({ threadId }) {
         <PersonCircle className="personcircle" /> {threadsData?.User?.username}
       </a>
       <HeadThread thread={threadsData} />
-      {threadContentList && threadContentList.length > 1 && (
+      {threadContentList && threadContentList.length > 0 && (
         <button className="btn btn-primary itinerary-btn" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? "Hide Itinerary" : "Show Itinerary"}
         </button>

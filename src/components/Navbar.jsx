@@ -23,7 +23,9 @@ const Navbar = () => {
       }
     };
 
-    if(currentUser)fetchUnviewedNotificationsCount();
+    if(currentUser){
+      fetchUnviewedNotificationsCount();
+    }
   }, [currentUser]);
 
   return (

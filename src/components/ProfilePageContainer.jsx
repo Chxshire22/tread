@@ -71,6 +71,7 @@ export default function ProfilePageContainer({ username }) {
   return (
     <div className="profilepage-main">
       {" "}
+      {console.log(userDp)}
       <div className="profilepage-head">
         <Image
           src={userDp}
