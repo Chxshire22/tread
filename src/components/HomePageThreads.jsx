@@ -41,25 +41,34 @@ export default function HomePageThreads() {
               <p className="card-title">
                 <big>{thread.title}</big>{" "}
               </p>
-              <div style={{ position: "relative", height: "300px", width: "100%" }}>
+              <div
+                style={{ position: "relative", height: "300px", width: "100%" }}
+              >
                 <Image
                   src={thread.threadsDp || threadPlaceholderDp}
                   alt="threadsdp"
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  loading="lazy"
+                  style={{ objectFit: "cover" }}
                 />
               </div>
               <br />
-              <a className="thread-username" href={`/user/${thread.User.username}`}>
+              <a
+                className="thread-username"
+                href={`/user/${thread.User.username}`}
+              >
                 <PersonCircle className="personcircle" /> {thread.User.username}
               </a>
             </div>
             <div className="card-footer ">
               {formatDate(thread.startDateOfTravel)}
-              {thread?.endDateOfTravel && <span> ✈️ {formatDate(thread.endDateOfTravel)}</span>}
+              {thread?.endDateOfTravel && (
+                <span> ✈️ {formatDate(thread.endDateOfTravel)}</span>
+              )}
             </div>
           </div>
         ))}
+      <div className="spacer"></div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import ThreadContainer from "@/components/ThreadContainer";
 import PageHeaderWithBackBtn from "@/components/PageHeaderWithBackBtn";
 import { useEffect, useState } from "react";
 import { CreateThreadContentButton } from "@/components/Buttons";
+import Navbar from "@/components/Navbar";
 import { useUserId } from "@/components/GetCurrentUser";
 import axios from "axios";
 
@@ -32,14 +33,17 @@ export default function MainThread({ params }) {
   }, [currUserId]);
 
   return (
-    <div>
-      <PageHeaderWithBackBtn title={"Threads"} />
-      <ThreadContainer threadId={params.threadId} />
+    <>
+      <div className="page-container">
+        <PageHeaderWithBackBtn title={"Threads"} />
+        <ThreadContainer threadId={params.threadId} />
       {console.log(threadBelongsToUser)}
       {threadBelongsToUser && (
-        <CreateThreadContentButton threadId={params.threadId} />
+          <CreateThreadContentButton threadId={params.threadId} />
       )}
       .
-    </div>
+      </div>
+      <Navbar />
+    </>
   );
 }

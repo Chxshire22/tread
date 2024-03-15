@@ -34,7 +34,7 @@ export const WelcomePageForm = () => {
     setPreview(optimizedImg);
   };
 
-  // TODO: Check if username is already taken
+  // TODO: Check if username is already taken return error message
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -44,7 +44,7 @@ export const WelcomePageForm = () => {
         bio: bio,
         userDpUrl: DEFAULT_PFP,
       });
-      if (preview != DEFAULT_PFP) {
+      if (preview === DEFAULT_PFP) {
         router.push("/");
         return;
       } else {
@@ -109,7 +109,7 @@ export const WelcomePageForm = () => {
         <button
           className="btn btn-submit-form"
           type="submit"
-          disabled={bio == "" || username == "" ? true : false}
+          disabled={username == "" ? true : false}
         >
           Complete my profile!
         </button>

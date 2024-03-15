@@ -2,12 +2,20 @@
 
 import Carousel from "@/components/Carousel";
 import { useEffect, useState } from "react";
-import { CardImage, JournalMedical, PlusSquareFill } from "react-bootstrap-icons";
+import {
+  CardImage,
+  JournalMedical,
+  PlusSquareFill,
+} from "react-bootstrap-icons";
 import Select from "react-select";
 import { imgOptimization } from "@/utils/imageOptimization";
 import axios from "axios";
 import { BACKEND_URL } from "@/app/constants";
-import { ref as storageRef, getDownloadURL, uploadString } from "@firebase/storage";
+import {
+  ref as storageRef,
+  getDownloadURL,
+  uploadString,
+} from "@firebase/storage";
 import { useRouter } from "next/navigation";
 
 import {
@@ -113,12 +121,15 @@ export default function CreateThreadContentForm({ threadId }) {
         `${BACKEND_URL}api/threads-contents`,
         threadsContentData
       );
-      const sendCategoriesData = await axios.post(`${BACKEND_URL}api/threads-contents/categories`, {
-        threadContentCategories: categoriesForBackend.map((categories) => ({
-          ...categories,
-          threadsContentsId: sendThreadsContentData.data.id,
-        })),
-      });
+      const sendCategoriesData = await axios.post(
+        `${BACKEND_URL}api/threads-contents/categories`,
+        {
+          threadContentCategories: categoriesForBackend.map((categories) => ({
+            ...categories,
+            threadsContentsId: sendThreadsContentData.data.id,
+          })),
+        }
+      );
       for (let image of imgArr) {
         const storageRefInstance = storageRef(
           storage,
@@ -151,7 +162,7 @@ export default function CreateThreadContentForm({ threadId }) {
     <div>
       {/* CAROUSEL */}
       {imgArr.length >= 1 ? (
-        <Carousel images={imgArr} setImgArr={setImgArr} />
+        <Carousel images={imgArr} setImgArr={setImgArr} allowDelete={true} />
       ) : (
         <div className="img-preview-placeholder">
           <CardImage size={40} /> <p>Image Preview</p>
