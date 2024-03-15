@@ -42,29 +42,30 @@ export default function ThreadContent({ threadContentId }) {
 
   const carouselStyle = {
     width: "60vw",
+    margin: "10px",
   };
 
   return (
     <div className="card tc-card-main">
-      <div style={carouselStyle}>
-        <Carousel images={imgArr} />
-      </div>
       {/* <img src={threadContentDP} className="card-img tc-card-img" alt="..." /> */}
-      <div className="card-img-overlay">
+      <div style={{ margin: "10px" }}>
         <h5 className="card-title">
           {" "}
           <GeoAltFill className="GeoAlt" />
           {threadContent.location}{" "}
         </h5>
         <p className="card-text">"{threadContent.description}"</p>
-        <p className="card-text tc-time">
-          <small>
-            {threadContent.recommendedTime && (
-              <p> Recommended Time: {threadContent.recommendedTime} </p>
-            )}
-          </small>
-        </p>
       </div>
+      <div style={carouselStyle}>
+        <Carousel images={imgArr} />
+      </div>
+      <p className="card-text tc-time">
+        <small>
+          {threadContent.recommendedTime && (
+            <p> Recommended Time: {threadContent.recommendedTime} </p>
+          )}
+        </small>
+      </p>
     </div>
   );
 }
