@@ -17,8 +17,9 @@ export default function Home() {
           <Image src={AirThreadwhitecrop} alt="AirThread Logo" width={300} height={200} />
         </div>
         {currentUser?.email && (
-          <p>
-            Hey👋<strong>{currentUser.username} </strong>
+          <p className="main-username">
+            Hello 👋
+            <strong className="profilepage-username">{currentUser.username} </strong>
           </p>
         )}
       </div>

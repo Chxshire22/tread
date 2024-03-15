@@ -659,3 +659,8 @@ li {
   justify-content: center;
   gap: 1rem;
 }
+
+.main-username {
+  display: flex;
+  justify-content: center;
+}
