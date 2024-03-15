@@ -7,7 +7,7 @@ import {
 } from "react-bootstrap-icons";
 
 export default function Carousel(props) {
-   const { images, setImgArr } = props;
+   const { images, setImgArr, allowDelete } = props;
   const sliderRef = useRef(null);
 
 
@@ -62,7 +62,7 @@ export default function Carousel(props) {
                 className="slide-style"
                 key={imageIndex}
               >
-                          <div
+                          {allowDelete && <div
                 onClick={() => {
                   setImgArr((prevState) => {
                     const index = prevState.indexOf(image);
@@ -79,7 +79,7 @@ export default function Carousel(props) {
                 className="remove-img"
               >
                 <XCircleFill size={25} color="#bf5464" />
-              </div>
+              </div>}
               </div>
             ))}
           </div>

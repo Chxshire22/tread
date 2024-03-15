@@ -44,7 +44,7 @@ export const WelcomePageForm = () => {
         bio: bio,
         userDpUrl: DEFAULT_PFP,
       });
-      if (preview != DEFAULT_PFP) {
+      if (preview === DEFAULT_PFP) {
         router.push("/");
         return;
       } else {
@@ -109,7 +109,7 @@ export const WelcomePageForm = () => {
         <button
           className="btn btn-submit-form"
           type="submit"
-          disabled={bio == "" || username == "" ? true : false}
+          disabled={username == "" ? true : false}
         >
           Complete my profile!
         </button>
