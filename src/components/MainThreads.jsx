@@ -14,7 +14,7 @@ export default function MainThreads({ username }) {
       try {
         const usernameData = await axios.get(`/api/user/${username}`);
         const userId = usernameData.data.id;
-        setUserDp(usernameData.data.userDpUrl || null);
+        setUserDp(usernameData.data.userDpUrl || null); //is this supposed to be in use?
         const threadsResponse = await axios.get(`/api/threads/user/${userId}`);
         setThreadsArray(threadsResponse.data);
       } catch (error) {
@@ -24,6 +24,10 @@ export default function MainThreads({ username }) {
 
     fetchData();
   }, [username]);
+
+  useEffect(() => {
+    console.log(threadsArray);
+  }, [threadsArray]);
 
   return (
     <div>
