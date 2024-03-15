@@ -26,7 +26,7 @@ export default function ThreadContent({ threadContentId }) {
     };
 
     fetchData();
-  }, []);
+  }, []); 
 
   // const threadContentDP =
   //   threadContentDpArray[0]?.url ||
@@ -48,6 +48,9 @@ export default function ThreadContent({ threadContentId }) {
   return (
     <div className="card tc-card-main">
       {/* <img src={threadContentDP} className="card-img tc-card-img" alt="..." /> */}
+      <div style={carouselStyle}>
+        <Carousel images={imgArr} />
+      </div>
       <div style={{ margin: "10px" }}>
         <h5 className="card-title">
           {" "}
@@ -55,9 +58,6 @@ export default function ThreadContent({ threadContentId }) {
           {threadContent.location}{" "}
         </h5>
         <p className="card-text">"{threadContent.description}"</p>
-      </div>
-      <div style={carouselStyle}>
-        <Carousel images={imgArr} />
       </div>
       <p className="card-text tc-time">
         <small>
