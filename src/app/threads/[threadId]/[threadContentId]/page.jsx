@@ -9,7 +9,8 @@ import { useUserId } from "@/components/GetCurrentUser";
 import { useEffect, useState } from "react";
 
 export default function FullThreadContent({ params }) {
-  const { currentUser } = useUserId({});
+  const { currentUser } = useUserId();
+  const currUserId = currentUser?.id;
   const [ThreadsContentUserId, setThreadsContentUserId] = useState();
   const threadsContentsId = params.threadContentId;
 
@@ -53,11 +54,11 @@ export default function FullThreadContent({ params }) {
     <div className="page-container">
       {currentUser ? (
         <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   alignItems: "center",
+        // }}
         >
           <PageHeaderWithBackBtn title={"Threads"} />
           <ThreadContent threadContentId={params.threadContentId} />
