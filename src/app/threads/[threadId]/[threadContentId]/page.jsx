@@ -53,25 +53,19 @@ export default function FullThreadContent({ params }) {
   return (
     <div className="page-container">
       {currentUser ? (
-        <div
-        // style={{
-        //   display: "flex",
-        //   flexDirection: "column",
-        //   alignItems: "center",
-        // }}
-        >
+        <div>
           <PageHeaderWithBackBtn title={"Threads"} />
           <ThreadContent threadContentId={params.threadContentId} />
           <div
             style={{
               display: "flex",
-              width: "60%",
+              margin: "12px",
             }}
           >
             <ChatLeftFill />
             <HeartFill style={{ marginInline: "1rem" }} onClick={handleLike} />
           </div>
-          <div style={{ width: "60vw", margin: "1rem" }}>
+          <div style={{ width: "60vw", margin: "5px" }}>
             <Likes threadContentId={params.threadContentId} />
             <Comments
               threadId={params.threadId}

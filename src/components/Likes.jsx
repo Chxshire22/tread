@@ -21,5 +21,9 @@ export default function Likes({ threadContentId }) {
     getData();
   }, []);
 
-  return <div>{likes} Likes</div>;
+  return (
+    <div style={{ marginBottom: "10px", fontWeight: "bold", fontSize: "20px" }}>
+      {likes} Likes
+    </div>
+  );
 }

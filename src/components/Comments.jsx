@@ -58,14 +58,16 @@ export default function Comments({
   return (
     <div
       style={{
-        backgroundColor: "lightgray",
+        backgroundColor: "darkgray",
         padding: "10px",
+        width: "83vw",
+        borderRadius: "5px",
       }}
     >
       <div
         style={{
           marginBottom: "10px",
-          fontSize: "15px",
+          fontSize: "20px",
           fontWeight: "bold",
         }}
       >
