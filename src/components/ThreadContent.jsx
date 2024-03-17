@@ -12,12 +12,8 @@ export default function ThreadContent({ threadContentId }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `/api/threads-contents/${threadContentId}`
-        );
-        const dpRes = await axios.get(
-          `/api/threads-contents/display-pictures/${threadContentId}`
-        );
+        const response = await axios.get(`/api/threads-contents/${threadContentId}`);
+        const dpRes = await axios.get(`/api/threads-contents/display-pictures/${threadContentId}`);
         setThreadContent(response.data[0]);
         setThreadContentDpArray(dpRes.data);
       } catch (error) {
@@ -36,8 +32,8 @@ export default function ThreadContent({ threadContentId }) {
     "https://st3.depositphotos.com/6672868/13701/v/450/depositphotos_137014128-stock-illustration-user-profile-icon.jpg";
 
   const imgArr = [
-    "https://www.state.gov/wp-content/uploads/2019/04/Japan-2107x1406.jpg",
-    "https://media.cnn.com/api/v1/images/stellar/prod/230210161917-01-japan-never-traveler-culture-tokyo.jpg?c=original",
+    threadContentDpArray ||
+      "https://media.cnn.com/api/v1/images/stellar/prod/230210161917-01-japan-never-traveler-culture-tokyo.jpg?c=original",
   ];
 
   const carouselStyle = {
