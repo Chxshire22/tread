@@ -6,7 +6,7 @@ import {
   XCircleFill,
 } from "react-bootstrap-icons";
 
-export default function Carousel(props) {
+export default function CarouselTC(props) {
    const { images, setImgArr, allowDelete } = props;
   const sliderRef = useRef(null);
 

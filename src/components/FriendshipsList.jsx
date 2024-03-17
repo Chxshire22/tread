@@ -73,8 +73,12 @@ export default function FriendshipsList({ username }) {
   return (
     <div>
       <PageHeaderWithBackBtn />
-      <h3>{username}</h3>
-      <ul className="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+      <h3 className="friendship-username">@{username}</h3>
+      <ul
+        className="nav nav-pills mb-3 nav-justified friendship-pills"
+        id="pills-tab"
+        role="tablist"
+      >
         {/* MY FRIENDS PILL  */}
         <li className=" nav-item" role="presentation">
           <button
@@ -91,20 +95,22 @@ export default function FriendshipsList({ username }) {
           </button>
         </li>
         {/* PENDING FRIENDS REQUEST PILL  */}
-        <li className="nav-item" role="presentation">
-          <button
-            className="nav-link"
-            id="pills-pending-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#pills-pending"
-            type="button"
-            role="tab"
-            aria-controls="pills-pending"
-            aria-selected="false"
-          >
-            Pending request <PersonFillExclamation />
-          </button>
-        </li>
+        {currUserId === userId && (
+          <li className="nav-item" role="presentation">
+            <button
+              className="nav-link"
+              id="pills-pending-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#pills-pending"
+              type="button"
+              role="tab"
+              aria-controls="pills-pending"
+              aria-selected="false"
+            >
+              Pending request <PersonFillExclamation />
+            </button>
+          </li>
+        )}
       </ul>
       {/* CONTENT OF PILLS  */}
       <div className="tab-content" id="pills-tabContent">

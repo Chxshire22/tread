@@ -104,7 +104,7 @@ li {
   margin-top: 1rem; */
   padding-inline: 2rem;
   padding-top: 1rem;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .spacer {
@@ -400,6 +400,7 @@ li {
   color: var(--color-white);
   padding: 0.5rem;
   border-radius: 50%;
+  background-color: rgb(62, 62, 62);
   cursor: pointer;
   transition: all 0.3s ease-in;
   z-index: 1;
@@ -663,4 +664,19 @@ li {
 .main-username {
   display: flex;
   justify-content: center;
+}
+
+.friendship-pills {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.friendship-username {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin: 1rem;
+  color: #fcb130;
 }
