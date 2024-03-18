@@ -1,0 +1,3 @@
+#!/bin/bash
+
+npm run dev | tee -a npm-run-dev.log & nodemon src/websocket_server/websocket.js | tee -a websocket.log

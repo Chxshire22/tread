@@ -1,0 +1,832 @@
+
+> tread@0.1.0 dev
+> next dev
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+
+ ✓ Ready in 1600ms
+ ○ Compiling / ...
+ ✓ Compiled / in 5.3s (4800 modules)
+ ○ Compiling /api/auth/[auth0] ...
+Executed (default): SELECT 1+1 AS result Elapsed time: 2ms
+Connection has been established successfully.
+Executed (default): SELECT "Thread"."id", "Thread"."user_id" AS "userId", "Thread"."title", "Thread"."destination", "Thread"."start_date_of_travel" AS "startDateOfTravel", "Thread"."end_date_of_travel" AS "endDateOfTravel", "Thread"."threads_dp" AS "threadsDp", "Thread"."created_at" AS "createdAt", "Thread"."updated_at" AS "updatedAt", "User"."id" AS "User.id", "User"."email" AS "User.email", "User"."username" AS "User.username", "User"."user_dp_url" AS "User.userDpUrl", "User"."verification_status" AS "User.verificationStatus", "User"."bio" AS "User.bio", "User"."created_at" AS "User.createdAt", "User"."updated_at" AS "User.updatedAt" FROM "threads" AS "Thread" LEFT OUTER JOIN "users" AS "User" ON "Thread"."user_id" = "User"."id"; Elapsed time: 8ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 12ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 14ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 12ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 4ms
+Executed (default): SELECT "Thread"."id", "Thread"."user_id" AS "userId", "Thread"."title", "Thread"."destination", "Thread"."start_date_of_travel" AS "startDateOfTravel", "Thread"."end_date_of_travel" AS "endDateOfTravel", "Thread"."threads_dp" AS "threadsDp", "Thread"."created_at" AS "createdAt", "Thread"."updated_at" AS "updatedAt", "User"."id" AS "User.id", "User"."email" AS "User.email", "User"."username" AS "User.username", "User"."user_dp_url" AS "User.userDpUrl", "User"."verification_status" AS "User.verificationStatus", "User"."bio" AS "User.bio", "User"."created_at" AS "User.createdAt", "User"."updated_at" AS "User.updatedAt" FROM "threads" AS "Thread" LEFT OUTER JOIN "users" AS "User" ON "Thread"."user_id" = "User"."id"; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 4ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT "Thread"."id", "Thread"."user_id" AS "userId", "Thread"."title", "Thread"."destination", "Thread"."start_date_of_travel" AS "startDateOfTravel", "Thread"."end_date_of_travel" AS "endDateOfTravel", "Thread"."threads_dp" AS "threadsDp", "Thread"."created_at" AS "createdAt", "Thread"."updated_at" AS "updatedAt", "User"."id" AS "User.id", "User"."email" AS "User.email", "User"."username" AS "User.username", "User"."user_dp_url" AS "User.userDpUrl", "User"."verification_status" AS "User.verificationStatus", "User"."bio" AS "User.bio", "User"."created_at" AS "User.createdAt", "User"."updated_at" AS "User.updatedAt" FROM "threads" AS "Thread" LEFT OUTER JOIN "users" AS "User" ON "Thread"."user_id" = "User"."id"; Elapsed time: 1ms
+Executed (default): SELECT 1+1 AS result Elapsed time: 1ms
+Connection has been established successfully.
+Executed (default): SELECT "Thread"."id", "Thread"."user_id" AS "userId", "Thread"."title", "Thread"."destination", "Thread"."start_date_of_travel" AS "startDateOfTravel", "Thread"."end_date_of_travel" AS "endDateOfTravel", "Thread"."threads_dp" AS "threadsDp", "Thread"."created_at" AS "createdAt", "Thread"."updated_at" AS "updatedAt", "User"."id" AS "User.id", "User"."email" AS "User.email", "User"."username" AS "User.username", "User"."user_dp_url" AS "User.userDpUrl", "User"."verification_status" AS "User.verificationStatus", "User"."bio" AS "User.bio", "User"."created_at" AS "User.createdAt", "User"."updated_at" AS "User.updatedAt" FROM "threads" AS "Thread" LEFT OUTER JOIN "users" AS "User" ON "Thread"."user_id" = "User"."id"; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 4ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 4ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT "id", "email", "username", "user_dp_url" AS "userDpUrl", "verification_status" AS "verificationStatus", "bio", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "users" AS "User" WHERE "User"."email" = 'email3@email.com' LIMIT 1; Elapsed time: 3ms
+Executed (default): SELECT 1+1 AS result Elapsed time: 1ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 3ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT "id", "email", "username", "user_dp_url" AS "userDpUrl", "verification_status" AS "verificationStatus", "bio", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "users" AS "User" WHERE "User"."email" = 'email3@email.com' LIMIT 1; Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT "id", "user_id" AS "userId", "type", "content", "viewed", "threads_contents_id" AS "threadsContentsId", "goto_url" AS "gotoUrl", "created_at" AS "createdAt", "updated_at" AS "updatedAt", "user_id" AS "UserId" FROM "notifications" AS "Notification" WHERE "Notification"."user_id" = '1'; Elapsed time: 2ms
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 2ms
+Executed (default): SELECT "id", "user_id" AS "userId", "type", "content", "viewed", "threads_contents_id" AS "threadsContentsId", "goto_url" AS "gotoUrl", "created_at" AS "createdAt", "updated_at" AS "updatedAt", "user_id" AS "UserId" FROM "notifications" AS "Notification" WHERE "Notification"."user_id" = '1'; Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+All models were synchronized successfully.
+Executed (default): SELECT "id", "user_id" AS "userId", "type", "content", "viewed", "threads_contents_id" AS "threadsContentsId", "goto_url" AS "gotoUrl", "created_at" AS "createdAt", "updated_at" AS "updatedAt", "user_id" AS "UserId" FROM "notifications" AS "Notification" WHERE "Notification"."user_id" = '1'; Elapsed time: 1ms
+Executed (default): SELECT 1+1 AS result Elapsed time: 4ms
+Connection has been established successfully.
+Executed (default): SELECT "id", "user_id" AS "userId", "type", "content", "viewed", "threads_contents_id" AS "threadsContentsId", "goto_url" AS "gotoUrl", "created_at" AS "createdAt", "updated_at" AS "updatedAt", "user_id" AS "UserId" FROM "notifications" AS "Notification" WHERE "Notification"."user_id" = '1'; Elapsed time: 4ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 3ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 9ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 1ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+All models were synchronized successfully.
+Executed (default): SELECT "Chatroom"."id", "Chatroom"."friendship_id" AS "friendshipId", "Chatroom"."created_at" AS "createdAt", "Chatroom"."updated_at" AS "updatedAt", "Friendship"."id" AS "Friendship.id", "Friendship"."requestor_id" AS "Friendship.requestorId", "Friendship"."receiver_id" AS "Friendship.receiverId", "Friendship"."status" AS "Friendship.status", "Friendship"."created_at" AS "Friendship.createdAt", "Friendship"."updated_at" AS "Friendship.updatedAt", "Friendship->Requestor"."username" AS "Friendship.Requestor.username", "Friendship->Requestor"."user_dp_url" AS "Friendship.Requestor.userDpUrl", "Friendship->Requestor"."id" AS "Friendship.Requestor.id", "Friendship->Receiver"."username" AS "Friendship.Receiver.username", "Friendship->Receiver"."user_dp_url" AS "Friendship.Receiver.userDpUrl", "Friendship->Receiver"."id" AS "Friendship.Receiver.id" FROM "chatrooms" AS "Chatroom" INNER JOIN "friendships" AS "Friendship" ON "Chatroom"."friendship_id" = "Friendship"."id" AND ("Friendship"."requestor_id" = '1' OR "Friendship"."receiver_id" = '1') LEFT OUTER JOIN "users" AS "Friendship->Requestor" ON "Friendship"."requestor_id" = "Friendship->Requestor"."id" LEFT OUTER JOIN "users" AS "Friendship->Receiver" ON "Friendship"."receiver_id" = "Friendship->Receiver"."id"; Elapsed time: 4ms
+Executed (default): SELECT "Chatroom"."id", "Chatroom"."friendship_id" AS "friendshipId", "Chatroom"."created_at" AS "createdAt", "Chatroom"."updated_at" AS "updatedAt", "Friendship"."id" AS "Friendship.id", "Friendship"."requestor_id" AS "Friendship.requestorId", "Friendship"."receiver_id" AS "Friendship.receiverId", "Friendship"."status" AS "Friendship.status", "Friendship"."created_at" AS "Friendship.createdAt", "Friendship"."updated_at" AS "Friendship.updatedAt", "Friendship->Requestor"."username" AS "Friendship.Requestor.username", "Friendship->Requestor"."user_dp_url" AS "Friendship.Requestor.userDpUrl", "Friendship->Requestor"."id" AS "Friendship.Requestor.id", "Friendship->Receiver"."username" AS "Friendship.Receiver.username", "Friendship->Receiver"."user_dp_url" AS "Friendship.Receiver.userDpUrl", "Friendship->Receiver"."id" AS "Friendship.Receiver.id" FROM "chatrooms" AS "Chatroom" INNER JOIN "friendships" AS "Friendship" ON "Chatroom"."friendship_id" = "Friendship"."id" AND ("Friendship"."requestor_id" = '1' OR "Friendship"."receiver_id" = '1') LEFT OUTER JOIN "users" AS "Friendship->Requestor" ON "Friendship"."requestor_id" = "Friendship->Requestor"."id" LEFT OUTER JOIN "users" AS "Friendship->Receiver" ON "Friendship"."receiver_id" = "Friendship->Receiver"."id"; Elapsed time: 9ms
+Executed (default): SELECT "Message".* FROM (SELECT * FROM (SELECT "id", "sender_id" AS "senderId", "chatroom_id" AS "chatroomId", "content", "image_url" AS "imageUrl", "viewed", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "messages" AS "Message" WHERE "Message"."chatroom_id" = 1 ORDER BY "createdAt" DESC LIMIT 1) AS sub UNION ALL SELECT * FROM (SELECT "id", "sender_id" AS "senderId", "chatroom_id" AS "chatroomId", "content", "image_url" AS "imageUrl", "viewed", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "messages" AS "Message" WHERE "Message"."chatroom_id" = 2 ORDER BY "createdAt" DESC LIMIT 1) AS sub) AS "Message"; Elapsed time: 3ms
+Friendship {
+  dataValues: {
+    id: 1,
+    requestorId: 1,
+    receiverId: 2,
+    status: 'friends',
+    createdAt: 2024-03-07T16:41:15.503Z,
+    updatedAt: 2024-03-11T06:41:40.148Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  _previousDataValues: {
+    id: 1,
+    requestorId: 1,
+    receiverId: 2,
+    status: 'friends',
+    createdAt: 2024-03-07T16:41:15.503Z,
+    updatedAt: 2024-03-11T06:41:40.148Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    include: [ [Object], [Object] ],
+    includeNames: [ 'Requestor', 'Receiver' ],
+    includeMap: { Requestor: [Object], Receiver: [Object] },
+    includeValidated: true,
+    raw: true,
+    attributes: undefined
+  },
+  isNewRecord: false,
+  Requestor: User {
+    dataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    _previousDataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  Receiver: User {
+    dataValues: { username: 'email4', userDpUrl: null, id: 2 },
+    _previousDataValues: { username: 'email4', userDpUrl: null, id: 2 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  }
+}
+Friendship {
+  dataValues: {
+    id: 2,
+    requestorId: 13,
+    receiverId: 1,
+    status: 'friends',
+    createdAt: 2024-03-14T03:44:55.930Z,
+    updatedAt: 2024-03-14T03:45:53.518Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  _previousDataValues: {
+    id: 2,
+    requestorId: 13,
+    receiverId: 1,
+    status: 'friends',
+    createdAt: 2024-03-14T03:44:55.930Z,
+    updatedAt: 2024-03-14T03:45:53.518Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    include: [ [Object], [Object] ],
+    includeNames: [ 'Requestor', 'Receiver' ],
+    includeMap: { Requestor: [Object], Receiver: [Object] },
+    includeValidated: true,
+    raw: true,
+    attributes: undefined
+  },
+  isNewRecord: false,
+  Requestor: User {
+    dataValues: {
+      username: 'kuromi',
+      userDpUrl: 'https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fkuromi?alt=media&token=a0862caf-6849-4977-9f73-1cf158ca1b20',
+      id: 13
+    },
+    _previousDataValues: {
+      username: 'kuromi',
+      userDpUrl: 'https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fkuromi?alt=media&token=a0862caf-6849-4977-9f73-1cf158ca1b20',
+      id: 13
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  Receiver: User {
+    dataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    _previousDataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  }
+}
+Executed (default): SELECT "Message".* FROM (SELECT * FROM (SELECT "id", "sender_id" AS "senderId", "chatroom_id" AS "chatroomId", "content", "image_url" AS "imageUrl", "viewed", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "messages" AS "Message" WHERE "Message"."chatroom_id" = 1 ORDER BY "createdAt" DESC LIMIT 1) AS sub UNION ALL SELECT * FROM (SELECT "id", "sender_id" AS "senderId", "chatroom_id" AS "chatroomId", "content", "image_url" AS "imageUrl", "viewed", "created_at" AS "createdAt", "updated_at" AS "updatedAt" FROM "messages" AS "Message" WHERE "Message"."chatroom_id" = 2 ORDER BY "createdAt" DESC LIMIT 1) AS sub) AS "Message"; Elapsed time: 5ms
+Friendship {
+  dataValues: {
+    id: 1,
+    requestorId: 1,
+    receiverId: 2,
+    status: 'friends',
+    createdAt: 2024-03-07T16:41:15.503Z,
+    updatedAt: 2024-03-11T06:41:40.148Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  _previousDataValues: {
+    id: 1,
+    requestorId: 1,
+    receiverId: 2,
+    status: 'friends',
+    createdAt: 2024-03-07T16:41:15.503Z,
+    updatedAt: 2024-03-11T06:41:40.148Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    include: [ [Object], [Object] ],
+    includeNames: [ 'Requestor', 'Receiver' ],
+    includeMap: { Requestor: [Object], Receiver: [Object] },
+    includeValidated: true,
+    raw: true,
+    attributes: undefined
+  },
+  isNewRecord: false,
+  Requestor: User {
+    dataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    _previousDataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  Receiver: User {
+    dataValues: { username: 'email4', userDpUrl: null, id: 2 },
+    _previousDataValues: { username: 'email4', userDpUrl: null, id: 2 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  }
+}
+Friendship {
+  dataValues: {
+    id: 2,
+    requestorId: 13,
+    receiverId: 1,
+    status: 'friends',
+    createdAt: 2024-03-14T03:44:55.930Z,
+    updatedAt: 2024-03-14T03:45:53.518Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  _previousDataValues: {
+    id: 2,
+    requestorId: 13,
+    receiverId: 1,
+    status: 'friends',
+    createdAt: 2024-03-14T03:44:55.930Z,
+    updatedAt: 2024-03-14T03:45:53.518Z,
+    Requestor: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    },
+    Receiver: User {
+      dataValues: [Object],
+      _previousDataValues: [Object],
+      uniqno: 1,
+      _changed: Set(0) {},
+      _options: [Object],
+      isNewRecord: false
+    }
+  },
+  uniqno: 1,
+  _changed: Set(0) {},
+  _options: {
+    isNewRecord: false,
+    _schema: null,
+    _schemaDelimiter: '',
+    include: [ [Object], [Object] ],
+    includeNames: [ 'Requestor', 'Receiver' ],
+    includeMap: { Requestor: [Object], Receiver: [Object] },
+    includeValidated: true,
+    raw: true,
+    attributes: undefined
+  },
+  isNewRecord: false,
+  Requestor: User {
+    dataValues: {
+      username: 'kuromi',
+      userDpUrl: 'https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fkuromi?alt=media&token=a0862caf-6849-4977-9f73-1cf158ca1b20',
+      id: 13
+    },
+    _previousDataValues: {
+      username: 'kuromi',
+      userDpUrl: 'https://firebasestorage.googleapis.com/v0/b/tread-c514d.appspot.com/o/profile-img%2Fkuromi?alt=media&token=a0862caf-6849-4977-9f73-1cf158ca1b20',
+      id: 13
+    },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  },
+  Receiver: User {
+    dataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    _previousDataValues: { username: 'email3', userDpUrl: null, id: 1 },
+    uniqno: 1,
+    _changed: Set(0) {},
+    _options: {
+      isNewRecord: false,
+      _schema: null,
+      _schemaDelimiter: '',
+      include: undefined,
+      includeNames: undefined,
+      includeMap: undefined,
+      includeValidated: true,
+      raw: true,
+      attributes: [Array]
+    },
+    isNewRecord: false
+  }
+}
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 3ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT "Chatroom"."id", "Chatroom"."friendship_id" AS "friendshipId", "Friendship"."id" AS "Friendship.id", "Friendship"."requestor_id" AS "Friendship.requestorId", "Friendship"."receiver_id" AS "Friendship.receiverId", "Friendship->Requestor"."username" AS "Friendship.Requestor.username", "Friendship->Requestor"."user_dp_url" AS "Friendship.Requestor.userDpUrl", "Friendship->Requestor"."id" AS "Friendship.Requestor.id", "Friendship->Receiver"."username" AS "Friendship.Receiver.username", "Friendship->Receiver"."user_dp_url" AS "Friendship.Receiver.userDpUrl", "Friendship->Receiver"."id" AS "Friendship.Receiver.id", "Messages"."id" AS "Messages.id", "Messages"."sender_id" AS "Messages.senderId", "Messages"."chatroom_id" AS "Messages.chatroomId", "Messages"."content" AS "Messages.content", "Messages"."image_url" AS "Messages.imageUrl", "Messages"."viewed" AS "Messages.viewed", "Messages"."created_at" AS "Messages.createdAt", "Messages"."updated_at" AS "Messages.updatedAt" FROM "chatrooms" AS "Chatroom" LEFT OUTER JOIN "friendships" AS "Friendship" ON "Chatroom"."friendship_id" = "Friendship"."id" LEFT OUTER JOIN "users" AS "Friendship->Requestor" ON "Friendship"."requestor_id" = "Friendship->Requestor"."id" LEFT OUTER JOIN "users" AS "Friendship->Receiver" ON "Friendship"."receiver_id" = "Friendship->Receiver"."id" LEFT OUTER JOIN "messages" AS "Messages" ON "Chatroom"."id" = "Messages"."chatroom_id" WHERE "Chatroom"."id" = '1'; Elapsed time: 1ms
+Executed (default): SELECT "Chatroom"."id", "Chatroom"."friendship_id" AS "friendshipId", "Friendship"."id" AS "Friendship.id", "Friendship"."requestor_id" AS "Friendship.requestorId", "Friendship"."receiver_id" AS "Friendship.receiverId", "Friendship->Requestor"."username" AS "Friendship.Requestor.username", "Friendship->Requestor"."user_dp_url" AS "Friendship.Requestor.userDpUrl", "Friendship->Requestor"."id" AS "Friendship.Requestor.id", "Friendship->Receiver"."username" AS "Friendship.Receiver.username", "Friendship->Receiver"."user_dp_url" AS "Friendship.Receiver.userDpUrl", "Friendship->Receiver"."id" AS "Friendship.Receiver.id", "Messages"."id" AS "Messages.id", "Messages"."sender_id" AS "Messages.senderId", "Messages"."chatroom_id" AS "Messages.chatroomId", "Messages"."content" AS "Messages.content", "Messages"."image_url" AS "Messages.imageUrl", "Messages"."viewed" AS "Messages.viewed", "Messages"."created_at" AS "Messages.createdAt", "Messages"."updated_at" AS "Messages.updatedAt" FROM "chatrooms" AS "Chatroom" LEFT OUTER JOIN "friendships" AS "Friendship" ON "Chatroom"."friendship_id" = "Friendship"."id" LEFT OUTER JOIN "users" AS "Friendship->Requestor" ON "Friendship"."requestor_id" = "Friendship->Requestor"."id" LEFT OUTER JOIN "users" AS "Friendship->Receiver" ON "Friendship"."receiver_id" = "Friendship->Receiver"."id" LEFT OUTER JOIN "messages" AS "Messages" ON "Chatroom"."id" = "Messages"."chatroom_id" WHERE "Chatroom"."id" = '1'; Elapsed time: 2ms
+Executed (default): SELECT 1+1 AS result Elapsed time: 0ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 3ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 0ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+Executed (default): SELECT 1+1 AS result Elapsed time: 1ms
+Connection has been established successfully.
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'users' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_comments' Elapsed time: 0ms
+Executed (default): INSERT INTO "messages" ("id","sender_id","chatroom_id","content","image_url","viewed","created_at","updated_at") VALUES (DEFAULT,$1,$2,$3,$4,$5,$6,$7) RETURNING "id","sender_id","chatroom_id","content","image_url","viewed","created_at","updated_at"; Elapsed time: 9ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_comments' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_likes' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_likes' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 2ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_display_pictures' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_display_pictures' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'notifications' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'notifications' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 3ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'friendships' Elapsed time: 2ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'friendships' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 7ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'chatrooms' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'chatrooms' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'messages' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'messages' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'categories' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'threads_contents_categories' Elapsed time: 0ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'threads_contents_categories' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+Executed (default): SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'saved_threads' Elapsed time: 1ms
+Executed (default): SELECT i.relname AS name, ix.indisprimary AS primary, ix.indisunique AS unique, ix.indkey AS indkey, array_agg(a.attnum) as column_indexes, array_agg(a.attname) AS column_names, pg_get_indexdef(ix.indexrelid) AS definition FROM pg_class t, pg_class i, pg_index ix, pg_attribute a WHERE t.oid = ix.indrelid AND i.oid = ix.indexrelid AND a.attrelid = t.oid AND t.relkind = 'r' and t.relname = 'saved_threads' GROUP BY i.relname, ix.indexrelid, ix.indisprimary, ix.indisunique, ix.indkey ORDER BY i.relname; Elapsed time: 1ms
+All models were synchronized successfully.
+
+> tread@0.1.0 dev
+> next dev
+
+   ▲ Next.js 14.1.0
+   - Local:        http://localhost:3001
+   - Environments: .env.local
+
+ ✓ Ready in 1304ms
+[?25h
