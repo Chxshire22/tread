@@ -400,6 +400,7 @@ li {
   color: var(--color-white);
   padding: 0.5rem;
   border-radius: 50%;
+  background-color: rgb(62, 62, 62);
   cursor: pointer;
   transition: all 0.3s ease-in;
   z-index: 1;
