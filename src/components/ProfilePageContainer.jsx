@@ -26,18 +26,13 @@ export default function ProfilePageContainer({ username }) {
         // use sequelize to return friendship row WHERE currentUser.id == requestorId or receiverId AND userData.id == requestorId or receiverId
         const response = await axios.get(`/api/user/${username}`);
         // this is downloading all the existing friendship of the currentUser which is resource intensive, causing the app to slow down
-        const friendshipRes = await axios.get(
-          `/api/friendships/${currentUserId}`
-        );
-        const friendsData = friendshipRes.data.filter(
-          (friend) => friend.status === "friends"
-        );
+        const friendshipRes = await axios.get(`/api/friendships/${currentUserId}`);
+        const friendsData = friendshipRes.data.filter((friend) => friend.status === "friends");
         const ifFriendshipExists = friendsData?.find(
           (friendship) =>
             (friendship.requestorId === currentUserId &&
               friendship.receiverId === response.data.id) ||
-            (friendship.requestorId === response.data.id &&
-              friendship.receiverId === currentUserId)
+            (friendship.requestorId === response.data.id && friendship.receiverId === currentUserId)
         );
         setUserData(response.data);
         setFriendshipExists(ifFriendshipExists);
@@ -73,20 +68,14 @@ export default function ProfilePageContainer({ username }) {
       {" "}
       {console.log(userDp)}
       <div className="profilepage-head">
-        <Image
-          src={userDp}
-          alt="placeholder img"
-          className="pfp-l"
-          width={100}
-          height={100}
-        />
+        <Image src={userDp} alt="placeholder img" className="pfp-l" width={100} height={100} />
 
         <p className="profilepage-username">{"@" + userData?.username}</p>
       </div>
       <Container className="profilepage-bio">
-        <strong> " </strong>
+        <strong>&quot;</strong>
         {userData?.bio}
-        <strong> "</strong>
+        <strong>&quot;</strong>
       </Container>
       <br />
       <div className="profilepage-friends-message">
