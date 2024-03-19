@@ -409,9 +409,11 @@ li {
 .arrow-left {
   left: 0;
 }
+
 .arrow-right {
   right: 0;
 }
+
 .remove-img {
   z-index: 10;
   top: 0;
@@ -645,4 +647,42 @@ li {
   align-items: center;
   justify-content: center;
   gap: 7px;
+}
+
+.airthread-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+}
+
+.mainpage-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.main-username {
+  display: flex;
+  justify-content: center;
+}
+
+.friendship-pills {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.friendship-username {
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+  margin: 1rem;
+  color: #fcb130;
+}
+
+.pills-pending-tab {
+  margin: 1rem;
 }

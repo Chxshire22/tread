@@ -3,7 +3,7 @@ import { PlusCircleFill } from "react-bootstrap-icons";
 
 export const LoginButton = () => {
   return (
-    <button>
+    <button className="btn btn-primary">
       <a href="/api/auth/login">Login</a>
     </button>
   );
@@ -19,7 +19,7 @@ export const LogoutButton = () => {
 
 export const SignUpButton = () => {
   return (
-    <button>
+    <button className="btn btn-warning">
       <a href="/api/auth/signup">Sign Up</a>
     </button>
   );
@@ -35,12 +35,8 @@ export function CreatePostButton() {
 
 export function CreateThreadContentButton({ threadId }) {
   return (
-    <Link
-      href={`/threads/${threadId}/create-thread-content`}
-      className="create-thread-btn"
-    >
+    <Link href={`/threads/${threadId}/create-thread-content`} className="create-thread-btn">
       <PlusCircleFill color="#000066" size={40} />
     </Link>
   );
 }
-

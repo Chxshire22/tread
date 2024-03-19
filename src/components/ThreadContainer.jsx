@@ -31,8 +31,7 @@ export default function ThreadContainer({ threadId }) {
     fetchData();
   }, [threadId]);
 
-  const handleClick = (e, threadContentId) => {
-    e.preventDefault();
+  const handleClick = (threadContentId) => {
     const newPath = `/threads/${threadId}/${threadContentId}`;
     router.push(newPath);
   };
@@ -69,9 +68,9 @@ export default function ThreadContainer({ threadId }) {
         <div style={{ display: "flex" }}>
           <div>
             {threadContentList.map((threadContent) => (
-              <a href="#" onClick={(e) => handleClick(e, threadContent.id)} key={threadContent.id}>
-                <ThreadContent threadContentId={threadContent.id} />
-              </a>
+              <div key={threadContent.id}>
+                <ThreadContent threadId={threadId} threadContentId={threadContent.id} />
+              </div>
             ))}
           </div>
         </div>

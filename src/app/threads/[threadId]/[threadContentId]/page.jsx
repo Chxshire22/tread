@@ -61,11 +61,14 @@ export default function FullThreadContent({ params }) {
               display: "flex",
               margin: "12px",
             }}
-          >
-            <ChatLeftFill />
-            <HeartFill style={{ marginInline: "1rem" }} onClick={handleLike} />
-          </div>
+          ></div>
+
           <div style={{ width: "60vw", margin: "5px" }}>
+            <HeartFill
+              size={20}
+              style={{ marginInline: "1rem", color: "red" }}
+              onClick={handleLike}
+            />
             <Likes threadContentId={params.threadContentId} />
             <Comments
               threadId={params.threadId}

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { GeoAltFill } from "react-bootstrap-icons";
 import CarouselTC from "@/components/Carousel";
 
-export default function ThreadContent({ threadContentId }) {
+export default function ThreadContent({ threadContentId, threadId }) {
   const [threadContent, setThreadContent] = useState({});
   const [threadContentDpArray, setThreadContentDpArray] = useState([]);
 
@@ -12,12 +12,8 @@ export default function ThreadContent({ threadContentId }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `/api/threads-contents/${threadContentId}`
-        );
-        const dpRes = await axios.get(
-          `/api/threads-contents/display-pictures/${threadContentId}`
-        );
+        const response = await axios.get(`/api/threads-contents/${threadContentId}`);
+        const dpRes = await axios.get(`/api/threads-contents/display-pictures/${threadContentId}`);
         setThreadContent(response.data[0]);
         let arrayDp = [];
         if (dpRes.data.length > 0) {
@@ -45,6 +41,7 @@ export default function ThreadContent({ threadContentId }) {
       className="card tc-card-main"
       style={{
         width: "83vw",
+        height: "30rem",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         borderRadius: "10px",
         overflow: "hidden",
@@ -56,24 +53,23 @@ export default function ThreadContent({ threadContentId }) {
         <div style={{ ...carouselStyle, marginBottom: "15px" }}>
           <CarouselTC images={threadContentDpArray} />
         </div>
-        <h5
-          className="card-title"
-          style={{
-            color: "#333",
-            marginBottom: "10px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <GeoAltFill className="GeoAlt" style={{ marginRight: "5px" }} />
-          {threadContent.location}
-        </h5>
-        <p
-          className="card-text"
-          style={{ color: "#555", fontSize: "16px", lineHeight: "1.5" }}
-        >
-          "{threadContent.description}"
-        </p>
+        <a href={`/threads/${threadId}/${threadContentId}/`}>
+          <h5
+            className="card-title"
+            style={{
+              color: "#333",
+              marginBottom: "10px",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <GeoAltFill className="GeoAlt" style={{ marginRight: "5px" }} />
+            {threadContent.location}
+          </h5>
+          <p className="card-text" style={{ color: "#555", fontSize: "16px", lineHeight: "1.5" }}>
+            "{threadContent.description}"
+          </p>
+        </a>
       </div>
       {threadContent.recommendedTime && (
         <p
