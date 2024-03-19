@@ -67,7 +67,7 @@ export default function ThreadContent({ threadContentId, threadId }) {
             {threadContent.location}
           </h5>
           <p className="card-text" style={{ color: "#555", fontSize: "16px", lineHeight: "1.5" }}>
-            "{threadContent.description}"
+            &quot;{threadContent.description}&quot;
           </p>
         </a>
       </div>

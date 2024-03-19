@@ -74,7 +74,7 @@ export default function Search() {
               className="sr-container"
               href={`/threads/${threadsContent.Thread.id}/${threadsContent.id}`}
             >
-              <div className="sr-threadcontent">"{threadsContent.location}"</div>
+              <div className="sr-threadcontent">&quot;{threadsContent.location}&quot;</div>
               <div className="sr-p">
                 <span>by</span>
                 <div className=" thread-username">
