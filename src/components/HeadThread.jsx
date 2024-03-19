@@ -4,7 +4,7 @@ import { formatDate } from "@/utils/dateUtils";
 
 export default function HeadThread({ thread }) {
   const threadDp =
-    thread?.threadsDP ||
+    thread?.threadsDp ||
     "https://st.depositphotos.com/1008648/2313/i/380/depositphotos_23132682-stock-photo-travel-the-world-monuments-concept.jpg";
 
   return (

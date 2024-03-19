@@ -34,10 +34,14 @@ export default function FriendshipsList({ username }) {
   const renderPending = () => {
     return pendingRequests.map((request) => {
       if (request.Requestor.id === currUserId) {
-        return <div key={request.id}>{request.Receiver.username} - Friend Request Sent</div>;
+        return (
+          <div className=" pills-pending-tab " key={request.id}>
+            {request.Receiver.username} - Friend Request Sent
+          </div>
+        );
       } else if (request.Requestor.id !== currUserId) {
         return (
-          <div key={request.id}>
+          <div pills-pending-tab key={request.id}>
             {request.Requestor.username}
             <button onClick={() => handleAddFriend(request, "friends")}>ACCEPT</button>
             <button onClick={() => handleAddFriend(request, "rejected")}>DECLINE</button>
@@ -67,8 +71,6 @@ export default function FriendshipsList({ username }) {
       console.error("Error:", error);
     }
   };
-  // TO DO:
-  //if userProfile is not currUser, Hide pending requests
 
   return (
     <div>

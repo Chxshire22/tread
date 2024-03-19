@@ -409,9 +409,11 @@ li {
 .arrow-left {
   left: 0;
 }
+
 .arrow-right {
   right: 0;
 }
+
 .remove-img {
   z-index: 10;
   top: 0;
@@ -679,4 +681,8 @@ li {
   font-weight: 600;
   margin: 1rem;
   color: #fcb130;
+}
+
+.pills-pending-tab {
+  margin: 1rem;
 }
