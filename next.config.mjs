@@ -8,12 +8,6 @@ const nextConfig = {
         port: "",
         pathname: "*",
       },
-      // {
-      //   protocol: "https",
-      //   hostname: "firebasestorage.googleapis.com",
-      //   port: "",
-      //   pathname: "*",
-      // },
     ],
     domains: [
       "firebasestorage.googleapis.com",
@@ -22,15 +16,6 @@ const nextConfig = {
       "upload.wikimedia.org",
     ],
   },
-  // webpack: (config, { isServer }) => {
-  //   if (!isServer) {
-  //     config.node = {
-  //       net: "empty",
-  //     };
-  //   }
-
-  //   return config;
-  // },
 };
 
 export default nextConfig;
